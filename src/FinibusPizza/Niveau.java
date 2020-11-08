@@ -24,20 +24,24 @@ public class Niveau {
 		this.nom = nom;
 		this.difficulte=difficulte;
 		//!----- Faire l'inclusion des types clients quand l'enumération sera faite -----!//
+		settresorerie(margeTresorerie);
+		setTempsPartie(margeTemps);
 	}
 	/**
 	 * Permet d'obtenir la tresorerie du niveau
 	 * @return la tresorerie du niveau
 	 */
 	public float gettresorerie() {
-		return tresorerie;
+		return this.tresorerie;
 	}
 	/**
 	 * Permet de calculer la trésorerie du niveau, en y ajoutant une marge donnée dans la création du niveau
 	 * @param tresorerie
 	 * @parem marge 
 	 */
-	public void settresorerie(float tresorerie, float marge) {
+	public void settresorerie(float marge) {
+		//!---Calcul à faire selon les ingrédients voulus par les clients et donc leurs prix !----
+		float tresorerie = (Float) null;
 		this.tresorerie = tresorerie * marge;
 	}
 	/**
@@ -49,42 +53,72 @@ public class Niveau {
 	}
 	/**
 	 * Permet de paramétrer les scores obtenables d'un coup
-	 * @param scoreAuTemps, qui est un tableau contenant les trois temps possibles liés aux trois etoiles de score obtenables
 	 */
-	public void setScoreAuTemps(float[] scoreAuTemps) {
-		if(scoreAuTemps.length != 3) {
-			throw new IllegalArgumentException("Le tableau doit faire 3 de taille");
-		} else {
-			this.setScoreAuTemps1(scoreAuTemps[0]);
-			this.setScoreAuTemps2(scoreAuTemps[1]);
-			this.setScoreAuTemps3(scoreAuTemps[2]);
-		}
+	public void setScoreAuTemps() {
+		this.setScoreAuTemps1();
+		this.setScoreAuTemps2();
+		this.setScoreAuTemps3();
 	}
-	public void setScoreAuTemps1(float scoreAuTemps) {
+	/**
+	 * Permet de paramétrer le score le plus bas
+	 */
+	public void setScoreAuTemps1() {
+		//------! Calcul a faire ----- !
+		float scoreAuTemps = 0;
 		this.scoreAuTemps[0] = scoreAuTemps;
 	}
-	public void setScoreAuTemps2(float scoreAuTemps) {
+	/**
+	 * Permet de paramétrer le score moyen
+	 */
+	public void setScoreAuTemps2() {
+		//------! Calcul a faire ----- !
+		float scoreAuTemps = getTempsPartie()*(1/3);
 		this.scoreAuTemps[1] = scoreAuTemps;
 	}
-	public void setScoreAuTemps3(float scoreAuTemps) {
+	/**
+	 * Permet de paramétrer le score le plus haut
+	 */
+	public void setScoreAuTemps3() {
+		//------! Calcul a faire ----- !
+		float scoreAuTemps = getTempsPartie()*(2/3);
 		this.scoreAuTemps[2] = scoreAuTemps;
 	}
+	
+	/**
+	 * Permet d'obtenir la liste HashMap des clients, en clef le type et en données, le nombre
+	 * @return Une HashMap
+	 */
 	public HashMap<Client, Integer> getClients() {
 		return clients;
 	}
-
+	/**
+	 * Permet d'obtenir le temps de la partie 
+	 * @return le temps de la partie autorisée et max
+	 */
 	public float getTempsPartie() {
 		return tempsPartie;
 	}
-
-	public void setTempsPartie(float tempsPartie) {
-		this.tempsPartie = tempsPartie;
+	/**
+	 * Permet de calculer le temps de la partie
+	 * @param marge
+	 */
+	public void setTempsPartie(float marge) {
+		//!---Calcul à faire selon le temps imparti des clients !----
+		float tempsPartie = (Float) null;
+		this.tempsPartie = tempsPartie * marge;
+		setScoreAuTemps();
 	}
-
+	/**
+	 * Permet d'obtenir la difficulté du niveau 
+	 * @return la difficulté
+	 */
 	public Difficulte getDifficulte() {
 		return difficulte;
 	}
-
+	/**
+	 * Permet d'obtenir le nom du niveau
+	 * @return le nom
+	 */
 	public String getNom() {
 		return nom;
 	}
