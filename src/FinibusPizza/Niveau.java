@@ -2,6 +2,7 @@ package FinibusPizza;
 
 import java.util.HashMap;
 
+
 public class Niveau {
 	//Nom du niveau
 	private String nom;
