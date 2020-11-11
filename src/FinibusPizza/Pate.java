@@ -35,7 +35,7 @@ public class Pate extends Ingredients{
 	 */
 	public Pate(String nom, double prixAchat, double prixVente, String cheminDaccesImage) {
 		super(nom, prixAchat, prixVente, cheminDaccesImage);
-		this.estReussite = false; //false car elle n'a pas encore �t� p�trie
+		this.estReussite = false; //false car elle n'a pas encore été pétrie
 		this.tempsPetrissage = 5;
 	}
 
