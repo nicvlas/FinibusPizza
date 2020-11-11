@@ -25,7 +25,7 @@ public class Pate extends Ingredients{
 	}
 	
 	/**
-	 * Constructeur de la pâte
+	 * Constructeur de la pï¿½te
 	 * @param nom
 	 * @param prixAchat
 	 * @param prixVente
@@ -33,27 +33,28 @@ public class Pate extends Ingredients{
 	 * @param estReussite
 	 * @param tempsPetrissage
 	 */
-	public Pate(String nom, double prixAchat, double prixVente, String cheminDaccesImage,
-			int tempsPetrissage) {
+	public Pate(String nom, double prixAchat, double prixVente, String cheminDaccesImage) {
 		super(nom, prixAchat, prixVente, cheminDaccesImage);
-		this.estReussite = false; //false car elle n'a pas encore été pétrie
-		this.tempsPetrissage = tempsPetrissage;
+		this.estReussite = false; //false car elle n'a pas encore ï¿½tï¿½ pï¿½trie
+		this.tempsPetrissage = 5;
 	}
 
 	/**
-	 * Pétrissage de la pâte : si l'utilisateur relâche le bouton "pétrir" trop tôt ou trop tard après tempsPétrissage, la pâte ne sera
-	 * bien montée et estRéussite = 0
+	 * Pï¿½trissage de la pï¿½te : si l'utilisateur relï¿½che le bouton "pï¿½trir" trop tï¿½t ou trop tard aprï¿½s tempsPï¿½trissage, la pï¿½te ne sera
+	 * bien montï¿½e et estRï¿½ussite = 0
 	 */
 	public void petrir() {
-		//on doit la pétrir pendant tempsPetrissage temps. Si pas assez ou trop : échec
-		//et donc perte d'argent
-		//recommencer tant que estRéussite = true
+	}
+	
+	public boolean finirPetrissage() {
+		return true;
 	}
 
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+		Pate unePate = new Pate("pate", 1, 2, "lol");
+		unePate.petrir();
 		
 	}
 
