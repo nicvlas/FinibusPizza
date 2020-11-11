@@ -22,8 +22,6 @@ public class Niveau {
 	//!-----Possible que l'on doive le faire selon l'argent -----!
 	//Trois temps, les trois désignant donc les trois étoiles obtenables (calculable !)
 	private float[] scoreAuTemps;
-	//Temps selon respect ingrédients
-	private float[] scoreAIngredients;
 	//!-----Type à vérifier-------!
 	//Tresorerie de début de partie(calculable + marge!)
 	private float tresorerie;
@@ -153,12 +151,6 @@ public class Niveau {
 	public static void main(String[] args) {
 		Niveau n = new Niveau("h", Difficulte.Facile, 1, 1, 1, 3.3f, 3.3f);
 		n.genererCommande();
-	}
-	public float[] getScoreAIngredients() {
-		return scoreAIngredients;
-	}
-	public void setScoreAIngredients(float[] scoreAIngredients) {
-		this.scoreAIngredients = scoreAIngredients;
 	}
 	public void setScore() {
 		//!---selon le temps de cuisson, le temps et le respect des ingrédients----!
