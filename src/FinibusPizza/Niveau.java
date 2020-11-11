@@ -1,5 +1,9 @@
 package FinibusPizza;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -10,12 +14,16 @@ public class Niveau {
 	private Difficulte difficulte; 
 	//Liste contenant au maximum les trois types de clients possibles en tant que clé enfin de savoir le nombre de clients par type
 	private HashMap<Client, Integer> clients = new HashMap<Client, Integer>();
+	//liste contenant des commandes à générer
+	private ArrayList<Commande> commandes = new ArrayList<Commande>();
 	//!------A modifier type selon comment gérer le temps Valsior ------!
 	//Temps total de partie(calculable + marge!)
 	private float tempsPartie; 
 	//!-----Possible que l'on doive le faire selon l'argent -----!
 	//Trois temps, les trois désignant donc les trois étoiles obtenables (calculable !)
 	private float[] scoreAuTemps;
+	//Temps selon respect ingrédients
+	private float[] scoreAIngredients;
 	//!-----Type à vérifier-------!
 	//Tresorerie de début de partie(calculable + marge!)
 	private float tresorerie;
@@ -24,8 +32,8 @@ public class Niveau {
 		this.nom = nom;
 		this.difficulte=difficulte;
 		//!----- Faire l'inclusion des types clients quand l'enumération sera faite -----!//
-		settresorerie(margeTresorerie);
-		setTempsPartie(margeTemps);
+		//settresorerie(margeTresorerie);
+		//setTempsPartie(margeTemps);
 	}
 	/**
 	 * Permet d'obtenir la tresorerie du niveau
@@ -63,7 +71,7 @@ public class Niveau {
 	 * Permet de paramétrer le score le plus bas
 	 */
 	public void setScoreAuTemps1() {
-		//------! Calcul a faire ----- !
+		//------! Calcul a faire, totalement faux ----- !
 		float scoreAuTemps = 0;
 		this.scoreAuTemps[0] = scoreAuTemps;
 	}
@@ -71,7 +79,7 @@ public class Niveau {
 	 * Permet de paramétrer le score moyen
 	 */
 	public void setScoreAuTemps2() {
-		//------! Calcul a faire ----- !
+		//------! Calcul a faire, totalement faux ----- !
 		float scoreAuTemps = getTempsPartie()*(1/3);
 		this.scoreAuTemps[1] = scoreAuTemps;
 	}
@@ -79,7 +87,7 @@ public class Niveau {
 	 * Permet de paramétrer le score le plus haut
 	 */
 	public void setScoreAuTemps3() {
-		//------! Calcul a faire ----- !
+		//------! Calcul a faire, totalement faux ----- !
 		float scoreAuTemps = getTempsPartie()*(2/3);
 		this.scoreAuTemps[2] = scoreAuTemps;
 	}
@@ -122,5 +130,39 @@ public class Niveau {
 	public String getNom() {
 		return nom;
 	}
-	
+	public boolean genererCommande() {
+	    int i;
+	    String line = new String();
+	    
+	    try {
+	      //lire le fichier file.txt
+	      FileReader file = new FileReader("C:\\Users\\david\\git\\FinibusPizza\\src\\FinibusPizza\\textes\\ingredients");
+	      BufferedReader buffer = new BufferedReader(file);
+	      String tmp = buffer.readLine();
+	      // parcourir le fichier
+	      while(tmp != null) {
+	          line += tmp + "\n";
+	          tmp = buffer.readLine();
+	      }
+	    } catch (IOException e) {
+	      e.printStackTrace();
+	    }
+	    System.out.println(line);
+		return true;
+	}
+	public static void main(String[] args) {
+		Niveau n = new Niveau("h", Difficulte.Facile, 1, 1, 1, 3.3f, 3.3f);
+		n.genererCommande();
+	}
+	public float[] getScoreAIngredients() {
+		return scoreAIngredients;
+	}
+	public void setScoreAIngredients(float[] scoreAIngredients) {
+		this.scoreAIngredients = scoreAIngredients;
+	}
+	public void setScore() {
+		//!---selon le temps de cuisson, le temps et le respect des ingrédients----!
+	}
+
 }
+
