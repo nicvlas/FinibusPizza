@@ -25,7 +25,7 @@ public class Pate extends Ingredients{
 	}
 	
 	/**
-	 * Constructeur de la p�te
+	 * Constructeur de la pâte
 	 * @param nom
 	 * @param prixAchat
 	 * @param prixVente
@@ -40,8 +40,8 @@ public class Pate extends Ingredients{
 	}
 
 	/**
-	 * P�trissage de la p�te : si l'utilisateur rel�che le bouton "p�trir" trop t�t ou trop tard apr�s tempsP�trissage, la p�te ne sera
-	 * bien mont�e et estR�ussite = 0
+	 * Petrissage de la pâte : si l'utilisateur relâche le bouton "pétrir" trop tôt ou trop tard après tempsPétrissage, la pâte ne sera
+	 * bien montée et estRéussite = 0
 	 */
 	public void petrir() {
 	}
