@@ -68,7 +68,7 @@ public class Commande {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Pate unePate = new Pate("pate", 1, 2, "lol", 3);
+		Pate unePate = new Pate("pate", 1, 2, "lol");
 		
 		Commande commande1 = new Commande(unePate, 3);
 		Ingredients fromage = new Ingredients("Fromage", 1.8, 2.3, "lol");
