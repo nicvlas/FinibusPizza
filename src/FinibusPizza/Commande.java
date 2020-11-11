@@ -11,78 +11,84 @@ public class Commande {
 	private Pate laPate;
 	private int tempsPreparation;
 	private boolean estReussite;
+	private int tempsDePoseIngredient;
 	
-	public Client getUnClient() {
-		return unClient;
-	}
 
-
-	public HashMap<Integer, Ingredients> getLesIngredients() {
-		return lesIngredients;
-	}
-
-
-	public Pate getLaPate() {
-		return laPate;
-	}
-
-
-	public int getTempsPreparation() {
-		return tempsPreparation;
-	}
-
-
-	public boolean isEstReussite() {
-		return estReussite;
-	}
-
-	
+	/**
+	 * Retourne les infos d'une pizza
+	 */
 	public String toString() {
-		return "";
-	}
-	
-	public void preparer() {
-		//lancer compteur = tempsPréparation
-		//si la pizza n'est pas prête après que le compteur soit fini : le client part : perte d'argent
-		//si elle est prête avant la fin du compteur, lancer cuire()
-	}
-	
-	public void cuire() {
-		//si on fait pas sortirDuFour() avant que le compteur >= temps de cuisson → estRéussite = false → RECOMMENCER preparer()
+		String phrase = "Pizza composée de : ";
 		
-		//si on fait sortirDuFour() avant que le compteur <= tempsPréparation → est réussite = false → donner au client mais moins d'argent sera perçu
+		Iterator hmIterator = this.lesIngredients.entrySet().iterator();
+		while (hmIterator.hasNext()) { 
+            HashMap.Entry mapElement = (HashMap.Entry)hmIterator.next(); 
+            Ingredients ingredient = (Ingredients) (mapElement.getValue());
+            phrase+= " "+ingredient.getNom();
+        }
+		
+		return phrase;
 	}
 	
-	public void sortirDuFour() {
-		//sortir la pizza et la donner au client
-	}
-
-	
-	public Commande(Pate laPate, int tempsPreparation) {
-		this.lesIngredients = new HashMap<>();
+	/**
+	 * Constructeur d'une commande
+	 * @param unClient
+	 * @param lesIngredients
+	 * @param laPate
+	 * @param tempsPreparation
+	 */
+	public Commande(Client unClient, HashMap<Integer, Ingredients> lesIngredients, Pate laPate, int tempsPreparation) {
+		this.unClient = unClient;
+		this.lesIngredients = lesIngredients;
 		this.laPate = laPate;
 		this.tempsPreparation = tempsPreparation;
-		this.estReussite = false; //pour l'instant, on considère que la pizza n'est pas réussite car elle n'est même pas faite
+		this.estReussite = estReussite;
+		this.tempsDePoseIngredient = 3; //3 secondes pour cliquer sur un ingrédient : TEST
 	}
+	
+	/**
+	 * Préparer la pizza : pétrir la pâte, sélectionner les ingrédients.
+	 * Si elle est prête avant la fin du compteur, la fonction lance cuire()
+	 * Si la pizza n'est pas prête après que le compteur soit fini, le client part et il y a perte d'argent
+	 **/
+	public void preparer() {
+		
+	}
+	
+	/**
+	 * Cuit la pizza.
+	 * Si la pizza n'est pas cuite avant la fin du temps imparti, on la donne au client contre moins d'argent et estReussite = false.
+	 * Si la pizza est trop cuite, il faut la recommencer et estReussite = false.
+	 */
+	public void cuire() {
+		
+	}
+	
+	/**
+	 * Sortir la pizza et la donner au client
+	 */
+	public void sortirDuFour() {
+		
+	}
+
 
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		Client c1 = new Client("Bernard", 1);
 		Pate unePate = new Pate("pate", 1, 2, "lol");
 		
-		Commande commande1 = new Commande(unePate, 3);
 		Ingredients fromage = new Ingredients("Fromage", 1.8, 2.3, "lol");
 		Ingredients champignons = new Ingredients("Champignons", 1.8, 2.3, "lol");
 
-		commande1.lesIngredients.put(1, fromage);
-		commande1.lesIngredients.put(2, champignons);
+		HashMap<Integer, Ingredients> ingredientsC1 = new HashMap<Integer, Ingredients>();
+		ingredientsC1.put(1, fromage);
+		ingredientsC1.put(2, champignons);
 		
-		Iterator hmIterator = commande1.lesIngredients.entrySet().iterator();
-		while (hmIterator.hasNext()) { 
-            HashMap.Entry mapElement = (HashMap.Entry)hmIterator.next(); 
-            Ingredients ingredient = (Ingredients) (mapElement.getValue());
-            System.out.println(ingredient.getNom()); 
-        }
+		Commande commande1 = new Commande(c1, ingredientsC1, unePate, 5);
+		
+		System.out.println(commande1.toString());
 
 	}
 
