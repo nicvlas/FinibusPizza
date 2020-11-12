@@ -227,7 +227,7 @@ public class Niveau {
 	      int nbBases = r2.nextInt((tmpB.size()) + 1);
 	      String baseTmp = tmpB.get(nbBases-1);
 	      String[] baseTmp1 = elementsIngredients(baseTmp);
-	      return new Ingredients(baseTmp1[0], Double.valueOf(baseTmp1[1]), Double.valueOf(baseTmp1[2]), "yes");
+	      return new Ingredients(baseTmp1[0], Float.valueOf(baseTmp1[1]), Float.valueOf(baseTmp1[2]), "yes");
 	}
 	public boolean genererCommande() {
         Iterator iterator = clients.entrySet().iterator();

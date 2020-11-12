@@ -76,7 +76,7 @@ public class Commande {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Client c1 = new Client("Bernard", 1);
+		Client c1 = new Client("Bernard", Difficulte.Facile);
 		Pate unePate = new Pate("pate", 1, 2, "lol");
 		
 		Ingredients fromage = new Ingredients("Fromage", 1.8f, 2.3f, "lol");
