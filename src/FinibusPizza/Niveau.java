@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Random;
 
 
 public class Niveau {
@@ -27,13 +28,24 @@ public class Niveau {
 	//!-----Type à vérifier-------!
 	//Tresorerie de début de partie(calculable + marge!)
 	private float tresorerie;
-	
-	public Niveau(String nom, Difficulte difficulte, int nbPremierTypeClient, int nbDeuxiemeTypeClient, int nbTroisiemeTypeClient, float margeTresorerie, float margeTemps) {
+	//total clientèle
+	private int nbClients;
+	//Nb ingredients autorisé
+	private int[] nbIngredients = new int[2];
+	public Niveau(String nom, Difficulte difficulte, int nbPremierTypeClient, int nbDeuxiemeTypeClient, int nbTroisiemeTypeClient, float margeTresorerie, float margeTemps, int minIng, int maxIng) {
+		this.nbClients = nbPremierTypeClient + nbDeuxiemeTypeClient + nbTroisiemeTypeClient;
+		if(margeTresorerie < 0 || margeTemps < 0f || nbPremierTypeClient < 0 || nbDeuxiemeTypeClient < 0 || nbTroisiemeTypeClient < 0 || minIng <= 0 || this.nbClients == 0 || maxIng <= 0) {
+			throw new IllegalArgumentException("Les valeurs numériques ne peuvent être négative !");
+		} else if (minIng > maxIng) {
+			throw new IllegalArgumentException("La valeur d'ingrédients minimum doit être inférieur à celle d'ingrédients maximal");
+		}
 		this.nom = nom;
 		this.difficulte=difficulte;
 		clients.put(Difficulte.Facile, nbPremierTypeClient);
 		clients.put(Difficulte.Normal, nbDeuxiemeTypeClient);
 		clients.put(Difficulte.Karen, nbTroisiemeTypeClient);
+		this.nbIngredients[0]=minIng;
+		this.nbIngredients[1]=maxIng;
 		//!--Calculer selon les commandes---!//
 		//settresorerie(margeTresorerie);
 		//!----A faire avec les autres----!//
@@ -135,35 +147,64 @@ public class Niveau {
 		return nom;
 	}
 	public boolean genererCommande() {
-		System.out.println("hey");
-	    int i;
-	    String line = new String();
+		//!----Pour lecture fichier ingrédients ---!//
+		/*
 	    ArrayList<String> tmp = new ArrayList<String>();
 	    try {
 	      //lire le fichier
 	      FileReader file = new FileReader("C:\\Users\\david\\git\\FinibusPizza\\src\\FinibusPizza\\textes\\ingredients");
 	      BufferedReader buffer = new BufferedReader(file);
 	      tmp.add(buffer.readLine());
+	      int i = 1;
 	      // parcourir le fichier
 	      while(tmp.get(tmp.size()-1) != null) {
-	          line += tmp + "\n";
-	          tmp.add(buffer.readLine());
+	          if(i>2){
+	          	tmp.add(buffer.readLine());
+	          } 
+	          i++;
 	      }
 	    } catch (IOException e) {
 	      e.printStackTrace();
-	    }
-        System.out.println("Boucle while");
+	    }*/
         Iterator iterator = clients.entrySet().iterator();
+        //Parcours HashMapClients
         while (iterator.hasNext()) {
           Map.Entry mapentry = (Map.Entry) iterator.next();
-          System.out.println("clé: "+mapentry.getKey()
-                            + " | valeur: " + mapentry.getValue());
+          //Distribution des commandes de manière aléatoire dans commandes
+          for(int i1=(int) mapentry.getValue(); i1>0;i1--) {
+        	  Random r = new Random();
+              int place = r.nextInt(this.nbClients);
+              //Verification si la place est libre
+              while(this.commandes.get(place) != null) {
+            	  place = r.nextInt(this.nbClients);
+              }
+              //generation commande selon client obtenu
+              //!--- A faire quand le type d'ingrédients sera inclu dans clients
+
+              //generation client
+              
+              //Generation nbIngredients total dans la pizza, en oubliant la pate et la base !
+              Random r1 = new Random();
+              int nbIngredientsTotal = r.nextInt((this.nbIngredients[1] - this.nbIngredients[0]) + 1) + this.nbIngredients[0];          
+              
+              //Generation Pates
+              
+              //Generation Base 
+              Random r2 = new Random();
+              
+              //calcul temps preparation
+              
+              Commande c = new Commande(null, null, null, 0);
+              //Client unClient, HashMap<Integer, Ingredients> lesIngredients, Pate laPate, int tempsPreparation
+              this.commandes.add(place, c);
+              System.out.println(place);
+        	  //
+          }
         }
-	    System.out.println(line);
 		return true;
 	}
 	public static void main(String[] args) {
-		Niveau n = new Niveau("h", Difficulte.Karen, 2, 3, 4, 3.3f, 3.3f);
+		Niveau n = new Niveau("h", Difficulte.Karen, 2, 3, 4, 3.3f, 3.3f,10,15);
 		n.genererCommande();
 	}
 	public void setScore() {
