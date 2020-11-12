@@ -4,14 +4,14 @@ import java.util.Random;
 
 public class Client {
 	private String nomClient;
-	private Integer typeClient;
+	private Difficulte typeClient;
 	private Integer tempsClient;
 	private Float marge;
 	private Float pourboire;
 	
 	private String[] lesNomsClient;
 	
-	public Integer getTypeClient() {
+	public Difficulte getTypeClient() {
 		return typeClient;
 	}
 
@@ -31,30 +31,24 @@ public class Client {
 	 * Constructeur du client
 	 * @param typeClient : type de client (simple, normal, difficile, Karen)
 	 */
-	public Client(int typeClient){
+	public Client(Difficulte typeClient){
 		this.lesNomsClient = new String[] {"Michel","Bernard","Christophe","Alexandre","Jean","Camille","Cécile","Elise","Bernadette","Manon"};
 		this.typeClient = typeClient;
 		Random rd = new Random();
 		switch(this.typeClient){
-			case 0:{
+			case Facile:{
 				//Définir la marge du client simple
 				this.marge = 1.3f;
 				//Définir le nom du client
 				this.nomClient = this.lesNomsClient[(rd.nextInt(9 - 0) + 0)];
 				break;}
-			case 1:{
+			case Normal:{
 				//Définir la marge du client normal
 				this.marge = 1.2f;
 				//Définir le nom du client
 				this.nomClient = this.lesNomsClient[(rd.nextInt(9 - 0) + 0)];
 				break;}
-			case 2:{
-				//Définir la marge du client difficile
-				this.marge = 1.1f;
-				//Définir le nom du client
-				this.nomClient = this.lesNomsClient[(rd.nextInt(9 - 0) + 0)];
-				break;}
-			case 3:{
+			case Karen:{
 				//Définir la marge du client Karen
 				this.marge = 1f;
 				this.nomClient = "Karen";
@@ -68,22 +62,18 @@ public class Client {
 	 * Constructeur du client
 	 * @param typeClient : type de client (simple, normal, difficile, Karen)
 	 */
-	public Client(String nom, int typeClient){
+	public Client(String nom, Difficulte typeClient){
 		this.typeClient = typeClient;
 		switch(this.typeClient){
-			case 0:{
+			case Facile:{
 				//Définir la marge du client simple
 				this.marge = 1.3f;
 				break;}
-			case 1:{
+			case Normal:{
 				//Définir la marge du client normal
 				this.marge = 1.2f;
 				break;}
-			case 2:{
-				//Définir la marge du client difficile
-				this.marge = 1.1f;
-				break;}
-			case 3:{
+			case Karen:{
 				//Définir la marge du client Karen
 				this.marge = 1f;
 				this.nomClient = "Karen";
@@ -130,8 +120,8 @@ public class Client {
 	}
 	
 	public static void main(String[] args) {
-		Client c1 = new Client(0);
-		Client c2 = new Client(1);
+		Client c1 = new Client(Difficulte.Facile);
+		Client c2 = new Client(Difficulte.Normal);
 		System.out.println(c1.toString());
 		System.out.println(c2.toString());
 		c1.pourboire(30);
