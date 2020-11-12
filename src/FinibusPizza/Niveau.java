@@ -146,26 +146,89 @@ public class Niveau {
 	public String getNom() {
 		return nom;
 	}
-	public boolean genererCommande() {
-		//!----Pour lecture fichier ingrédients ---!//
-		/*
-	    ArrayList<String> tmp = new ArrayList<String>();
-	    try {
-	      //lire le fichier
-	      FileReader file = new FileReader("C:\\Users\\david\\git\\FinibusPizza\\src\\FinibusPizza\\textes\\ingredients");
-	      BufferedReader buffer = new BufferedReader(file);
-	      tmp.add(buffer.readLine());
-	      int i = 1;
-	      // parcourir le fichier
-	      while(tmp.get(tmp.size()-1) != null) {
-	          if(i>2){
-	          	tmp.add(buffer.readLine());
-	          } 
-	          i++;
+	public String[] elementsIngredients(String element) {
+		String[] retour = element.split( "/" );
+		if(retour.length != 3 || retour.length != 4) {
+			throw new InternalError(element + " ne correspond pas à un String d'un fichier contenant des ingrédients traitables");
+		}
+		return retour;
+	}
+	public Pate generationPate() {
+		Random r3 = new Random();
+        ArrayList<String> tmpP = new ArrayList<String>();
+	      try {
+    	      //lire le fichier
+    	      FileReader fileP = new FileReader("C:\\Users\\david\\git\\FinibusPizza\\src\\FinibusPizza\\textes\\pates");
+    	      BufferedReader bufferP = new BufferedReader(fileP);
+    	      tmpP.add(bufferP.readLine());
+    	      // parcourir le fichier
+    	      while(tmpP.get(tmpP.size()-1) != null) {
+    	    	  tmpP.add(bufferP.readLine());
+    	          } 
+    	   }
+    	   catch (IOException e) {
+    	      e.printStackTrace();
+    	   }
+	      int nbPates = r3.nextInt((tmpP.size()) + 1);
+	      String pateTmp = tmpP.get(nbPates-1);
+	      String[] pateTmp1 = elementsIngredients(pateTmp);
+	      return new Pate(pateTmp1[0], Double.valueOf(pateTmp1[1]), Double.valueOf(pateTmp1[2]), "yes");
+	}
+	public Client generationClient(Difficulte d) {
+		Random r3 = new Random();
+        ArrayList<String> tmpN = new ArrayList<String>();
+        ArrayList<String> tmpP = new ArrayList<String>();
+	      try {
+    	      //lire le fichier
+    	      FileReader fileN = new FileReader("C:\\Users\\david\\git\\FinibusPizza\\src\\FinibusPizza\\textes\\noms");
+    	      FileReader fileP = new FileReader("C:\\Users\\david\\git\\FinibusPizza\\src\\FinibusPizza\\textes\\noms");
+    	      BufferedReader bufferN = new BufferedReader(fileN);
+    	      BufferedReader bufferP = new BufferedReader(fileP);
+    	      tmpN.add(bufferN.readLine());
+    	      tmpP.add(bufferP.readLine());
+    	      // parcourir le fichier
+    	      while(tmpP.get(tmpP.size()-1) != null) {
+    	    	  tmpP.add(bufferP.readLine());
+    	      } 
+    	      while(tmpN.get(tmpN.size()-1) != null) {
+    	    	  tmpN.add(bufferN.readLine());
+    	      } 
+    	   }
+    	   catch (IOException e) {
+    	      e.printStackTrace();
+    	   }
+	      int nbN = r3.nextInt((tmpN.size()) + 1);
+	      int nbP = r3.nextInt((tmpP.size()) + 1);
+	      String nomPrenom;
+	      if(d != Difficulte.Karen) {
+	    	  nomPrenom = tmpP.get(nbP-1) + " " + tmpN.get(nbN-1) ;
+	      } else {
+	    	  nomPrenom = "Karen " +  tmpN.get(nbN-1);
 	      }
-	    } catch (IOException e) {
-	      e.printStackTrace();
-	    }*/
+	      return new Client(nomPrenom,d);
+	}
+	public Ingredients generationBase() {
+		Random r2 = new Random();
+        ArrayList<String> tmpB = new ArrayList<String>();
+	      try {
+    	      //lire le fichier
+    	      FileReader fileB = new FileReader("C:\\Users\\david\\git\\FinibusPizza\\src\\FinibusPizza\\textes\\bases");
+    	      BufferedReader bufferB = new BufferedReader(fileB);
+    	      tmpB.add(bufferB.readLine());
+    	      // parcourir le fichier
+    	      while(tmpB.get(tmpB.size()-1) != null) {
+    	          	tmpB.add(bufferB.readLine());
+    	          } 
+    	   }
+    	   catch (IOException e) {
+    	      e.printStackTrace();
+    	   }
+	      int nbBases = r2.nextInt((tmpB.size()) + 1);
+	      String baseTmp = tmpB.get(nbBases-1);
+	      String[] baseTmp1 = elementsIngredients(baseTmp);
+	      return new Ingredients(baseTmp1[0], Double.valueOf(baseTmp1[1]), Double.valueOf(baseTmp1[2]), "yes");
+	}
+	public boolean genererCommande() {
         Iterator iterator = clients.entrySet().iterator();
         //Parcours HashMapClients
         while (iterator.hasNext()) {
@@ -178,27 +241,33 @@ public class Niveau {
               while(this.commandes.get(place) != null) {
             	  place = r.nextInt(this.nbClients);
               }
-              //generation commande selon client obtenu
-              //!--- A faire quand le type d'ingrédients sera inclu dans clients
+             //generation commande selon client obtenu
+             //!--- A faire quand le type d'ingrédients sera inclu dans clients ----!
 
               //generation client
+              //!---- A surveiller ---- !
+              Client c = generationClient((Difficulte)mapentry.getKey());
               
               //Generation nbIngredients total dans la pizza, en oubliant la pate et la base !
               Random r1 = new Random();
               int nbIngredientsTotal = r.nextInt((this.nbIngredients[1] - this.nbIngredients[0]) + 1) + this.nbIngredients[0];          
               
               //Generation Pates
-              
+              Pate pate = generationPate();
+    	      
               //Generation Base 
-              Random r2 = new Random();
+              Ingredients base = generationBase();
+      	      
+              //Gestion reste ingrédients 
+      	      
+      	      //calcul temps preparation
               
-              //calcul temps preparation
-              
-              Commande c = new Commande(null, null, null, 0);
+      	      //creation commande
+              Commande commande = new Commande(c, null, pate, 0);
               //Client unClient, HashMap<Integer, Ingredients> lesIngredients, Pate laPate, int tempsPreparation
-              this.commandes.add(place, c);
+              
+              this.commandes.add(place, commande);
               System.out.println(place);
-        	  //
           }
         }
 		return true;
