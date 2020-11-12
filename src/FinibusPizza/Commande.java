@@ -76,11 +76,11 @@ public class Commande {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Client c1 = new Client("Bernard", Difficulte.Facile);
+		Client c1 = new Client("Bernard", 1);
 		Pate unePate = new Pate("pate", 1, 2, "lol");
 		
-		Ingredients fromage = new Ingredients("Fromage", 1.8, 2.3, "lol");
-		Ingredients champignons = new Ingredients("Champignons", 1.8, 2.3, "lol");
+		Ingredients fromage = new Ingredients("Fromage", 1.8f, 2.3f, "lol");
+		Ingredients champignons = new Ingredients("Champignons", 1.8f, 2.3f, "lol");
 
 		HashMap<Integer, Ingredients> ingredientsC1 = new HashMap<Integer, Ingredients>();
 		ingredientsC1.put(1, fromage);
