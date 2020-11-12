@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 
 public class Niveau {
@@ -13,7 +15,7 @@ public class Niveau {
 	//Difficulte du niveau, à choisir selon l'enumératuon difficulté
 	private Difficulte difficulte; 
 	//Liste contenant au maximum les trois types de clients possibles en tant que clé enfin de savoir le nombre de clients par type
-	private HashMap<Client, Integer> clients = new HashMap<Client, Integer>();
+	private HashMap<Difficulte, Integer> clients = new HashMap<Difficulte, Integer>();
 	//liste contenant des commandes à générer
 	private ArrayList<Commande> commandes = new ArrayList<Commande>();
 	//!------A modifier type selon comment gérer le temps Valsior ------!
@@ -29,8 +31,12 @@ public class Niveau {
 	public Niveau(String nom, Difficulte difficulte, int nbPremierTypeClient, int nbDeuxiemeTypeClient, int nbTroisiemeTypeClient, float margeTresorerie, float margeTemps) {
 		this.nom = nom;
 		this.difficulte=difficulte;
-		//!----- Faire l'inclusion des types clients quand l'enumération sera faite -----!//
+		clients.put(Difficulte.Facile, nbPremierTypeClient);
+		clients.put(Difficulte.Normal, nbDeuxiemeTypeClient);
+		clients.put(Difficulte.Karen, nbTroisiemeTypeClient);
+		//!--Calculer selon les commandes---!//
 		//settresorerie(margeTresorerie);
+		//!----A faire avec les autres----!//
 		//setTempsPartie(margeTemps);
 	}
 	/**
@@ -47,7 +53,7 @@ public class Niveau {
 	 */
 	public void settresorerie(float marge) {
 		//!---Calcul à faire selon les ingrédients voulus par les clients et donc leurs prix !----
-		float tresorerie = (Float) null;
+		float tresorerie = 0;
 		this.tresorerie = tresorerie * marge;
 	}
 	/**
@@ -94,7 +100,7 @@ public class Niveau {
 	 * Permet d'obtenir la liste HashMap des clients, en clef le type et en données, le nombre
 	 * @return Une HashMap
 	 */
-	public HashMap<Client, Integer> getClients() {
+	public HashMap<Difficulte, Integer> getClients() {
 		return clients;
 	}
 	/**
@@ -110,7 +116,7 @@ public class Niveau {
 	 */
 	public void setTempsPartie(float marge) {
 		//!---Calcul à faire selon le temps imparti des clients !----
-		float tempsPartie = (Float) null;
+		float tempsPartie = 0;
 		this.tempsPartie = tempsPartie * marge;
 		setScoreAuTemps();
 	}
@@ -129,27 +135,35 @@ public class Niveau {
 		return nom;
 	}
 	public boolean genererCommande() {
+		System.out.println("hey");
 	    int i;
 	    String line = new String();
-	    
+	    ArrayList<String> tmp = new ArrayList<String>();
 	    try {
-	      //lire le fichier file.txt
+	      //lire le fichier
 	      FileReader file = new FileReader("C:\\Users\\david\\git\\FinibusPizza\\src\\FinibusPizza\\textes\\ingredients");
 	      BufferedReader buffer = new BufferedReader(file);
-	      String tmp = buffer.readLine();
+	      tmp.add(buffer.readLine());
 	      // parcourir le fichier
-	      while(tmp != null) {
+	      while(tmp.get(tmp.size()-1) != null) {
 	          line += tmp + "\n";
-	          tmp = buffer.readLine();
+	          tmp.add(buffer.readLine());
 	      }
 	    } catch (IOException e) {
 	      e.printStackTrace();
 	    }
+        System.out.println("Boucle while");
+        Iterator iterator = clients.entrySet().iterator();
+        while (iterator.hasNext()) {
+          Map.Entry mapentry = (Map.Entry) iterator.next();
+          System.out.println("clé: "+mapentry.getKey()
+                            + " | valeur: " + mapentry.getValue());
+        }
 	    System.out.println(line);
 		return true;
 	}
 	public static void main(String[] args) {
-		Niveau n = new Niveau("h", Difficulte.Facile, 1, 1, 1, 3.3f, 3.3f);
+		Niveau n = new Niveau("h", Difficulte.Karen, 2, 3, 4, 3.3f, 3.3f);
 		n.genererCommande();
 	}
 	public void setScore() {
