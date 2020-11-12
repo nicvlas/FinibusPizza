@@ -172,7 +172,7 @@ public class Niveau {
 	      int nbPates = r3.nextInt((tmpP.size()) + 1);
 	      String pateTmp = tmpP.get(nbPates-1);
 	      String[] pateTmp1 = elementsIngredients(pateTmp);
-	      return new Pate(pateTmp1[0], Double.valueOf(pateTmp1[1]), Double.valueOf(pateTmp1[2]), "yes");
+	      return new Pate(pateTmp1[0], Float.valueOf(pateTmp1[1]), Float.valueOf(pateTmp1[2]), "yes");
 	}
 	public Client generationClient(Difficulte d) {
 		Random r3 = new Random();
