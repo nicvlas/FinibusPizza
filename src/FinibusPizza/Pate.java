@@ -25,7 +25,7 @@ public class Pate extends Ingredients{
 	}
 	
 	/**
-	 * Constructeur de la pâte
+	 * Constructeur de la p�te
 	 * @param nom
 	 * @param prixAchat
 	 * @param prixVente
@@ -33,15 +33,15 @@ public class Pate extends Ingredients{
 	 * @param estReussite
 	 * @param tempsPetrissage
 	 */
-	public Pate(String nom, double prixAchat, double prixVente, String cheminDaccesImage) {
+	public Pate(String nom, float prixAchat, float prixVente, String cheminDaccesImage) {
 		super(nom, prixAchat, prixVente, cheminDaccesImage);
-		this.estReussite = false; //false car elle n'a pas encore été pétrie
+		this.estReussite = false; //false car elle n'a pas encore �t� p�trie
 		this.tempsPetrissage = 5;
 	}
 
 	/**
-	 * Petrissage de la pâte : si l'utilisateur relâche le bouton "pétrir" trop tôt ou trop tard après tempsPétrissage, la pâte ne sera
-	 * bien montée et estRéussite = 0
+	 * P�trissage de la p�te : si l'utilisateur rel�che le bouton "p�trir" trop t�t ou trop tard apr�s tempsP�trissage, la p�te ne sera
+	 * bien mont�e et estR�ussite = 0
 	 */
 	public void petrir() {
 	}

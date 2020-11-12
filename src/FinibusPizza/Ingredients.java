@@ -3,8 +3,8 @@ package FinibusPizza;
 public class Ingredients {
 
 	private String nom;
-	private double prixAchat;
-	private double prixVente;
+	private float prixAchat;
+	private float prixVente;
 	private String cheminDaccesImage;
 	
 
@@ -32,7 +32,7 @@ public class Ingredients {
 		//enlever à la trésorerie du jeu qte*this.getPrixAchat()
 		//if trésorerie <= 0 : GAME OVER
 	}
-	
+
 	/**
 	 * Retourne les informations de l'ingrédient
 	 * 
@@ -49,7 +49,7 @@ public class Ingredients {
 	 * @param prixVente : prix de vente
 	 * @param cheminDaccesImage : chemin d'accès pour l'image
 	 */
-	public Ingredients(String nom, double prixAchat, double prixVente, String cheminDaccesImage) {
+	public Ingredients(String nom, float prixAchat, float prixVente, String cheminDaccesImage) {
 		this.nom = nom;
 		this.prixAchat = prixAchat;
 		this.prixVente = prixVente;
@@ -58,7 +58,7 @@ public class Ingredients {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Ingredients fromage = new Ingredients("Fromage", 1.8, 2.3, "lol");
+		Ingredients fromage = new Ingredients("Fromage", 1.8f, 2.3f, "lol");
 		System.out.println(fromage.toString());	
 		
 	}
