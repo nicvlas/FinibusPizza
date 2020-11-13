@@ -6,6 +6,7 @@ public class Ingredients {
 	private float prixAchat;
 	private float prixVente;
 	private String cheminDaccesImage;
+	private int stock;
 	
 
 	public String getNom() {
@@ -31,6 +32,7 @@ public class Ingredients {
 		//ajouter au stock du jeu la valeur en paramètre
 		//enlever à la trésorerie du jeu qte*this.getPrixAchat()
 		//if trésorerie <= 0 : GAME OVER
+		
 	}
 
 	/**
@@ -39,7 +41,7 @@ public class Ingredients {
 	 */
 	public String toString() {
 		return "Nom ingrédient : "+this.getNom()+".\nPrix d'achat : "+
-								this.getPrixAchat()+".\nPrix de vente : "+this.getPrixVente()+".\nChemin d'accès image : "+this.getCheminDaccesImage();
+								Math.round(this.getPrixAchat())+".\nPrix de vente : "+this.getPrixVente()+"\nEn stock : "+this.stock;
 	}
 	
 	/**
@@ -54,13 +56,15 @@ public class Ingredients {
 		this.prixAchat = prixAchat;
 		this.prixVente = prixVente;
 		this.cheminDaccesImage = cheminDaccesImage;
+		this.stock = 0; //à vérifier
 	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Ingredients fromage = new Ingredients("Fromage", 1.8f, 2.3f, "lol");
+		Ingredients fromage = new Ingredients("Fromage", 1.88f, 2.30f, "lol");
+		fromage.stock = 1;
 		System.out.println(fromage.toString());	
-		
+				
 	}
 
 
