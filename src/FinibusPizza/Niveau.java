@@ -314,7 +314,7 @@ public class Niveau {
               //Gestion reste ingrédients 
               HashMap<Ingredients, Integer> listeIng = generationListeIngredients(c.getnbTypeIngredients(), this.nbIngredients, base);
               
-              Commande commande = new Commande(c, listeIng, pate);
+              Commande commande = new Commande(c, listeIng, pate, this.margeTemps);
               
               this.commandes.add(place, commande);
               this.setTempsPartiePetitaPetit(commande.getTempsPreparation());

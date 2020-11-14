@@ -12,6 +12,7 @@ public class Commande {
 	private int tempsPreparation;
 	private boolean estReussite;
 	private int tempsDePoseIngredient;
+	private int margeTemps;
 
 	/**
 	 * Retourne les infos d'une pizza
@@ -36,12 +37,13 @@ public class Commande {
 	 * @param laPate
 	 * @param nbTempsPrepCommande
 	 */
-	public Commande(Client unClient, HashMap<Ingredients, Integer> ingredientsC1, Pate laPate) {
+	public Commande(Client unClient, HashMap<Ingredients, Integer> ingredientsC1, Pate laPaten, int margeTemps) {
 		this.unClient = unClient;
 		this.lesIngredients = ingredientsC1;
 		this.laPate = laPate;
 		this.estReussite = estReussite;
 		this.setTempsDePoseIngredient(3); //3 secondes pour cliquer sur un ingrédient : TEST
+		this.margeTemps = margeTemps;
 	}
 
 	/**
@@ -85,7 +87,7 @@ public class Commande {
 		ingredientsC1.put(fromage, 15);
 		ingredientsC1.put(champignons, 15);
 		
-		Commande commande1 = new Commande(c1, ingredientsC1, unePate);
+		Commande commande1 = new Commande(c1, ingredientsC1, unePate, 3);
 		
 		System.out.println(commande1.toString());
 
