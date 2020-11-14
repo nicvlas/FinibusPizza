@@ -39,6 +39,9 @@ public class Niveau {
 		} else if (minIng > maxIng) {
 			throw new IllegalArgumentException("La valeur d'ingrédients minimum doit être inférieur à celle d'ingrédients maximal");
 		}
+		if(nom == null || difficulte == null) {
+			throw new IllegalArgumentException("le nom et la difficulté ne peuvent être nuls");
+		}
 		this.nom = nom;
 		this.difficulte=difficulte;
 		clients.put(Difficulte.Facile, nbPremierTypeClient);
@@ -231,6 +234,45 @@ public class Niveau {
 	      String[] baseTmp1 = elementsIngredients(baseTmp);
 	      return new Ingredients(baseTmp1[0], Float.valueOf(baseTmp1[1]), Float.valueOf(baseTmp1[2]), "yes");
 	}
+	public HashMap<Ingredients, Integer> generationListeIngredients(int[] nbTypeIngredient, int[] nbIngredient){
+		HashMap<Ingredients, Integer> ingredientsList = new HashMap<Ingredients, Integer>();
+		Random r2 = new Random();
+		ArrayList<String> tmpI = new ArrayList<String>();
+		try {
+  	      //lire le fichier
+  	      FileReader fileI = new FileReader("C:\\Users\\david\\git\\FinibusPizza\\src\\FinibusPizza\\textes\\ingredients");
+  	      BufferedReader bufferI = new BufferedReader(fileI);
+  	      tmpI.add(bufferI.readLine());
+  	      // parcourir le fichier
+  	      while(tmpI.get(tmpI.size()-1) != null) {
+  	    	  tmpI.add(bufferI.readLine());
+  	      } 
+  	   }
+  	   catch (IOException e) {
+  	      e.printStackTrace();
+  	   }
+		String catchTmp = " ";
+		int nbTypeIng = r2.nextInt(nbTypeIngredient[1]-nbTypeIngredient[0]+1)+nbTypeIngredient[0];
+		int nbIng;
+		String ingTmp;
+		int nbIngExistant;
+		String[] ingTmp1;
+		Ingredients ing;
+		for(int i = nbTypeIng; i>0 ; i--) {
+			nbIng = r2.nextInt(nbIngredient[1]-nbIngredient[0]+1)+nbIngredient[0];
+			nbIngExistant = r2.nextInt((tmpI.size()) + 1);
+			ingTmp = tmpI.get(nbIngExistant-1);
+			while(ingTmp == catchTmp) {
+				nbIngExistant = r2.nextInt((tmpI.size()) + 1);
+				ingTmp = tmpI.get(nbIngExistant-1);
+			}
+			catchTmp = ingTmp;
+			ingTmp1 = elementsIngredients(ingTmp);
+			ing = new Ingredients(ingTmp1[0], Float.valueOf(ingTmp1[1]), Float.valueOf(ingTmp1[2]), "yes");
+			ingredientsList.put(ing, nbIng);
+		}
+	   return ingredientsList;
+	}
 	public boolean genererCommande() {
         Iterator iterator = clients.entrySet().iterator();
         //Parcours HashMapClients
@@ -262,7 +304,8 @@ public class Niveau {
               Ingredients base = generationBase();
       	      
               //Gestion reste ingrédients 
-      	      
+              HashMap<Ingredients, Integer> listeIng = generationListeIngredients(c.getnbTypeIngredients(), this.nbIngredients);
+              
       	      //calcul temps preparation
               
       	      //creation commande

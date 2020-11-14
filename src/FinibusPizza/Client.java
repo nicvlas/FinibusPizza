@@ -6,24 +6,24 @@ public class Client {
 	
 	private String nomClient;
 	private Difficulte typeClient;
-	private Integer tempsClient;
-	private Float pourboire;
-	private Integer[] nbTypeIngredients;
+	private int tempsClient;
+	private float pourboire;
+	private int[] nbTypeIngredients;
 	private String[] lesNomsClient;
 	
 	public Difficulte getTypeClient() {
 		return typeClient;
 	}
 
-	public Integer getTempsClient() {
+	public int getTempsClient() {
 		return tempsClient;
 	}
 
-	public Float getPourboire() {
+	public float getPourboire() {
 		return pourboire;
 	}
 	
-	public Integer[] getnbTypeIngredients() {
+	public int[] getnbTypeIngredients() {
 		return nbTypeIngredients;
 	}
 
@@ -96,7 +96,7 @@ public class Client {
 	 * @param tempsPreparation : le temps de préparation de la commande
 	 * @return pourboire : le pourboire du client
 	 */
-	public Float pourboire(Integer tempsPreparation){
+	public float pourboire(Integer tempsPreparation){
 		int tempsFinal = this.tempsClient - tempsPreparation;
 		//Traitement du pourboire
 		if(tempsFinal >= 0){
