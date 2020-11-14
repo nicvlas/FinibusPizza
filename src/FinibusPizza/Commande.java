@@ -7,7 +7,7 @@ import java.util.Iterator;
 public class Commande {
 
 	private Client unClient;
-	private HashMap<Integer, Ingredients> lesIngredients;
+	private HashMap<Ingredients, Integer> lesIngredients;
 	private Pate laPate;
 	private int tempsPreparation;
 	private boolean estReussite;
@@ -33,19 +33,19 @@ public class Commande {
 	/**
 	 * Constructeur d'une commande
 	 * @param unClient
-	 * @param lesIngredients
+	 * @param ingredientsC1
 	 * @param laPate
 	 * @param tempsPreparation
 	 */
-	public Commande(Client unClient, HashMap<Integer, Ingredients> lesIngredients, Pate laPate, int tempsPreparation) {
+	public Commande(Client unClient, HashMap<Ingredients, Integer> ingredientsC1, Pate laPate, int tempsPreparation) {
 		this.unClient = unClient;
-		this.lesIngredients = lesIngredients;
+		this.lesIngredients = ingredientsC1;
 		this.laPate = laPate;
 		this.tempsPreparation = tempsPreparation;
 		this.estReussite = estReussite;
 		this.tempsDePoseIngredient = 3; //3 secondes pour cliquer sur un ingrédient : TEST
 	}
-	
+
 	/**
 	 * Préparer la pizza : pétrir la pâte, sélectionner les ingrédients.
 	 * Si elle est prête avant la fin du compteur, la fonction lance cuire()
@@ -83,9 +83,9 @@ public class Commande {
 		Ingredients fromage = new Ingredients("Fromage", 1.8f, 2.3f, "lol");
 		Ingredients champignons = new Ingredients("Champignons", 1.8f, 2.3f, "lol");
 
-		HashMap<Integer, Ingredients> ingredientsC1 = new HashMap<Integer, Ingredients>();
-		ingredientsC1.put(1, fromage);
-		ingredientsC1.put(2, champignons);
+		HashMap<Ingredients,Integer> ingredientsC1 = new HashMap<Ingredients,Integer>();
+		ingredientsC1.put(fromage, 15);
+		ingredientsC1.put(champignons, 15);
 		
 		Commande commande1 = new Commande(c1, ingredientsC1, unePate, 5);
 		

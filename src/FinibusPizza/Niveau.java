@@ -309,7 +309,7 @@ public class Niveau {
       	      //calcul temps preparation
               
       	      //creation commande
-              Commande commande = new Commande(c, null, pate, 0);
+              Commande commande = new Commande(c, listeIng, pate, 0);
               //Client unClient, HashMap<Integer, Ingredients> lesIngredients, Pate laPate, int tempsPreparation
               
               this.commandes.add(place, commande);
