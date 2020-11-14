@@ -12,7 +12,6 @@ public class Commande {
 	private float tempsPreparation;
 	private boolean estReussite;
 	private float tempsDePoseIngredient;
-	
 
 	/**
 	 * Retourne les infos d'une pizza
