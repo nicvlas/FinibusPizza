@@ -208,6 +208,7 @@ public class Niveau {
 	      }
 	      //!---Modifier dernier valeur--!
 	      return new Client(nomPrenom,d);
+	      
 	}
 	public Ingredients generationBase() {
 		Random r2 = new Random();

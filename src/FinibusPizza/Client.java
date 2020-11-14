@@ -88,6 +88,7 @@ public class Client {
 				this.nbTypeIngredients[1] = 5;
 				break;}
 		}
+		
 	}
 	
 	/**
