@@ -33,8 +33,10 @@ public class Niveau {
 	//Nb ingredients autorisé
 	private int[] nbIngredients = new int[2];
 	//marge de temps 
-	private int margeTemps;
-	public Niveau(String nom, Difficulte difficulte, int nbPremierTypeClient, int nbDeuxiemeTypeClient, int nbTroisiemeTypeClient, float margeTresorerie, int margeTemps, int minIng, int maxIng) {
+	private float margeTemps;
+	//marge de tresorerie
+	private float margeTresorerie;
+	public Niveau(String nom, Difficulte difficulte, int nbPremierTypeClient, int nbDeuxiemeTypeClient, int nbTroisiemeTypeClient, float margeTresorerie, float margeTemps, int minIng, int maxIng) {
 		this.nbClients = nbPremierTypeClient + nbDeuxiemeTypeClient + nbTroisiemeTypeClient;
 		if(margeTresorerie < 0 || margeTemps < 0f || nbPremierTypeClient < 0 || nbDeuxiemeTypeClient < 0 || nbTroisiemeTypeClient < 0 || minIng <= 0 || this.nbClients == 0 || maxIng <= 0) {
 			throw new IllegalArgumentException("Les valeurs numériques ne peuvent être négative !");
@@ -52,7 +54,7 @@ public class Niveau {
 		this.nbIngredients[0]=minIng;
 		this.nbIngredients[1]=maxIng;
 		//!--Calculer selon les commandes---!//
-		//settresorerie(margeTresorerie);
+		this.margeTresorerie = margeTresorerie;
 		this.margeTemps = margeTemps;
 	}
 	/**
@@ -64,13 +66,17 @@ public class Niveau {
 	}
 	/**
 	 * Permet de calculer la trésorerie du niveau, en y ajoutant une marge donnée dans la création du niveau
-	 * @param tresorerie
 	 * @parem marge 
 	 */
-	public void settresorerie(int marge) {
-		//!---Calcul à faire selon les ingrédients voulus par les clients et donc leurs prix !----
-		float tresorerie = 0;
-		this.tresorerie = tresorerie * marge;
+	public void settresorerie(float marge) {
+		this.tresorerie *= marge;
+	}
+	/**
+	 * Permet de calculer la trésorerie du niveau, en y ajoutant une marge donnée dans la création du niveau
+	 * @param tresorerie
+	 */
+	public void settresoreriePetitaPetit(float tresorerie) {
+		this.tresorerie += tresorerie;
 	}
 	/**
 	 * Permet d'obtenir les réglages du score, calculé selon le temps total de jeu
@@ -143,10 +149,10 @@ public class Niveau {
 	}
 	/**
 	 * Permet de calculer le temps de la partie
-	 * @param marge
+	 * @param margeTemps
 	 */
-	public void setTempsPartie(int marge) {
-		this.tempsPartie *= marge;
+	public void setTempsPartie(float margeTemps) {
+		this.tempsPartie *= margeTemps;
 	}
 	/**
 	 * Permet d'obtenir la difficulté du niveau 
@@ -314,12 +320,14 @@ public class Niveau {
               //Gestion reste ingrédients 
               HashMap<Ingredients, Integer> listeIng = generationListeIngredients(c.getnbTypeIngredients(), this.nbIngredients, base);
               
-              Commande commande = new Commande(c, listeIng, pate, this.margeTemps);
+              Commande commande = new Commande(c, listeIng, pate);
               
               this.commandes.add(place, commande);
               this.setTempsPartiePetitaPetit(commande.getTempsPreparation());
+              this.settresoreriePetitaPetit(commande.getAchatCommande());
           }
         }
+        this.settresorerie(this.margeTresorerie);
         this.setTempsPartie(this.margeTemps);
 		return true;
 	}

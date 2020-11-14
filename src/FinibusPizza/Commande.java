@@ -12,7 +12,8 @@ public class Commande {
 	private int tempsPreparation;
 	private boolean estReussite;
 	private int tempsDePoseIngredient;
-	private int margeTemps;
+	private float AchatCommande;
+	private float VenteCommande;
 
 	/**
 	 * Retourne les infos d'une pizza
@@ -37,13 +38,12 @@ public class Commande {
 	 * @param laPate
 	 * @param nbTempsPrepCommande
 	 */
-	public Commande(Client unClient, HashMap<Ingredients, Integer> ingredientsC1, Pate laPaten, int margeTemps) {
+	public Commande(Client unClient, HashMap<Ingredients, Integer> ingredientsC1, Pate laPaten) {
 		this.unClient = unClient;
 		this.lesIngredients = ingredientsC1;
 		this.laPate = laPate;
 		this.estReussite = estReussite;
 		this.setTempsDePoseIngredient(3); //3 secondes pour cliquer sur un ingrédient : TEST
-		this.margeTemps = margeTemps;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class Commande {
 		ingredientsC1.put(fromage, 15);
 		ingredientsC1.put(champignons, 15);
 		
-		Commande commande1 = new Commande(c1, ingredientsC1, unePate, 3);
+		Commande commande1 = new Commande(c1, ingredientsC1, unePate);
 		
 		System.out.println(commande1.toString());
 
@@ -107,6 +107,22 @@ public class Commande {
 
 	public void setTempsPreparation(int tempsPreparation) {
 		this.tempsPreparation = tempsPreparation;
+	}
+
+	public float getAchatCommande() {
+		return AchatCommande;
+	}
+
+	public void setAchatCommande(float achatCommande) {
+		AchatCommande = achatCommande;
+	}
+
+	public float getVenteCommande() {
+		return VenteCommande;
+	}
+
+	public void setVenteCommande(float venteCommande) {
+		VenteCommande = venteCommande;
 	}
 
 }
