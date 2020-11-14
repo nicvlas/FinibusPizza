@@ -9,9 +9,9 @@ public class Commande {
 	private Client unClient;
 	private HashMap<Ingredients, Integer> lesIngredients;
 	private Pate laPate;
-	private float tempsPreparation;
+	private int tempsPreparation;
 	private boolean estReussite;
-	private float tempsDePoseIngredient;
+	private int tempsDePoseIngredient;
 
 	/**
 	 * Retourne les infos d'une pizza
@@ -95,15 +95,15 @@ public class Commande {
 		return tempsDePoseIngredient;
 	}
 
-	public void setTempsDePoseIngredient(float tempsDePoseIngredient) {
+	public void setTempsDePoseIngredient(int tempsDePoseIngredient) {
 		this.tempsDePoseIngredient = tempsDePoseIngredient;
 	}
 
-	public float getTempsPreparation() {
+	public int getTempsPreparation() {
 		return tempsPreparation;
 	}
 
-	public void setTempsPreparation(float tempsPreparation) {
+	public void setTempsPreparation(int tempsPreparation) {
 		this.tempsPreparation = tempsPreparation;
 	}
 

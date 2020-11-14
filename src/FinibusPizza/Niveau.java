@@ -21,10 +21,10 @@ public class Niveau {
 	private ArrayList<Commande> commandes = new ArrayList<Commande>();
 	//!------A modifier type selon comment gérer le temps Valsior ------!
 	//Temps total de partie(calculable + marge!)
-	private float tempsPartie; 
+	private int tempsPartie; 
 	//!-----Possible que l'on doive le faire selon l'argent -----!
 	//Trois temps, les trois désignant donc les trois étoiles obtenables (calculable !)
-	private float[] scoreAuTemps;
+	private int[] scoreAuTemps;
 	//!-----Type à vérifier-------!
 	//Tresorerie de début de partie(calculable + marge!)
 	private float tresorerie;
@@ -32,10 +32,9 @@ public class Niveau {
 	private int nbClients;
 	//Nb ingredients autorisé
 	private int[] nbIngredients = new int[2];
-	//Nb temps prep ingredients classiques
-	private float tempsPrepIngredientUnite = 3f;
-	
-	public Niveau(String nom, Difficulte difficulte, int nbPremierTypeClient, int nbDeuxiemeTypeClient, int nbTroisiemeTypeClient, float margeTresorerie, float margeTemps, int minIng, int maxIng) {
+	//marge de temps 
+	private int margeTemps;
+	public Niveau(String nom, Difficulte difficulte, int nbPremierTypeClient, int nbDeuxiemeTypeClient, int nbTroisiemeTypeClient, float margeTresorerie, int margeTemps, int minIng, int maxIng) {
 		this.nbClients = nbPremierTypeClient + nbDeuxiemeTypeClient + nbTroisiemeTypeClient;
 		if(margeTresorerie < 0 || margeTemps < 0f || nbPremierTypeClient < 0 || nbDeuxiemeTypeClient < 0 || nbTroisiemeTypeClient < 0 || minIng <= 0 || this.nbClients == 0 || maxIng <= 0) {
 			throw new IllegalArgumentException("Les valeurs numériques ne peuvent être négative !");
@@ -54,8 +53,7 @@ public class Niveau {
 		this.nbIngredients[1]=maxIng;
 		//!--Calculer selon les commandes---!//
 		//settresorerie(margeTresorerie);
-		//!----A faire avec les autres----!//
-		//setTempsPartie(margeTemps);
+		this.margeTemps = margeTemps;
 	}
 	/**
 	 * Permet d'obtenir la tresorerie du niveau
@@ -69,7 +67,7 @@ public class Niveau {
 	 * @param tresorerie
 	 * @parem marge 
 	 */
-	public void settresorerie(float marge) {
+	public void settresorerie(int marge) {
 		//!---Calcul à faire selon les ingrédients voulus par les clients et donc leurs prix !----
 		float tresorerie = 0;
 		this.tresorerie = tresorerie * marge;
@@ -78,7 +76,7 @@ public class Niveau {
 	 * Permet d'obtenir les réglages du score, calculé selon le temps total de jeu
 	 * @return un tableau de float contenant les trois temps correspondant aux trois étoiles de score obtenables
 	 */
-	public float[] getScoreAuTemps() {
+	public int[] getScoreAuTemps() {
 		return scoreAuTemps;
 	}
 	/**
@@ -94,7 +92,7 @@ public class Niveau {
 	 */
 	public void setScoreAuTemps1() {
 		//------! Calcul a faire, totalement faux ----- !
-		float scoreAuTemps = 0;
+		int scoreAuTemps = 0;
 		this.scoreAuTemps[0] = scoreAuTemps;
 	}
 	/**
@@ -102,7 +100,7 @@ public class Niveau {
 	 */
 	public void setScoreAuTemps2() {
 		//------! Calcul a faire, totalement faux ----- !
-		float scoreAuTemps = getTempsPartie()*(1/3);
+		int scoreAuTemps = getTempsPartie()*(1/3);
 		this.scoreAuTemps[1] = scoreAuTemps;
 	}
 	/**
@@ -110,7 +108,7 @@ public class Niveau {
 	 */
 	public void setScoreAuTemps3() {
 		//------! Calcul a faire, totalement faux ----- !
-		float scoreAuTemps = getTempsPartie()*(2/3);
+		int scoreAuTemps = getTempsPartie()*(2/3);
 		this.scoreAuTemps[2] = scoreAuTemps;
 	}
 	
@@ -125,18 +123,30 @@ public class Niveau {
 	 * Permet d'obtenir le temps de la partie 
 	 * @return le temps de la partie autorisée et max
 	 */
-	public float getTempsPartie() {
+	public int getTempsPartie() {
 		return tempsPartie;
+	}
+	/**
+	 * Permet de calculer le temps de la partie
+	 * @param temps
+	 */
+	public void setTempsPartieDirectement(int temps) {
+		this.tempsPartie = temps;
 	}
 	/**
 	 * Permet de calculer le temps de la partie
 	 * @param marge
 	 */
-	public void setTempsPartie(float marge) {
+	public void setTempsPartiePetitaPetit(int temps) {
 		//!---Calcul à faire selon le temps imparti des clients !----
-		float tempsPartie = 0;
-		this.tempsPartie = tempsPartie * marge;
-		setScoreAuTemps();
+		this.tempsPartie += temps;
+	}
+	/**
+	 * Permet de calculer le temps de la partie
+	 * @param marge
+	 */
+	public void setTempsPartie(int marge) {
+		this.tempsPartie *= marge;
 	}
 	/**
 	 * Permet d'obtenir la difficulté du niveau 
@@ -212,7 +222,6 @@ public class Niveau {
 	      } else {
 	    	  nomPrenom = "Karen " +  tmpN.get(nbN-1);
 	      }
-	      //!---Modifier dernier valeur--!
 	      return new Client(nomPrenom,d);
 	      
 	}
@@ -308,13 +317,14 @@ public class Niveau {
               Commande commande = new Commande(c, listeIng, pate);
               
               this.commandes.add(place, commande);
-              System.out.println(place);
+              this.setTempsPartiePetitaPetit(commande.getTempsPreparation());
           }
         }
+        this.setTempsPartie(this.margeTemps);
 		return true;
 	}
 	public static void main(String[] args) {
-		Niveau n = new Niveau("h", Difficulte.Karen, 2, 3, 4, 3.3f, 3.3f,10,15);
+		Niveau n = new Niveau("h", Difficulte.Karen, 2, 3, 4, 3, 3,10,15);
 		n.genererCommande();
 	}
 	public void setScore() {
