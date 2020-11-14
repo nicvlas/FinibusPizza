@@ -207,7 +207,7 @@ public class Niveau {
 	    	  nomPrenom = "Karen " +  tmpN.get(nbN-1);
 	      }
 	      //!---Modifier dernier valeur--!
-	      return new Client(nomPrenom,d, nbP);
+	      return new Client(nomPrenom,d);
 	}
 	public Ingredients generationBase() {
 		Random r2 = new Random();

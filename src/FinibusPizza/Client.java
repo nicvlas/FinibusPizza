@@ -8,7 +8,7 @@ public class Client {
 	private Difficulte typeClient;
 	private Integer tempsClient;
 	private Float pourboire;
-	private Integer nbMaxTypeIngredients;
+	private Integer[] nbTypeIngredients;
 	private String[] lesNomsClient;
 	
 	public Difficulte getTypeClient() {
@@ -23,8 +23,8 @@ public class Client {
 		return pourboire;
 	}
 	
-	public Integer getNbMaxTypeIngredients() {
-		return nbMaxTypeIngredients;
+	public Integer[] getnbTypeIngredients() {
+		return nbTypeIngredients;
 	}
 
 	/**
@@ -40,19 +40,22 @@ public class Client {
 				//Définir le nom du client
 				this.nomClient = this.lesNomsClient[(rd.nextInt(9 - 0) + 0)];
 				//Nombre max de type d'ingrédients (Valeur test sans compter la pâte et la base)
-				this.nbMaxTypeIngredients = 3;
+				this.nbTypeIngredients[0] = 2;
+				this.nbTypeIngredients[1] = 3;
 				break;}
 			case Normal:{
 				//Définir le nom du client
 				this.nomClient = this.lesNomsClient[(rd.nextInt(9 - 0) + 0)];
 				//Nombre max de type d'ingrédients (Valeur test sans compter la pâte et la base)
-				this.nbMaxTypeIngredients = 4;
+				this.nbTypeIngredients[0]=3;
+				this.nbTypeIngredients[1] = 4;
 				break;}
 			case Karen:{
 				//Définir le nom du client
 				this.nomClient = "Karen";
 				//Nombre max de type d'ingrédients (Valeur test sans compter la pâte et la base)
-				this.nbMaxTypeIngredients = 5;
+				this.nbTypeIngredients[0] = 4;
+				this.nbTypeIngredients[1] = 5;
 				break;}
 		}
 		this.tempsClient = 0;
@@ -63,12 +66,28 @@ public class Client {
 	 * Constructeur du client
 	 * @param typeClient : type de client (simple, normal, difficile, Karen)
 	 */
-	public Client(String nom, Difficulte typeClient, int nbMaxTypeIngredients){
+	public Client(String nom, Difficulte typeClient){
 		this.typeClient = typeClient;
-		this.nbMaxTypeIngredients = nbMaxTypeIngredients;
 		this.tempsClient = 0;
 		this.pourboire = 0f;
 		this.nomClient = nom;
+		switch(this.typeClient){
+			case Facile:{
+				//Nombre max de type d'ingrédients (Valeur test sans compter la pâte et la base)
+				this.nbTypeIngredients[0] = 2;
+				this.nbTypeIngredients[1] = 3;
+				break;}
+			case Normal:{
+				//Nombre max de type d'ingrédients (Valeur test sans compter la pâte et la base)
+				this.nbTypeIngredients[0]=3;
+				this.nbTypeIngredients[1] = 4;
+				break;}
+			case Karen:{
+				//Nombre max de type d'ingrédients (Valeur test sans compter la pâte et la base)
+				this.nbTypeIngredients[0] = 4;
+				this.nbTypeIngredients[1] = 5;
+				break;}
+		}
 	}
 	
 	/**
