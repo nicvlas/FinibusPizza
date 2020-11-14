@@ -32,6 +32,9 @@ public class Niveau {
 	private int nbClients;
 	//Nb ingredients autorisé
 	private int[] nbIngredients = new int[2];
+	//Nb temps prep ingredients classiques
+	private float tempsPrepIngredientUnite = 3f;
+	
 	public Niveau(String nom, Difficulte difficulte, int nbPremierTypeClient, int nbDeuxiemeTypeClient, int nbTroisiemeTypeClient, float margeTresorerie, float margeTemps, int minIng, int maxIng) {
 		this.nbClients = nbPremierTypeClient + nbDeuxiemeTypeClient + nbTroisiemeTypeClient;
 		if(margeTresorerie < 0 || margeTemps < 0f || nbPremierTypeClient < 0 || nbDeuxiemeTypeClient < 0 || nbTroisiemeTypeClient < 0 || minIng <= 0 || this.nbClients == 0 || maxIng <= 0) {
@@ -234,10 +237,11 @@ public class Niveau {
 	      String[] baseTmp1 = elementsIngredients(baseTmp);
 	      return new Ingredients(baseTmp1[0], Float.valueOf(baseTmp1[1]), Float.valueOf(baseTmp1[2]), "yes");
 	}
-	public HashMap<Ingredients, Integer> generationListeIngredients(int[] nbTypeIngredient, int[] nbIngredient){
+	public HashMap<Ingredients, Integer> generationListeIngredients(int[] nbTypeIngredient, int[] nbIngredient, Ingredients base){
 		HashMap<Ingredients, Integer> ingredientsList = new HashMap<Ingredients, Integer>();
 		Random r2 = new Random();
 		ArrayList<String> tmpI = new ArrayList<String>();
+		ingredientsList.put(base, 1);
 		try {
   	      //lire le fichier
   	      FileReader fileI = new FileReader("C:\\Users\\david\\git\\FinibusPizza\\src\\FinibusPizza\\textes\\ingredients");
@@ -287,16 +291,11 @@ public class Niveau {
             	  place = r.nextInt(this.nbClients);
               }
              //generation commande selon client obtenu
-             //!--- A faire quand le type d'ingrédients sera inclu dans clients ----!
 
               //generation client
               //!---- A surveiller ---- !
               Client c = generationClient((Difficulte)mapentry.getKey());
-              
-              //Generation nbIngredients total dans la pizza, en oubliant la pate et la base !
-              Random r1 = new Random();
-              int nbIngredientsTotal = r.nextInt((this.nbIngredients[1] - this.nbIngredients[0]) + 1) + this.nbIngredients[0];          
-              
+            		  
               //Generation Pates
               Pate pate = generationPate();
     	      
@@ -304,13 +303,9 @@ public class Niveau {
               Ingredients base = generationBase();
       	      
               //Gestion reste ingrédients 
-              HashMap<Ingredients, Integer> listeIng = generationListeIngredients(c.getnbTypeIngredients(), this.nbIngredients);
+              HashMap<Ingredients, Integer> listeIng = generationListeIngredients(c.getnbTypeIngredients(), this.nbIngredients, base);
               
-      	      //calcul temps preparation
-              
-      	      //creation commande
-              Commande commande = new Commande(c, listeIng, pate, 0);
-              //Client unClient, HashMap<Integer, Ingredients> lesIngredients, Pate laPate, int tempsPreparation
+              Commande commande = new Commande(c, listeIng, pate);
               
               this.commandes.add(place, commande);
               System.out.println(place);

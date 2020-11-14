@@ -9,9 +9,9 @@ public class Commande {
 	private Client unClient;
 	private HashMap<Ingredients, Integer> lesIngredients;
 	private Pate laPate;
-	private int tempsPreparation;
+	private float tempsPreparation;
 	private boolean estReussite;
-	private int tempsDePoseIngredient;
+	private float tempsDePoseIngredient;
 	
 
 	/**
@@ -35,15 +35,14 @@ public class Commande {
 	 * @param unClient
 	 * @param ingredientsC1
 	 * @param laPate
-	 * @param tempsPreparation
+	 * @param nbTempsPrepCommande
 	 */
-	public Commande(Client unClient, HashMap<Ingredients, Integer> ingredientsC1, Pate laPate, int tempsPreparation) {
+	public Commande(Client unClient, HashMap<Ingredients, Integer> ingredientsC1, Pate laPate) {
 		this.unClient = unClient;
 		this.lesIngredients = ingredientsC1;
 		this.laPate = laPate;
-		this.tempsPreparation = tempsPreparation;
 		this.estReussite = estReussite;
-		this.tempsDePoseIngredient = 3; //3 secondes pour cliquer sur un ingrédient : TEST
+		this.setTempsDePoseIngredient(3); //3 secondes pour cliquer sur un ingrédient : TEST
 	}
 
 	/**
@@ -87,10 +86,26 @@ public class Commande {
 		ingredientsC1.put(fromage, 15);
 		ingredientsC1.put(champignons, 15);
 		
-		Commande commande1 = new Commande(c1, ingredientsC1, unePate, 5);
+		Commande commande1 = new Commande(c1, ingredientsC1, unePate);
 		
 		System.out.println(commande1.toString());
 
+	}
+
+	public float getTempsDePoseIngredient() {
+		return tempsDePoseIngredient;
+	}
+
+	public void setTempsDePoseIngredient(float tempsDePoseIngredient) {
+		this.tempsDePoseIngredient = tempsDePoseIngredient;
+	}
+
+	public float getTempsPreparation() {
+		return tempsPreparation;
+	}
+
+	public void setTempsPreparation(float tempsPreparation) {
+		this.tempsPreparation = tempsPreparation;
 	}
 
 }
