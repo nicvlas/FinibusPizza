@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 public class Commande {
 
+	private static final float Iterator = 0;
 	private Client unClient;
 	private HashMap<Ingredients, Integer> lesIngredients;
 	private Pate laPate;
@@ -14,22 +15,39 @@ public class Commande {
 	private int tempsDePoseIngredient;
 	private float AchatCommande;
 	private float VenteCommande;
-
-	/**
-	 * Retourne les infos d'une pizza
-	 */
-	public String toString() {
-		String phrase = "Pizza composée de : ";
-		
-		Iterator hmIterator = this.lesIngredients.entrySet().iterator();
-		while (hmIterator.hasNext()) { 
-            HashMap.Entry mapElement = (HashMap.Entry)hmIterator.next(); 
-            Ingredients ingredient = (Ingredients) (mapElement.getValue());
-            phrase+= " "+ingredient.getNom();
-        }
-		
-		return phrase;
+	
+	public float getTempsDePoseIngredient() {
+		return tempsDePoseIngredient;
 	}
+
+	public void setTempsDePoseIngredient(int tempsDePoseIngredient) {
+		this.tempsDePoseIngredient = tempsDePoseIngredient;
+	}
+
+	public int getTempsPreparation() {
+		return tempsPreparation;
+	}
+
+	public void setTempsPreparation(int tempsPreparation) {
+		this.tempsPreparation = tempsPreparation;
+	}
+
+	public float getAchatCommande() {
+		return AchatCommande;
+	}
+
+	public void setAchatCommande(float achatCommande) {
+		AchatCommande = achatCommande;
+	}
+
+	public float getVenteCommande() {
+		return VenteCommande;
+	}
+
+	public void setVenteCommande(float venteCommande) {
+		VenteCommande = venteCommande;
+	}
+
 	
 	/**
 	 * Constructeur d'une commande
@@ -39,11 +57,52 @@ public class Commande {
 	 * @param nbTempsPrepCommande
 	 */
 	public Commande(Client unClient, HashMap<Ingredients, Integer> ingredientsC1, Pate laPaten) {
+		if(unClient == null || ingredientsC1 == null || laPaten == null) {
+			throw new IllegalArgumentException("Erreur dans la création d'une commande");
+		}
 		this.unClient = unClient;
 		this.lesIngredients = ingredientsC1;
 		this.laPate = laPate;
 		this.estReussite = estReussite;
 		this.setTempsDePoseIngredient(3); //3 secondes pour cliquer sur un ingrédient : TEST
+		
+		//calcul temps préparation ((temps pose * nb ingrédients) + temps petrissage + temps cuisson)*marge
+		this.tempsPreparation = ((this.lesIngredients.size()*this.tempsDePoseIngredient)+laPaten.getTempsPetrissage());
+		
+		
+		//calcul achat commande : prixAchat de chaque ingrédient
+		Iterator hmIterator = this.lesIngredients.entrySet().iterator();
+		while (hmIterator.hasNext()) { 
+            HashMap.Entry mapElement = (HashMap.Entry)hmIterator.next(); 
+            Ingredients ingredient = (Ingredients) (mapElement.getKey());
+            this.AchatCommande += ingredient.getPrixAchat();
+        }
+		
+		//calcul vente commande : prix vente de chaque ingrédient
+		Iterator hmIterator2 = this.lesIngredients.entrySet().iterator();
+		while (hmIterator2.hasNext()) { 
+            HashMap.Entry mapElement = (HashMap.Entry)hmIterator2.next(); 
+            Ingredients ingredient = (Ingredients) (mapElement.getKey());
+            this.VenteCommande += ingredient.getPrixVente();
+        }
+	}
+	
+	/**
+	 * Retourne les infos d'une pizza
+	 */
+	public String toString() {
+		String phrase = "Pizza composée de :";
+		
+		Iterator hmIterator = this.lesIngredients.entrySet().iterator();
+		while (hmIterator.hasNext()) { 
+            HashMap.Entry mapElement = (HashMap.Entry)hmIterator.next(); 
+            Ingredients ingredient = (Ingredients) (mapElement.getKey());
+            phrase+= " "+ingredient.getNom();
+        }
+		
+		phrase += "\nCoût de fabrication : "+this.AchatCommande+"\nProfit :"+(this.VenteCommande-this.AchatCommande);
+		
+		return phrase;
 	}
 
 	/**
@@ -92,37 +151,4 @@ public class Commande {
 		System.out.println(commande1.toString());
 
 	}
-
-	public float getTempsDePoseIngredient() {
-		return tempsDePoseIngredient;
-	}
-
-	public void setTempsDePoseIngredient(int tempsDePoseIngredient) {
-		this.tempsDePoseIngredient = tempsDePoseIngredient;
-	}
-
-	public int getTempsPreparation() {
-		return tempsPreparation;
-	}
-
-	public void setTempsPreparation(int tempsPreparation) {
-		this.tempsPreparation = tempsPreparation;
-	}
-
-	public float getAchatCommande() {
-		return AchatCommande;
-	}
-
-	public void setAchatCommande(float achatCommande) {
-		AchatCommande = achatCommande;
-	}
-
-	public float getVenteCommande() {
-		return VenteCommande;
-	}
-
-	public void setVenteCommande(float venteCommande) {
-		VenteCommande = venteCommande;
-	}
-
 }
