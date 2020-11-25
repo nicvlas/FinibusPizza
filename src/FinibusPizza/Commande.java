@@ -14,6 +14,7 @@ public class Commande {
 	private int tempsDePoseIngredient;
 	private float AchatCommande;
 	private float VenteCommande;
+	private float tempsCuisson;
 
 	public float getTempsDePoseIngredient() {
 		return tempsDePoseIngredient;
@@ -86,6 +87,8 @@ public class Commande {
 			this.VenteCommande += ingredient.getPrixVente();
 		}
 		this.VenteCommande = this.VenteCommande - this.AchatCommande;//soustraction du coût de fabrication au profit
+		
+		//mettre aléatoire temps cuisson
 	}
 
 	/**
