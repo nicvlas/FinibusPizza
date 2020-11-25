@@ -8,8 +8,11 @@ public class Client {
 	private Difficulte typeClient;
 	private int tempsClient;
 	private float pourboire;
-	private int[] nbTypeIngredients;
+	private int[] nbTypeIngredients;// Tableau min, max nombre type d'ingrédients
 	private String[] lesNomsClient;
+	private float margeTemps;
+	
+	//Faire un fichier avec margeTemps, pourboire initial, min et max nombre type d'ingrédients
 	
 	public Difficulte getTypeClient() {
 		return typeClient;
