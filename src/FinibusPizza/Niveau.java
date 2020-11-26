@@ -52,14 +52,26 @@ public class Niveau {
 		}
 		this.nom = nom;
 		this.difficulte=difficulte;
-		clients.put(Difficulte.Facile, nbPremierTypeClient);
-		clients.put(Difficulte.Normal, nbDeuxiemeTypeClient);
-		clients.put(Difficulte.Karen, nbTroisiemeTypeClient);
-		this.nbIngredients[0]=minIng;
-		this.nbIngredients[1]=maxIng;
+		this.setClients(nbPremierTypeClient, nbDeuxiemeTypeClient, nbTroisiemeTypeClient);
+		this.setnbIngredients(minIng, maxIng);
 		//!--Calculer selon les commandes---!//
 		this.margeTresorerie = margeTresorerie;
 		this.margeTemps = margeTemps;
+	}
+	/**
+	 * Modifier les nombres de clients par difficulté
+	 * @param nbPremierTypeClient
+	 * @param nbDeuxiemeTypeClient
+	 * @param nbTroisiemeTypeClient
+	 */
+	public void setClients(int nbPremierTypeClient, int nbDeuxiemeTypeClient, int nbTroisiemeTypeClient) {
+		clients.put(Difficulte.Facile, nbPremierTypeClient);
+		clients.put(Difficulte.Normal, nbDeuxiemeTypeClient);
+		clients.put(Difficulte.Karen, nbTroisiemeTypeClient);
+	}
+	public void setnbIngredients(int minIng, int maxIng) {
+		this.nbIngredients[0]=minIng;
+		this.nbIngredients[1]=maxIng;
 	}
 	/**
 	 * Permet d'obtenir la tresorerie du niveau
@@ -67,6 +79,14 @@ public class Niveau {
 	 */
 	public float gettresorerie() {
 		return this.tresorerie;
+	}
+	/**
+	 * Permet de calculer la trésorerie du niveau, en y ajoutant une marge donnée dans la création du niveau
+	 * @parem marge 
+	 */
+	public void settresorerie(float marge, float tresor) {
+		this.tresorerie = tresor * marge;
+		this.setTresorerietmp(this.tresorerie); 
 	}
 	/**
 	 * Permet de calculer la trésorerie du niveau, en y ajoutant une marge donnée dans la création du niveau
@@ -161,6 +181,15 @@ public class Niveau {
 	 */
 	public int getTempsPartie() {
 		return tempsPartie;
+	}
+	/**
+	 * Permet de calculer le temps de la partie
+	 * @param temps
+	 * @parem marge
+	 */
+	public void setTempsPartieDirectement(int temps, float marge) {
+		this.tempsPartie = (int) (temps * marge);
+		this.setTempstmp(this.tempsPartie);
 	}
 	/**
 	 * Permet de calculer le temps de la partie
