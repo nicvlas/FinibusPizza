@@ -40,9 +40,9 @@ public class Niveau {
 	private float tresorerietmp = 0;
 	//Temps cours partie
 	private int tempstmp = 0;
-	public Niveau(String nom, Difficulte difficulte, int nbPremierTypeClient, int nbDeuxiemeTypeClient, int nbTroisiemeTypeClient, float margeTresorerie, int margeTemps, int minIng, int maxIng) {
-		this.nbClients = nbPremierTypeClient + nbDeuxiemeTypeClient + nbTroisiemeTypeClient;
-		if(margeTresorerie < 0 || margeTemps < 0f || nbPremierTypeClient < 0 || nbDeuxiemeTypeClient < 0 || nbTroisiemeTypeClient < 0 || minIng <= 0 || this.nbClients == 0 || maxIng <= 0) {
+	public Niveau(String nom, Difficulte diff, int nb1TypeClient, int nb2TypeClient, int nb3TypeClient, float margeTresor, int margeTemps, int minIng, int maxIng) {
+		this.nbClients = nb1TypeClient + nb2TypeClient + nb3TypeClient;
+		if(margeTresor < 0 || margeTemps < 0f || nb1TypeClient < 0 || nb2TypeClient < 0 || nb3TypeClient < 0 || minIng <= 0 || this.nbClients == 0 || maxIng <= 0) {
 			throw new IllegalArgumentException("Les valeurs numériques ne peuvent être négative !");
 		} else if (minIng > maxIng) {
 			throw new IllegalArgumentException("La valeur d'ingrédients minimum doit être inférieur à celle d'ingrédients maximal");
@@ -51,11 +51,11 @@ public class Niveau {
 			throw new IllegalArgumentException("le nom et la difficulté ne peuvent être nuls");
 		}
 		this.nom = nom;
-		this.difficulte=difficulte;
-		this.setClients(nbPremierTypeClient, nbDeuxiemeTypeClient, nbTroisiemeTypeClient);
+		this.difficulte=diff;
+		this.setClients(nb1TypeClient, nb2TypeClient, nb3TypeClient);
 		this.setnbIngredients(minIng, maxIng);
 		//!--Calculer selon les commandes---!//
-		this.margeTresorerie = margeTresorerie;
+		this.margeTresorerie = margeTresor;
 		this.margeTemps = margeTemps;
 	}
 	/**
