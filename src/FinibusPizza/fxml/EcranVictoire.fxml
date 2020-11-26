@@ -33,5 +33,15 @@
             <Image url="@../img/etoile.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="img_etoile3" fitHeight="113.0" fitWidth="126.0" layoutX="709.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../img/etoile.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="img_etoile2" fitHeight="113.0" fitWidth="126.0" layoutX="458.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../img/etoile.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
