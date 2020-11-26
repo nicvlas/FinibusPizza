@@ -7,6 +7,7 @@ public class Ingredients {
 	private float prixVente;
 	private String cheminDaccesImage;
 	private int stock;
+	private int tempsDePoseIngredient;
 	
 
 	public String getNom() {
@@ -25,6 +26,11 @@ public class Ingredients {
 		return cheminDaccesImage;
 	}
 	
+	public int getTempsDePoseIngredient() {
+		return tempsDePoseIngredient;
+	}
+
+	
 	/**
 	 * Permet d'acheter l'ingrédient, en contrepartie d'argent
 	 */
@@ -40,12 +46,11 @@ public class Ingredients {
 	 * 
 	 */
 	public String toString() {
-		return "Nom ingrédient : "+this.getNom()+".\nPrix d'achat : "+
-								Math.round(this.getPrixAchat())+".\nPrix de vente : "+this.getPrixVente()+"\nEn stock : "+this.stock;
+		return "Nom ingrédient : "+this.getNom()+".\nPrix d'achat : "+ Math.round(this.getPrixAchat())+".\nPrix de vente : "+this.getPrixVente()+"\nEn stock : "+this.stock;
 	}
 	
 	/**
-	 * Constructeur d'un ingrédient
+	 * Constructeur d'un ingrédient, qui ajoute un stock et un temps de pose
 	 * @param nom : nom de l'ingrédient
 	 * @param prixAchat : prix d'achat
 	 * @param prixVente : prix de vente
@@ -56,13 +61,13 @@ public class Ingredients {
 		this.prixAchat = prixAchat;
 		this.prixVente = prixVente;
 		this.cheminDaccesImage = cheminDaccesImage;
-		this.stock = 0; //à vérifier
+		this.stock = 6; //à vérifier
+		this.tempsDePoseIngredient = 3;
 	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Ingredients fromage = new Ingredients("Fromage", 1.88f, 2.30f, "lol");
-		fromage.stock = 1;
 		System.out.println(fromage.toString());	
 				
 	}
