@@ -82,21 +82,15 @@ public class Commande {
 		this.tempsPreparation += this.laPate.getTempsPetrissage() + this.getTempsCuisson();
 		
 
-		// calcul achat commande : prixAchat de chaque ingrédient
+		// calcul achat et vente commande
 		Iterator hmIterator2 = this.lesIngredients.entrySet().iterator();
 		while (hmIterator2.hasNext()) {
 			HashMap.Entry mapElement = (HashMap.Entry) hmIterator2.next();
 			Ingredients ingredient = (Ingredients) (mapElement.getKey());
 			this.AchatCommande += ingredient.getPrixAchat();
-		}
-
-		// calcul vente commande : prix vente de chaque ingrédient
-		Iterator hmIterator3 = this.lesIngredients.entrySet().iterator();
-		while (hmIterator3.hasNext()) {
-			HashMap.Entry mapElement = (HashMap.Entry) hmIterator3.next();
-			Ingredients ingredient = (Ingredients) (mapElement.getKey());
 			this.VenteCommande += ingredient.getPrixVente();
 		}
+
 		this.VenteCommande = this.VenteCommande - this.AchatCommande;//soustraction du coût de fabrication au profit
 	}
 
