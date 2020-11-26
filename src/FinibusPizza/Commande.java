@@ -20,56 +20,32 @@ public class Commande {
 		return unClient;
 	}
 
-	public void setUnClient(Client unClient) {
-		this.unClient = unClient;
-	}
-
 	public Pate getLaPate() {
 		return laPate;
-	}
-
-	public void setLaPate(Pate laPate) {
-		this.laPate = laPate;
 	}
 
 	public int getTempsPreparation() {
 		return tempsPreparation;
 	}
 
-	public void setTempsPreparation(int tempsPreparation) {
-		this.tempsPreparation = tempsPreparation;
-	}
-
 	public boolean isEstReussite() {
 		return estReussite;
-	}
-
-	public void setEstReussite(boolean estReussite) {
-		this.estReussite = estReussite;
 	}
 
 	public float getAchatCommande() {
 		return AchatCommande;
 	}
 
-	public void setAchatCommande(float achatCommande) {
-		AchatCommande = achatCommande;
-	}
-
 	public float getVenteCommande() {
 		return VenteCommande;
-	}
-
-	public void setVenteCommande(float venteCommande) {
-		VenteCommande = venteCommande;
 	}
 
 	public int getTempsCuisson() {
 		return tempsCuisson;
 	}
-
-	public void setTempsCuisson(int tempsCuisson) {
-		this.tempsCuisson = tempsCuisson;
+	
+	public HashMap<Ingredients, Integer> getLesIngredients() {
+		return lesIngredients;
 	}
 
 

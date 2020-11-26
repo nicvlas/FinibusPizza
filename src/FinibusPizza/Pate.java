@@ -9,21 +9,10 @@ public class Pate extends Ingredients{
 		return estReussite;
 	}
 
-
-	public void setEstReussite(boolean estReussite) {
-		this.estReussite = estReussite;
-	}
-
-
 	public int getTempsPetrissage() {
 		return tempsPetrissage;
 	}
 
-
-	public void setTempsPetrissage(int tempsPetrissage) {
-		this.tempsPetrissage = tempsPetrissage;
-	}
-	
 	/**
 	 * Constructeur de la p�te
 	 * @param nom
