@@ -26,6 +26,7 @@ public class Niveau {
 	private float[] scoreATresorerie;
 	private float score;
 	private float scoreCuisson;
+	private float scorePizzaIng;
 	//!-----Type à vérifier-------!
 	//Tresorerie de début de partie(calculable + marge!)
 	private float tresorerie = 0;
@@ -41,7 +42,8 @@ public class Niveau {
 	private float tresorerietmp = 0;
 	//Temps cours partie
 	private int tempstmp = 0;
-	
+	//Nombre de guichet ouvert, maximum 3 
+	private int nbPersonneComptoir;
 	public Niveau(String nom, Difficulte diff, int nb1TypeClient, int nb2TypeClient, int nb3TypeClient, float margeTresor, int minIng, int maxIng) {
 		this.nbClients = nb1TypeClient + nb2TypeClient + nb3TypeClient;
 		if(margeTresor < 0 || nb1TypeClient < 0 || nb2TypeClient < 0 || nb3TypeClient < 0 || minIng <= 0 || this.nbClients == 0 || maxIng <= 0) {
@@ -58,6 +60,18 @@ public class Niveau {
 		this.setnbIngredients(minIng, maxIng);
 		//!--Calculer selon les commandes---!//
 		this.margeTresorerie = margeTresor;
+		switch(diff) {
+		case Karen:
+			this.nbPersonneComptoir=3;
+			break;
+		case Normal:
+			this.nbPersonneComptoir=2;
+			break;
+		default:
+			this.nbPersonneComptoir=1;
+				
+		}
+			
 	}
 	public ArrayList<Commande> getCommandes() {
 		return commandes;
@@ -435,9 +449,25 @@ public class Niveau {
 	public void setScoreCuisson(float score) {
 		this.scoreCuisson = score;
 	}
-	//!-------------A FAIRE ENSEMBLE--------------------!//
-	public void setScorePizzaFinal() {
-		
+	/**
+	 * Permet de calculer le score de la pizza à l'unité. A utiliser à chaque fois qu'une pizza est donnée à un client
+	 * @param pizza
+	 * @param commande
+	 */
+	public void setScorePizzaIng(HashMap<Ingredients, Integer> pizza, Commande commande) {
+        HashMap<Ingredients, Integer> pizzaDemandee = commande.getLesIngredients();
+        Iterator it = pizzaDemandee.entrySet().iterator();
+        int score = 3;
+        score -= (pizzaDemandee.size() == pizza.size())?0:1;
+        int sortieBoucle = 0;
+        while (it.hasNext() || sortieBoucle ==1) {
+            Map.Entry m = (Map.Entry) it.next();
+            if(pizza.containsKey(m.getKey())) {
+            	score-=(pizza.get(m.getKey()) ==  m.getValue())?0:1;
+            	sortieBoucle++;
+            }
+        }
+        this.scorePizzaIng+=score;
 	}
 	/**
 	 * Permet d'obtenir le score total !
@@ -445,6 +475,7 @@ public class Niveau {
 	public void setScore() {
 		//!---selon le temps de cuisson, le temps et le respect des ingrédients----!
 		int scoreTresor;
+		this.scorePizzaIng = this.scorePizzaIng/this.commandes.size();
 		if(this.scoreATresorerie[0] <  getTresorerietmp() && getTresorerietmp() < this.scoreATresorerie[1]) {
 			scoreTresor = 2;
 		} else if (this.scoreATresorerie[1] <  getTresorerietmp() && getTresorerietmp() < this.scoreATresorerie[2]) {
@@ -464,7 +495,7 @@ public class Niveau {
 		} else {
 			scoreTemps = 3;
 		}
-		float score = (scoreTemps == 0 || scoreTresor ==0 || scoreCuisson == 0)?0:(scoreTemps+scoreTresor+scoreCuisson)/3;
+		float score = (scoreTemps == 0 || scoreTresor ==0 || scoreCuisson == 0 || scorePizzaIng ==0)?0:(scoreTemps+scoreTresor+scoreCuisson+scorePizzaIng)/3;
 		this.score = score;
 	}
 	/**
@@ -494,6 +525,54 @@ public class Niveau {
 	 */
 	public void setTempstmp(int tempstmp) {
 		this.tempstmp = tempstmp;
+	}
+	/**
+	 * Permet de retirer de l'argent à chaque achat d'ingrédients
+	 * @param ing
+	 * @param nb
+	 * @return si l'on peut continuer de jouer
+	 */
+	public boolean retraitArgentIng(Ingredients ing, int nb) {
+		this.tresorerietmp-=ing.getPrixAchat()*nb;
+		if(this.tresorerietmp <= 0 ) {
+			this.defaite("Tresorerie vide");
+			return false;
+		}
+		return true;
+		
+	}
+	/**
+	 * Permet de retirer de l'argent à l'achat de la pate
+	 * @param ing
+	 * @return si l'on peut continuer de jouer
+	 */
+	public boolean retraitArgentIng(Pate ing) {
+		this.tresorerietmp-=ing.getPrixAchat();
+		if(this.tresorerietmp <= 0 ) {
+			this.defaite("Tresorerie vide");
+			return false;
+		}
+		return true;
+		
+	}
+	/**
+	 * Permet de vendre la pizza et de recolter l'argent de la commande initiale
+	 * @param commande
+	 * @param pizza
+	 */
+	public void ventePizza(Commande commande, Commande pizza) {
+		this.setScorePizzaIng(pizza.getLesIngredients(), commande);
+		int pourboire = (this.scorePizzaIng == 3 || this.scoreCuisson == 3)?(int)commande.getUnClient().getPourboire():0;
+		this.tresorerietmp+=(commande.getVenteCommande() < pizza.getVenteCommande())?commande.getVenteCommande() + pourboire :pizza.getVenteCommande() + pourboire;
+		this.setScorePizzaIng(pizza.getLesIngredients(), commande);
+	}
+	//!--A gerer avec l'interface graphique ---!!!
+	/**
+	 * Permet de gérer les défaites et d'afficher leurs raisons
+	 * @param raison
+	 */
+	public void defaite(String raison) {
+		System.out.println("Perdu : " + raison);
 	}
 	public void partie() {
 		/*ArrayList<String> tmp = new ArrayList<String>();
