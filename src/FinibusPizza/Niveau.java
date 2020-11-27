@@ -33,8 +33,8 @@ public class Niveau {
 	private int nbClients;
 	//Nb ingredients autorisé
 	private int[] nbIngredients = new int[2];
-	//marge de temps 
-	private int margeTemps;
+	//marge de temps, calculable ! Pour score
+	private int margeTemps = 0;
 	//marge de tresorerie
 	private float margeTresorerie;
 	//tresorerie cours partie 
@@ -420,8 +420,8 @@ public class Niveau {
               
               this.commandes.add(place, commande);
               //!--Attente code client --!//
-              this.setTempsPartiePetitaPetit(commande.getTempsPreparation());
-              
+              this.setTempsPartiePetitaPetit((int) (commande.getTempsPreparation()*c.getMargeTemps()));
+              this.margeTemps+=(int) (commande.getTempsPreparation()*c.getMargeTemps()) - commande.getTempsPreparation(); 
               this.settresoreriePetitaPetit(commande.getAchatCommande());
           }
         }
@@ -439,6 +439,9 @@ public class Niveau {
 	public void setScorePizzaFinal() {
 		
 	}
+	/**
+	 * Permet d'obtenir le score total !
+	 */
 	public void setScore() {
 		//!---selon le temps de cuisson, le temps et le respect des ingrédients----!
 		int scoreTresor;
@@ -464,20 +467,33 @@ public class Niveau {
 		float score = (scoreTemps == 0 || scoreTresor ==0 || scoreCuisson == 0)?0:(scoreTemps+scoreTresor+scoreCuisson)/3;
 		this.score = score;
 	}
+	/**
+	 * Permet d'obtenir le montant de trésorerie encore disponible
+	 * @return de l'argent
+	 */
 	public float getTresorerietmp() {
 		return tresorerietmp;
 	}
+	/**
+	 * Permet de mettre à jour la trésorerie
+	 * @param tresorerietmp
+	 */
 	public void setTresorerietmp(float tresorerietmp) {
 		this.tresorerietmp = tresorerietmp;
 	}
+	/**
+	 * Get temps en cours
+	 * @return le temps non écoulé de partie
+	 */
 	public int getTempstmp() {
 		return tempstmp;
 	}
+	/**
+	 * setTempsEnCours
+	 * @param tempstmp
+	 */
 	public void setTempstmp(int tempstmp) {
 		this.tempstmp = tempstmp;
-	}
-	public void setMargeTempsTotal(int marge) {
-		this.margeTemps += this.margeTemps - this.tempsPartie*marge;
 	}
 	public void partie() {
 		/*ArrayList<String> tmp = new ArrayList<String>();
