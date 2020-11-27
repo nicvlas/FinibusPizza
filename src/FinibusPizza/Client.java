@@ -134,5 +134,13 @@ public class Client {
 		System.out.println(c2.toString());
 	}
 
+	public float getMargeTemps() {
+		return margeTemps;
+	}
+
+	public void setMargeTemps(float margeTemps) {
+		this.margeTemps = margeTemps;
+	}
+
 }
  

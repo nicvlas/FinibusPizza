@@ -25,6 +25,7 @@ public class Niveau {
 	private int[] scoreAuTemps;
 	private float[] scoreATresorerie;
 	private float score;
+	private float scoreCuisson;
 	//!-----Type à vérifier-------!
 	//Tresorerie de début de partie(calculable + marge!)
 	private float tresorerie = 0;
@@ -40,9 +41,10 @@ public class Niveau {
 	private float tresorerietmp = 0;
 	//Temps cours partie
 	private int tempstmp = 0;
-	public Niveau(String nom, Difficulte diff, int nb1TypeClient, int nb2TypeClient, int nb3TypeClient, float margeTresor, int margeTemps, int minIng, int maxIng) {
+	
+	public Niveau(String nom, Difficulte diff, int nb1TypeClient, int nb2TypeClient, int nb3TypeClient, float margeTresor, int minIng, int maxIng) {
 		this.nbClients = nb1TypeClient + nb2TypeClient + nb3TypeClient;
-		if(margeTresor < 0 || margeTemps < 0f || nb1TypeClient < 0 || nb2TypeClient < 0 || nb3TypeClient < 0 || minIng <= 0 || this.nbClients == 0 || maxIng <= 0) {
+		if(margeTresor < 0 || nb1TypeClient < 0 || nb2TypeClient < 0 || nb3TypeClient < 0 || minIng <= 0 || this.nbClients == 0 || maxIng <= 0) {
 			throw new IllegalArgumentException("Les valeurs numériques ne peuvent être négative !");
 		} else if (minIng > maxIng) {
 			throw new IllegalArgumentException("La valeur d'ingrédients minimum doit être inférieur à celle d'ingrédients maximal");
@@ -56,7 +58,12 @@ public class Niveau {
 		this.setnbIngredients(minIng, maxIng);
 		//!--Calculer selon les commandes---!//
 		this.margeTresorerie = margeTresor;
-		this.margeTemps = margeTemps;
+	}
+	public ArrayList<Commande> getCommandes() {
+		return commandes;
+	}
+	public int getTempsTmp() {
+		return this.tempstmp;
 	}
 	/**
 	 * Modifier les nombres de clients par difficulté
@@ -69,6 +76,11 @@ public class Niveau {
 		clients.put(Difficulte.Normal, nbDeuxiemeTypeClient);
 		clients.put(Difficulte.Karen, nbTroisiemeTypeClient);
 	}
+	/**
+	 * Set ingrédients
+	 * @param minIng
+	 * @param maxIng
+	 */
 	public void setnbIngredients(int minIng, int maxIng) {
 		this.nbIngredients[0]=minIng;
 		this.nbIngredients[1]=maxIng;
@@ -185,15 +197,6 @@ public class Niveau {
 	/**
 	 * Permet de calculer le temps de la partie
 	 * @param temps
-	 * @parem marge
-	 */
-	public void setTempsPartieDirectement(int temps, float marge) {
-		this.tempsPartie = (int) (temps * marge);
-		this.setTempstmp(this.tempsPartie);
-	}
-	/**
-	 * Permet de calculer le temps de la partie
-	 * @param temps
 	 */
 	public void setTempsPartieDirectement(int temps) {
 		this.tempsPartie = temps;
@@ -205,14 +208,6 @@ public class Niveau {
 	 */
 	public void setTempsPartiePetitaPetit(int temps) {
 		this.tempsPartie += temps;
-	}
-	/**
-	 * Permet de calculer le temps de la partie
-	 * @param margeTemps
-	 */
-	public void setTempsPartie(float margeTemps) {
-		this.tempsPartie *= margeTemps;
-		this.setTempstmp(this.tempsPartie);
 	}
 	/**
 	 * Permet d'obtenir la difficulté du niveau 
@@ -236,6 +231,18 @@ public class Niveau {
 	public String[] elementsIngredients(String element) {
 		String[] retour = element.split( "/" );
 		if(retour.length != 3 || retour.length != 4) {
+			throw new InternalError(element + " ne correspond pas à un String d'un fichier contenant des ingrédients traitables");
+		}
+		return retour;
+	}
+	/**
+	 * Permet d'obtenir les paramètres des niveaux, séparé par un /
+	 * @param element
+	 * @return liste des elements disponibles et utiles dans le string donnée
+	 */
+	public String[] elementsNiveau(String element) {
+		String[] retour = element.split( "/" );
+		if(retour.length != 8) {
 			throw new InternalError(element + " ne correspond pas à un String d'un fichier contenant des ingrédients traitables");
 		}
 		return retour;
@@ -277,8 +284,8 @@ public class Niveau {
         ArrayList<String> tmpP = new ArrayList<String>();
 	      try {
     	      //lire le fichier
-    	      FileReader fileN = new FileReader("C:\\Users\\david\\git\\FinibusPizza\\src\\FinibusPizza\\textes\\noms");
-    	      FileReader fileP = new FileReader("C:\\Users\\david\\git\\FinibusPizza\\src\\FinibusPizza\\textes\\prenoms");
+    	      FileReader fileN = new FileReader(getClass().getResource("./textes/noms").getFile());
+    	      FileReader fileP = new FileReader(getClass().getResource("./textes/prenoms").getFile());
     	      BufferedReader bufferN = new BufferedReader(fileN);
     	      BufferedReader bufferP = new BufferedReader(fileP);
     	      tmpN.add(bufferN.readLine());
@@ -314,7 +321,7 @@ public class Niveau {
         ArrayList<String> tmpB = new ArrayList<String>();
 	      try {
     	      //lire le fichier
-    	      FileReader fileB = new FileReader("C:\\Users\\david\\git\\FinibusPizza\\src\\FinibusPizza\\textes\\bases");
+    	      FileReader fileB = new FileReader(getClass().getResource("./textes/bases").getFile());
     	      BufferedReader bufferB = new BufferedReader(fileB);
     	      tmpB.add(bufferB.readLine());
     	      // parcourir le fichier
@@ -344,7 +351,7 @@ public class Niveau {
 		ingredientsList.put(base, 1);
 		try {
   	      //lire le fichier
-  	      FileReader fileI = new FileReader("C:\\Users\\david\\git\\FinibusPizza\\src\\FinibusPizza\\textes\\ingredients");
+  	      FileReader fileI = new FileReader(getClass().getResource("./textes/ingredients").getFile());
   	      BufferedReader bufferI = new BufferedReader(fileI);
   	      tmpI.add(bufferI.readLine());
   	      // parcourir le fichier
@@ -412,41 +419,49 @@ public class Niveau {
               Commande commande = new Commande(c, listeIng, pate);
               
               this.commandes.add(place, commande);
+              //!--Attente code client --!//
               this.setTempsPartiePetitaPetit(commande.getTempsPreparation());
+              
               this.settresoreriePetitaPetit(commande.getAchatCommande());
           }
         }
         this.settresorerie(this.margeTresorerie);
-        this.setTempsPartie(this.margeTemps);
 		return true;
 	}
-	public static void main(String[] args) {
-		Niveau n = new Niveau("h", Difficulte.Karen, 2, 3, 4, 3, 3,10,15);
-		n.genererCommande();
+	/**Calcul le score de cuisson à partir de la fonction cuire() de Commande
+	 * 
+	 * @param score
+	 */
+	public void setScoreCuisson(float score) {
+		this.scoreCuisson = score;
+	}
+	//!-------------A FAIRE ENSEMBLE--------------------!//
+	public void setScorePizzaFinal() {
+		
 	}
 	public void setScore() {
 		//!---selon le temps de cuisson, le temps et le respect des ingrédients----!
 		int scoreTresor;
 		if(this.scoreATresorerie[0] <  getTresorerietmp() && getTresorerietmp() < this.scoreATresorerie[1]) {
-			scoreTresor = 1;
-		} else if (this.scoreATresorerie[1] <  getTresorerietmp() && getTresorerietmp() < this.scoreATresorerie[2]) {
 			scoreTresor = 2;
+		} else if (this.scoreATresorerie[1] <  getTresorerietmp() && getTresorerietmp() < this.scoreATresorerie[2]) {
+			scoreTresor = 3;
 		} else if(getTresorerietmp() > 0){
-			scoreTresor = 0;
+			scoreTresor = 1;
 		} else {
 			scoreTresor = 3;
 		}
 		int scoreTemps;
 		if(this.scoreAuTemps[0] <  getTempstmp() && getTempstmp() < this.scoreAuTemps[1]) {
-			scoreTemps = 1;
-		} else if (this.scoreAuTemps[1] <  getTempstmp() && getTempstmp() < this.scoreAuTemps[2]) {
 			scoreTemps = 2;
+		} else if (this.scoreAuTemps[1] <  getTempstmp() && getTempstmp() < this.scoreAuTemps[2]) {
+			scoreTemps = 3;
 		} else if(getTempstmp() > 0){
-			scoreTemps = 0;
+			scoreTemps = 1;
 		} else {
 			scoreTemps = 3;
 		}
-		float score = (scoreTemps == 0 || scoreTresor ==0)?0:(scoreTemps+scoreTresor)/2;
+		float score = (scoreTemps == 0 || scoreTresor ==0 || scoreCuisson == 0)?0:(scoreTemps+scoreTresor+scoreCuisson)/3;
 		this.score = score;
 	}
 	public float getTresorerietmp() {
@@ -460,6 +475,51 @@ public class Niveau {
 	}
 	public void setTempstmp(int tempstmp) {
 		this.tempstmp = tempstmp;
+	}
+	public void setMargeTempsTotal(int marge) {
+		this.margeTemps += this.margeTemps - this.tempsPartie*marge;
+	}
+	public void partie() {
+		/*ArrayList<String> tmp = new ArrayList<String>();
+		try {
+	  	      //lire le fichier
+	  	      FileReader file = new FileReader(getClass().getResource("./textes/niveaux").getFile());
+	  	      BufferedReader buffer = new BufferedReader(file);
+	  	      tmp.add(buffer.readLine());
+	  	      // parcourir le fichier
+	  	      while(tmp.get(tmp.size()-1) != null) {
+	  	    	tmp.add(buffer.readLine());
+	  	      } 
+	  	   }
+	  	   catch (IOException e) {
+	  	      e.printStackTrace();
+	  	   }
+		int tmpNb = 0;
+		String[] donneesNiv = new String[8];
+		while(elementsNiveau(tmp.get(tmpNb))[0] != nomNiveau && tmp.size() != tmpNb) {
+			if(elementsNiveau(tmp.get(tmpNb))[0] == nomNiveau) {
+				donneesNiv = elementsNiveau(tmp.get(tmpNb));
+			}
+			tmpNb++;
+		}
+		if(tmp.size() == tmpNb) {
+			throw new InternalError("Fichier ne contenant pas ce niveau !");
+		}
+		Difficulte dur;
+		switch(donneesNiv[1]) {
+			case "Karen":
+				dur = Difficulte.Karen;
+				break;
+			case "Normal":
+				dur = Difficulte.Normal;
+				break;
+			default:
+				dur = Difficulte.Facile;
+		}
+		Niveau niveauEnCours = new Niveau(donneesNiv[0],dur,Integer.parseInt(donneesNiv[2]),Integer.parseInt(donneesNiv[3]),Integer.parseInt(donneesNiv[4]),Float.parseFloat(donneesNiv[5]),Integer.parseInt(donneesNiv[6]),Integer.parseInt(donneesNiv[7]));*/
+		ArrayList<Commande> commandes = this.getCommandes();
+		
+		
 	}
 
 }
