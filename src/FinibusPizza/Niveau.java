@@ -469,6 +469,10 @@ public class Niveau {
         }
         this.scorePizzaIng+=score;
 	}
+	
+	
+	
+	
 	/**
 	 * Permet d'obtenir le score total !
 	 */
