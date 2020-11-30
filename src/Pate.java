@@ -1,4 +1,4 @@
-package FinibusPizza;
+
 
 public class Pate extends Ingredients{
 
@@ -19,8 +19,6 @@ public class Pate extends Ingredients{
 	 * @param prixAchat
 	 * @param prixVente
 	 * @param cheminDaccesImage
-	 * @param estReussite
-	 * @param tempsPetrissage
 	 */
 	public Pate(String nom, float prixAchat, float prixVente, String cheminDaccesImage) {
 		super(nom, prixAchat, prixVente, cheminDaccesImage);

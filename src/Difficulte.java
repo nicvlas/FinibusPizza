@@ -1,4 +1,3 @@
-package FinibusPizza;
 
 public enum Difficulte {
 	Facile,

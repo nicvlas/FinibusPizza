@@ -1,4 +1,4 @@
-package FinibusPizza;
+
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -54,8 +54,7 @@ public class Commande {
 	 * 
 	 * @param unClient
 	 * @param ingredientsC1
-	 * @param laPate
-	 * @param nbTempsPrepCommande
+	 * @param laPaten
 	 */
 	public Commande(Client unClient, HashMap<Ingredients, Integer> ingredientsC1, Pate laPaten) {
 		if (unClient == null || ingredientsC1 == null || laPaten == null) {

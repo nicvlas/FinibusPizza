@@ -1,4 +1,3 @@
-package FinibusPizza;
 
 import java.util.Random;
 
@@ -8,11 +7,11 @@ public class Client {
 	private Difficulte typeClient;
 	private int tempsClient;
 	private float pourboire;
-	private int[] nbTypeIngredients;// Tableau min, max nombre type d'ingrédients
+	private int[] nbTypeIngredients;// Tableau min, max nombre type d'ingrï¿½dients
 	private String[] lesNomsClient;
 	private float margeTemps;
 	
-	//Faire un fichier avec margeTemps, pourboire initial, min et max nombre type d'ingrédients
+	//Faire un fichier avec margeTemps, pourboire initial, min et max nombre type d'ingrï¿½dients
 	
 	public Difficulte getTypeClient() {
 		return typeClient;

@@ -1,4 +1,4 @@
-package FinibusPizza;
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,26 +13,26 @@ import java.util.Random;
 public class Niveau {
 	//Nom du niveau
 	private String nom;
-	//Difficulte du niveau, à choisir selon l'enumératuon difficulté
+	//Difficulte du niveau, ï¿½ choisir selon l'enumï¿½ratuon difficultï¿½
 	private Difficulte difficulte; 
-	//Liste contenant au maximum les trois types de clients possibles en tant que clé enfin de savoir le nombre de clients par type
+	//Liste contenant au maximum les trois types de clients possibles en tant que clï¿½ enfin de savoir le nombre de clients par type
 	private HashMap<Difficulte, Integer> clients = new HashMap<Difficulte, Integer>();
-	//liste contenant des commandes à générer
+	//liste contenant des commandes ï¿½ gï¿½nï¿½rer
 	private ArrayList<Commande> commandes = new ArrayList<Commande>();
 	//Temps total de partie(calculable + marge!)
 	private int tempsPartie = 0; 
-	//Trois temps, les trois désignant donc les trois étoiles obtenables (calculable !)
+	//Trois temps, les trois dï¿½signant donc les trois ï¿½toiles obtenables (calculable !)
 	private int[] scoreAuTemps;
 	private float[] scoreATresorerie;
 	private float score;
 	private float scoreCuisson;
 	private float scorePizzaIng;
-	//!-----Type à vérifier-------!
-	//Tresorerie de début de partie(calculable + marge!)
+	//!-----Type ï¿½ vï¿½rifier-------!
+	//Tresorerie de dï¿½but de partie(calculable + marge!)
 	private float tresorerie = 0;
-	//total clientèle
+	//total clientï¿½le
 	private int nbClients;
-	//Nb ingredients autorisé
+	//Nb ingredients autorisï¿½
 	private int[] nbIngredients = new int[2];
 	//marge de temps, calculable ! Pour score
 	private int margeTemps = 0;
@@ -47,12 +47,12 @@ public class Niveau {
 	public Niveau(String nom, Difficulte diff, int nb1TypeClient, int nb2TypeClient, int nb3TypeClient, float margeTresor, int minIng, int maxIng) {
 		this.nbClients = nb1TypeClient + nb2TypeClient + nb3TypeClient;
 		if(margeTresor < 0 || nb1TypeClient < 0 || nb2TypeClient < 0 || nb3TypeClient < 0 || minIng <= 0 || this.nbClients == 0 || maxIng <= 0) {
-			throw new IllegalArgumentException("Les valeurs numériques ne peuvent être négative !");
+			throw new IllegalArgumentException("Les valeurs numï¿½riques ne peuvent ï¿½tre nï¿½gative !");
 		} else if (minIng > maxIng) {
-			throw new IllegalArgumentException("La valeur d'ingrédients minimum doit être inférieur à celle d'ingrédients maximal");
+			throw new IllegalArgumentException("La valeur d'ingrï¿½dients minimum doit ï¿½tre infï¿½rieur ï¿½ celle d'ingrï¿½dients maximal");
 		}
 		if(nom == null || difficulte == null) {
-			throw new IllegalArgumentException("le nom et la difficulté ne peuvent être nuls");
+			throw new IllegalArgumentException("le nom et la difficultï¿½ ne peuvent ï¿½tre nuls");
 		}
 		this.nom = nom;
 		this.difficulte=diff;
@@ -80,7 +80,7 @@ public class Niveau {
 		return this.tempstmp;
 	}
 	/**
-	 * Modifier les nombres de clients par difficulté
+	 * Modifier les nombres de clients par difficultï¿½
 	 * @param nbPremierTypeClient
 	 * @param nbDeuxiemeTypeClient
 	 * @param nbTroisiemeTypeClient
@@ -91,7 +91,7 @@ public class Niveau {
 		clients.put(Difficulte.Karen, nbTroisiemeTypeClient);
 	}
 	/**
-	 * Set ingrédients
+	 * Set ingrï¿½dients
 	 * @param minIng
 	 * @param maxIng
 	 */
@@ -107,7 +107,7 @@ public class Niveau {
 		return this.tresorerie;
 	}
 	/**
-	 * Permet de calculer la trésorerie du niveau, en y ajoutant une marge donnée dans la création du niveau
+	 * Permet de calculer la trï¿½sorerie du niveau, en y ajoutant une marge donnï¿½e dans la crï¿½ation du niveau
 	 * @parem marge 
 	 */
 	public void settresorerie(float marge, float tresor) {
@@ -115,7 +115,7 @@ public class Niveau {
 		this.setTresorerietmp(this.tresorerie); 
 	}
 	/**
-	 * Permet de calculer la trésorerie du niveau, en y ajoutant une marge donnée dans la création du niveau
+	 * Permet de calculer la trï¿½sorerie du niveau, en y ajoutant une marge donnï¿½e dans la crï¿½ation du niveau
 	 * @parem marge 
 	 */
 	public void settresorerie(float marge) {
@@ -123,21 +123,21 @@ public class Niveau {
 		this.setTresorerietmp(this.tresorerie); 
 	}
 	/**
-	 * Permet de calculer la trésorerie du niveau, en y ajoutant une marge donnée dans la création du niveau
+	 * Permet de calculer la trï¿½sorerie du niveau, en y ajoutant une marge donnï¿½e dans la crï¿½ation du niveau
 	 * @param tresorerie
 	 */
 	public void settresoreriePetitaPetit(float tresorerie) {
 		this.tresorerie += tresorerie;
 	}
 	/**
-	 * Permet d'obtenir les réglages du score, calculé selon le temps total de jeu
-	 * @return un tableau de float contenant les trois temps correspondant aux trois étoiles de score obtenables
+	 * Permet d'obtenir les rï¿½glages du score, calculï¿½ selon le temps total de jeu
+	 * @return un tableau de float contenant les trois temps correspondant aux trois ï¿½toiles de score obtenables
 	 */
 	public int[] getScoreAuTemps() {
 		return scoreAuTemps;
 	}
 	/**
-	 * Permet de paramétrer les scores obtenables d'un coup
+	 * Permet de paramï¿½trer les scores obtenables d'un coup
 	 */
 	public void setScoreAuTemps() {
 		this.setScoreAuTemps1();
@@ -145,28 +145,28 @@ public class Niveau {
 		this.setScoreAuTemps3();
 	}
 	/**
-	 * Permet de paramétrer le score le plus bas
+	 * Permet de paramï¿½trer le score le plus bas
 	 */
 	public void setScoreAuTemps1() {
 		int score = this.margeTemps*(1/3);
 		this.scoreAuTemps[0] = score;
 	}
 	/**
-	 * Permet de paramétrer le score moyen
+	 * Permet de paramï¿½trer le score moyen
 	 */
 	public void setScoreAuTemps2() {
 		int scoreAuTemps = this.margeTemps*(2/3);
 		this.scoreAuTemps[1] = scoreAuTemps;
 	}
 	/**
-	 * Permet de paramétrer le score le plus haut
+	 * Permet de paramï¿½trer le score le plus haut
 	 */
 	public void setScoreAuTemps3() {
 		int scoreAuTemps = this.margeTemps;
 		this.scoreAuTemps[2] = scoreAuTemps;
 	}
 	/**
-	 * Permet de paramétrer les scores obtenables d'un coup
+	 * Permet de paramï¿½trer les scores obtenables d'un coup
 	 */
 	public void setScoreALaTresorerie() {
 		this.setScoreALaTresorerie1();
@@ -174,28 +174,28 @@ public class Niveau {
 		this.setScoreALaTresorerie3();
 	}
 	/**
-	 * Permet de paramétrer le score le plus bas
+	 * Permet de paramï¿½trer le score le plus bas
 	 */
 	public void setScoreALaTresorerie1() {
 		float score = this.margeTresorerie*(1/3);
 		this.scoreATresorerie[0] = score;
 	}
 	/**
-	 * Permet de paramétrer le score moyen
+	 * Permet de paramï¿½trer le score moyen
 	 */
 	public void setScoreALaTresorerie2() {
 		float score = this.margeTresorerie*(2/3);
 		this.scoreATresorerie[1] = score;
 	}
 	/**
-	 * Permet de paramétrer le score le plus haut
+	 * Permet de paramï¿½trer le score le plus haut
 	 */
 	public void setScoreALaTresorerie3() {
 		float score = this.margeTresorerie;
 		this.scoreATresorerie[2] = score;
 	}
 	/**
-	 * Permet d'obtenir la liste HashMap des clients, en clef le type et en données, le nombre
+	 * Permet d'obtenir la liste HashMap des clients, en clef le type et en donnï¿½es, le nombre
 	 * @return Une HashMap
 	 */
 	public HashMap<Difficulte, Integer> getClients() {
@@ -203,7 +203,7 @@ public class Niveau {
 	}
 	/**
 	 * Permet d'obtenir le temps de la partie 
-	 * @return le temps de la partie autorisée et max
+	 * @return le temps de la partie autorisï¿½e et max
 	 */
 	public int getTempsPartie() {
 		return tempsPartie;
@@ -224,8 +224,8 @@ public class Niveau {
 		this.tempsPartie += temps;
 	}
 	/**
-	 * Permet d'obtenir la difficulté du niveau 
-	 * @return la difficulté
+	 * Permet d'obtenir la difficultï¿½ du niveau 
+	 * @return la difficultï¿½
 	 */
 	public Difficulte getDifficulte() {
 		return difficulte;
@@ -238,31 +238,31 @@ public class Niveau {
 		return nom;
 	}
 	/**
-	 * Permet d'obtenir les paramètres des ingrédients, séparé par un /
+	 * Permet d'obtenir les paramï¿½tres des ingrï¿½dients, sï¿½parï¿½ par un /
 	 * @param element
-	 * @return liste des elements disponibles et utiles dans le string donnée
+	 * @return liste des elements disponibles et utiles dans le string donnï¿½e
 	 */
 	public String[] elementsIngredients(String element) {
 		String[] retour = element.split( "/" );
 		if(retour.length != 3 || retour.length != 4) {
-			throw new InternalError(element + " ne correspond pas à un String d'un fichier contenant des ingrédients traitables");
+			throw new InternalError(element + " ne correspond pas ï¿½ un String d'un fichier contenant des ingrï¿½dients traitables");
 		}
 		return retour;
 	}
 	/**
-	 * Permet d'obtenir les paramètres des niveaux, séparé par un /
+	 * Permet d'obtenir les paramï¿½tres des niveaux, sï¿½parï¿½ par un /
 	 * @param element
-	 * @return liste des elements disponibles et utiles dans le string donnée
+	 * @return liste des elements disponibles et utiles dans le string donnï¿½e
 	 */
 	public String[] elementsNiveau(String element) {
 		String[] retour = element.split( "/" );
 		if(retour.length != 8) {
-			throw new InternalError(element + " ne correspond pas à un String d'un fichier contenant des ingrédients traitables");
+			throw new InternalError(element + " ne correspond pas ï¿½ un String d'un fichier contenant des ingrï¿½dients traitables");
 		}
 		return retour;
 	}
 	/**
-	 * Permet de génerer une Pate au hasard parmis celle présente parmis celle existante
+	 * Permet de gï¿½nerer une Pate au hasard parmis celle prï¿½sente parmis celle existante
 	 * @return la pate choisie
 	 */
 	public Pate generationPate() {
@@ -288,9 +288,9 @@ public class Niveau {
 	      return new Pate(pateTmp1[0], Float.valueOf(pateTmp1[1]), Float.valueOf(pateTmp1[2]), "yes");
 	}
 	/**
-	 * Permet de générer un client selon la difficulté choisir
-	 * @param d, la difficulté choisie
-	 * @return un client généré avec un nom et un prénom choisi aléatoirement parmis ceux de deux fichiers
+	 * Permet de gï¿½nï¿½rer un client selon la difficultï¿½ choisir
+	 * @param d, la difficultï¿½ choisie
+	 * @return un client gï¿½nï¿½rï¿½ avec un nom et un prï¿½nom choisi alï¿½atoirement parmis ceux de deux fichiers
 	 */
 	public Client generationClient(Difficulte d) {
 		Random r3 = new Random();
@@ -327,8 +327,8 @@ public class Niveau {
 	      
 	}
 	/**
-	 * Permet de générer une base parmis celle d'un fichier
-	 * @return la base générée
+	 * Permet de gï¿½nï¿½rer une base parmis celle d'un fichier
+	 * @return la base gï¿½nï¿½rï¿½e
 	 */
 	public Ingredients generationBase() {
 		Random r2 = new Random();
@@ -352,11 +352,11 @@ public class Niveau {
 	      return new Ingredients(baseTmp1[0], Float.valueOf(baseTmp1[1]), Float.valueOf(baseTmp1[2]), "yes");
 	}
 	/**
-	 * Permet de génerer une hash map d'ingrédients, correspondant au contenu de la commande d'un client
-	 * @param nbTypeIngredient, nombre de type d'ingrédients (viande ou fromage par exemple), un max et un min pour choisir aléatoirement entre les deux
-	 * @param nbIngredient, il s'agît du nombre d'ingrédients pour chaque type, un max et un min pour choisir aléatoirement entre les deux
-	 * @param base, il s'agît de la base choisie au préalable
-	 * @return la hashmap avec la liste d'ingrédients et leurs nombre
+	 * Permet de gï¿½nerer une hash map d'ingrï¿½dients, correspondant au contenu de la commande d'un client
+	 * @param nbTypeIngredient, nombre de type d'ingrï¿½dients (viande ou fromage par exemple), un max et un min pour choisir alï¿½atoirement entre les deux
+	 * @param nbIngredient, il s'agï¿½t du nombre d'ingrï¿½dients pour chaque type, un max et un min pour choisir alï¿½atoirement entre les deux
+	 * @param base, il s'agï¿½t de la base choisie au prï¿½alable
+	 * @return la hashmap avec la liste d'ingrï¿½dients et leurs nombre
 	 */
 	public HashMap<Ingredients, Integer> generationListeIngredients(int[] nbTypeIngredient, int[] nbIngredient, Ingredients base){
 		HashMap<Ingredients, Integer> ingredientsList = new HashMap<Ingredients, Integer>();
@@ -399,7 +399,7 @@ public class Niveau {
 	   return ingredientsList;
 	}
 	/**
-	 * Permet de générer toutes les commandes en les répartissant aléatoirement dans une liste 
+	 * Permet de gï¿½nï¿½rer toutes les commandes en les rï¿½partissant alï¿½atoirement dans une liste 
 	 * @return si la tout s'est fait comme il faut
 	 */
 	public boolean genererCommande() {
@@ -407,7 +407,7 @@ public class Niveau {
         //Parcours HashMapClients
         while (iterator.hasNext()) {
           Map.Entry mapentry = (Map.Entry) iterator.next();
-          //Distribution des commandes de manière aléatoire dans commandes
+          //Distribution des commandes de maniï¿½re alï¿½atoire dans commandes
           for(int i1=(int) mapentry.getValue(); i1>0;i1--) {
         	  Random r = new Random();
               int place = r.nextInt(this.nbClients);
@@ -427,7 +427,7 @@ public class Niveau {
               //Generation Base 
               Ingredients base = generationBase();
       	      
-              //Gestion reste ingrédients 
+              //Gestion reste ingrï¿½dients 
               HashMap<Ingredients, Integer> listeIng = generationListeIngredients(c.getnbTypeIngredients(), this.nbIngredients, base);
               
               Commande commande = new Commande(c, listeIng, pate);
@@ -442,7 +442,7 @@ public class Niveau {
         this.settresorerie(this.margeTresorerie);
 		return true;
 	}
-	/**Calcul le score de cuisson à partir de la fonction cuire() de Commande
+	/**Calcul le score de cuisson ï¿½ partir de la fonction cuire() de Commande
 	 * 
 	 * @param score
 	 */
@@ -450,7 +450,7 @@ public class Niveau {
 		this.scoreCuisson = score;
 	}
 	/**
-	 * Permet de calculer le score de la pizza à l'unité. A utiliser à chaque fois qu'une pizza est donnée à un client
+	 * Permet de calculer le score de la pizza ï¿½ l'unitï¿½. A utiliser ï¿½ chaque fois qu'une pizza est donnï¿½e ï¿½ un client
 	 * @param pizza
 	 * @param commande
 	 */
@@ -477,7 +477,7 @@ public class Niveau {
 	 * Permet d'obtenir le score total !
 	 */
 	public void setScore() {
-		//!---selon le temps de cuisson, le temps et le respect des ingrédients----!
+		//!---selon le temps de cuisson, le temps et le respect des ingrï¿½dients----!
 		int scoreTresor;
 		this.scorePizzaIng = this.scorePizzaIng/this.commandes.size();
 		if(this.scoreATresorerie[0] <  getTresorerietmp() && getTresorerietmp() < this.scoreATresorerie[1]) {
@@ -503,14 +503,14 @@ public class Niveau {
 		this.score = score;
 	}
 	/**
-	 * Permet d'obtenir le montant de trésorerie encore disponible
+	 * Permet d'obtenir le montant de trï¿½sorerie encore disponible
 	 * @return de l'argent
 	 */
 	public float getTresorerietmp() {
 		return tresorerietmp;
 	}
 	/**
-	 * Permet de mettre à jour la trésorerie
+	 * Permet de mettre ï¿½ jour la trï¿½sorerie
 	 * @param tresorerietmp
 	 */
 	public void setTresorerietmp(float tresorerietmp) {
@@ -518,7 +518,7 @@ public class Niveau {
 	}
 	/**
 	 * Get temps en cours
-	 * @return le temps non écoulé de partie
+	 * @return le temps non ï¿½coulï¿½ de partie
 	 */
 	public int getTempstmp() {
 		return tempstmp;
@@ -531,7 +531,7 @@ public class Niveau {
 		this.tempstmp = tempstmp;
 	}
 	/**
-	 * Permet de retirer de l'argent à chaque achat d'ingrédients
+	 * Permet de retirer de l'argent ï¿½ chaque achat d'ingrï¿½dients
 	 * @param ing
 	 * @param nb
 	 * @return si l'on peut continuer de jouer
@@ -546,7 +546,7 @@ public class Niveau {
 		
 	}
 	/**
-	 * Permet de retirer de l'argent à l'achat de la pate
+	 * Permet de retirer de l'argent ï¿½ l'achat de la pate
 	 * @param ing
 	 * @return si l'on peut continuer de jouer
 	 */
@@ -572,7 +572,7 @@ public class Niveau {
 	}
 	//!--A gerer avec l'interface graphique ---!!!
 	/**
-	 * Permet de gérer les défaites et d'afficher leurs raisons
+	 * Permet de gï¿½rer les dï¿½faites et d'afficher leurs raisons
 	 * @param raison
 	 */
 	public void defaite(String raison) {

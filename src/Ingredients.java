@@ -1,4 +1,3 @@
-package FinibusPizza;
 
 public class Ingredients {
 
@@ -32,36 +31,36 @@ public class Ingredients {
 
 	
 	/**
-	 * Permet d'acheter l'ingrédient, en contrepartie d'argent
+	 * Permet d'acheter l'ingrï¿½dient, en contrepartie d'argent
 	 */
 	public void acheter(int qte) {
-		//ajouter au stock du jeu la valeur en paramètre
-		//enlever à la trésorerie du jeu qte*this.getPrixAchat()
-		//if trésorerie <= 0 : GAME OVER
+		//ajouter au stock du jeu la valeur en paramï¿½tre
+		//enlever ï¿½ la trï¿½sorerie du jeu qte*this.getPrixAchat()
+		//if trï¿½sorerie <= 0 : GAME OVER
 		
 	}
 
 	/**
-	 * Retourne les informations de l'ingrédient
+	 * Retourne les informations de l'ingrï¿½dient
 	 * 
 	 */
 	public String toString() {
-		return "Nom ingrédient : "+this.getNom()+".\nPrix d'achat : "+ Math.round(this.getPrixAchat())+".\nPrix de vente : "+this.getPrixVente()+"\nEn stock : "+this.stock;
+		return "Nom ingrï¿½dient : "+this.getNom()+".\nPrix d'achat : "+ Math.round(this.getPrixAchat())+".\nPrix de vente : "+this.getPrixVente()+"\nEn stock : "+this.stock;
 	}
 	
 	/**
-	 * Constructeur d'un ingrédient, qui ajoute un stock et un temps de pose
-	 * @param nom : nom de l'ingrédient
+	 * Constructeur d'un ingrï¿½dient, qui ajoute un stock et un temps de pose
+	 * @param nom : nom de l'ingrï¿½dient
 	 * @param prixAchat : prix d'achat
 	 * @param prixVente : prix de vente
-	 * @param cheminDaccesImage : chemin d'accès pour l'image
+	 * @param cheminDaccesImage : chemin d'accï¿½s pour l'image
 	 */
 	public Ingredients(String nom, float prixAchat, float prixVente, String cheminDaccesImage) {
 		this.nom = nom;
 		this.prixAchat = prixAchat;
 		this.prixVente = prixVente;
 		this.cheminDaccesImage = cheminDaccesImage;
-		this.stock = 6; //à vérifier
+		this.stock = 6; //ï¿½ vï¿½rifier
 		this.tempsDePoseIngredient = 3;
 	}
 	
