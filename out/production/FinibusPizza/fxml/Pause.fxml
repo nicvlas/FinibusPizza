@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane fx:id="lbl_pause" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="587.0" layoutY="57.0" text="Pause">
+         <font>
+            <Font size="41.0" />
+         </font>
+      </Label>
+      <Button fx:id="btn_recommencer" layoutX="563.0" layoutY="215.0" mnemonicParsing="false" text="Recommencer">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_quitter" layoutX="556.0" layoutY="289.0" mnemonicParsing="false" text="Quitter la partie">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_fermer" layoutX="595.0" layoutY="360.0" mnemonicParsing="false" text="Fermer">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

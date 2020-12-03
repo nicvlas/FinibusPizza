@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <children>
+      <Button fx:id="btn_menu" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" text="Menu">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+      <Label fx:id="lbl_temps" layoutX="86.0" layoutY="26.0" text="Temps">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label fx:id="lbl_argent" layoutX="157.0" layoutY="26.0" text="Argent">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Line fx:id="line_btm" endX="544.0" layoutX="95.0" layoutY="601.0" startX="-97.0" />
+      <Button fx:id="btn_c1" layoutX="76.0" layoutY="648.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="btn_c2" layoutX="292.0" layoutY="648.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="btn_c3" layoutX="516.0" layoutY="648.0" mnemonicParsing="false" text="Button" />
+      <ImageView fx:id="img_c1" fitHeight="209.0" fitWidth="118.0" layoutX="43.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/karen.jpg" />
+         </image></ImageView>
+      <ImageView fx:id="img_c2" fitHeight="209.0" fitWidth="118.0" layoutX="259.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/karen.jpg" />
+         </image></ImageView>
+      <ImageView fx:id="img_c3" fitHeight="209.0" fitWidth="118.0" layoutX="483.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/karen.jpg" />
+         </image></ImageView>
+      <ImageView fx:id="img_principale" fitHeight="643.0" fitWidth="641.0" layoutX="640.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/fondNiveau.jpg" />
+         </image></ImageView>
+      <Button fx:id="btn_preppate" layoutX="640.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="160.0" text="Préparation pâte" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+      <Line fx:id="line_top" layoutX="1280.0" layoutY="80.0" startX="-640.0" />
+      <Button fx:id="btn_preppizza" layoutX="800.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="160.0" text="Préparation pizza" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+      <Button fx:id="btn_gestion" layoutX="1120.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="160.0" text="Gestion pizza" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+      <Button fx:id="btn_cuisson" layoutX="960.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="160.0" text="Cuisson pizza" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+      <Line fx:id="line_middle" endX="720.0" layoutX="280.0" layoutY="361.0" rotate="90.0" />
+   </children>
+</AnchorPane>
