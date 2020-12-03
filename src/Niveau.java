@@ -218,7 +218,7 @@ public class Niveau {
 	}
 	/**
 	 * Permet de calculer le temps de la partie
-	 * @param marge
+	 * @param temps
 	 */
 	public void setTempsPartiePetitaPetit(int temps) {
 		this.tempsPartie += temps;
@@ -272,11 +272,12 @@ public class Niveau {
     	      //lire le fichier
     	      FileReader fileP = new FileReader("C:\\Users\\david\\git\\FinibusPizza\\src\\FinibusPizza\\textes\\pates");
     	      BufferedReader bufferP = new BufferedReader(fileP);
-    	      tmpP.add(bufferP.readLine());
-    	      // parcourir le fichier
-    	      while(tmpP.get(tmpP.size()-1) != null) {
-    	    	  tmpP.add(bufferP.readLine());
-    	          } 
+			  String tmpBB1 = bufferP.readLine();
+			  // parcourir le fichier
+			  while (tmpBB1 != null) {
+				  tmpP.add(tmpBB1);
+				  tmpBB1 = bufferP.readLine();
+			  }
     	   }
     	   catch (IOException e) {
     	      e.printStackTrace();
@@ -303,14 +304,18 @@ public class Niveau {
     	      BufferedReader bufferN = new BufferedReader(fileN);
     	      BufferedReader bufferP = new BufferedReader(fileP);
     	      tmpN.add(bufferN.readLine());
-    	      tmpP.add(bufferP.readLine());
-    	      // parcourir le fichier
-    	      while(tmpP.get(tmpP.size()-1) != null) {
-    	    	  tmpP.add(bufferP.readLine());
-    	      } 
-    	      while(tmpN.get(tmpN.size()-1) != null) {
-    	    	  tmpN.add(bufferN.readLine());
-    	      } 
+			  String tmpBB = bufferP.readLine();
+			  // parcourir le fichier
+			  while (tmpBB != null) {
+				  tmpP.add(tmpBB);
+				  tmpBB = bufferP.readLine();
+			  }
+			  String tmpBB1 = bufferN.readLine();
+			  // parcourir le fichier
+			  while (tmpBB1 != null) {
+				  tmpN.add(tmpBB1);
+				  tmpBB1 = bufferN.readLine();
+			  }
     	   }
     	   catch (IOException e) {
     	      e.printStackTrace();
@@ -337,11 +342,12 @@ public class Niveau {
     	      //lire le fichier
     	      FileReader fileB = new FileReader(getClass().getResource("./textes/bases").getFile());
     	      BufferedReader bufferB = new BufferedReader(fileB);
-    	      tmpB.add(bufferB.readLine());
-    	      // parcourir le fichier
-    	      while(tmpB.get(tmpB.size()-1) != null) {
-    	          	tmpB.add(bufferB.readLine());
-    	          } 
+			  String tmpBB = bufferB.readLine();
+			  // parcourir le fichier
+			  while (tmpBB != null) {
+				  tmpB.add(tmpBB);
+				  tmpBB = bufferB.readLine();
+			  }
     	   }
     	   catch (IOException e) {
     	      e.printStackTrace();
@@ -367,11 +373,12 @@ public class Niveau {
   	      //lire le fichier
   	      FileReader fileI = new FileReader(getClass().getResource("./textes/ingredients").getFile());
   	      BufferedReader bufferI = new BufferedReader(fileI);
-  	      tmpI.add(bufferI.readLine());
-  	      // parcourir le fichier
-  	      while(tmpI.get(tmpI.size()-1) != null) {
-  	    	  tmpI.add(bufferI.readLine());
-  	      } 
+			String tmpBB = bufferI.readLine();
+			// parcourir le fichier
+			while (tmpBB != null) {
+				tmpI.add(tmpBB);
+				tmpBB = bufferI.readLine();
+			}
   	   }
   	   catch (IOException e) {
   	      e.printStackTrace();

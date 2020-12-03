@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="a9d14218-7341-4840-b336-bd7502f8559e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinibusPizza/Niveau.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinibusPizza/Niveau.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/MenuControleur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/MenuControleur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/MenuListeNiveauControleur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/MenuListeNiveauControleur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Niveau.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Niveau.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controleur/MenuControleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controleur/MenuControleur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controleur/MenuListeNiveauControleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controleur/MenuListeNiveauControleur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fxml/MenuListeNiveau.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/MenuListeNiveau.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,12 +37,15 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="D:/javafx-sdk-11.0.2/lib" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/textes" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\david\Desktop\Licence\Java\FinibusPizza\src\textes" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\david\Desktop\Licence\Java\FinibusPizza\src\fxml" />
       <recent name="C:\Users\david\Desktop\Licence\Java\FinibusPizza\src\controleur" />
