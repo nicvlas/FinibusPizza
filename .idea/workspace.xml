@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9d14218-7341-4840-b336-bd7502f8559e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinibusPizza.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FinibusPizza.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/MenuControleur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/MenuControleur.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controleur/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controleur/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controleur/MenuControleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controleur/MenuControleur.java" afterDir="false" />
     </list>
@@ -14,6 +12,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

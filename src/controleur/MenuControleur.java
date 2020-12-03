@@ -21,7 +21,11 @@ public class MenuControleur implements Initializable {
 
     }
     public void affichageListeNiveau(){
-
+        Main.ListeNiveauStage.show();
+        // get a handle to the stage
+        Stage stage = (Stage) btnQuitterApp.getScene().getWindow();
+        // do what you have to do
+        stage.close();
     }
     public void affichagePers(){
 
