@@ -10,31 +10,31 @@ import javafx.stage.WindowEvent;
 
 import java.io.*;
 
+import static com.sun.javafx.scene.control.skin.Utils.getResource;
+
 public class Main extends Application {
     public static Parent root;
-    public static Parent rootcreationNiveau;
-    public static Parent rootListeNiveau;
-    public static Stage menuStage = new Stage();
-    public static Stage creationNiveauStage = new Stage();
-    public static Stage ListeNiveauStage = new Stage();
+    public static Stage stage;
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
-            menuStage = primaryStage;
+            stage = primaryStage;
             //Création écran Menu
             root = FXMLLoader.load(getClass().getResource("../fxml/Menu.fxml"));
             primaryStage.setTitle("PizzaFinibus : Menu");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
-            //Création écran Liste Niveau
-            rootListeNiveau = FXMLLoader.load(getClass().getResource("../fxml/MenuListeNiveau.fxml"));
-            ListeNiveauStage.setTitle("PizzaFinibus : Liste Niveaux");
-            ListeNiveauStage.setScene(new Scene(rootListeNiveau));
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
     public static void main(String[] args) {
         launch(args);
+    }
+    public static void changementFenetre(String chemin, String titre) throws IOException {
+        root = FXMLLoader.load(Main.class.getResource(chemin));
+        stage.setTitle(titre);
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }

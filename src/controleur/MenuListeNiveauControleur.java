@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -44,12 +45,8 @@ public class MenuListeNiveauControleur implements Initializable {
         btnListNivPerso.setDisable(true);
     }
 
-    public void retourMenu(){
-        Main.menuStage.show();
-        // get a handle to the stage
-        Stage stage = (Stage) btnRetourMenu.getScene().getWindow();
-        // do what you have to do
-        stage.close();
+    public void retourMenu() throws IOException {
+        Main.changementFenetre("../fxml/Menu.fxml", "FinibusPizza : Menu");
     }
     private ArrayList<String[]> listeNiveau() {
         ArrayList<String[]> tmp = null;

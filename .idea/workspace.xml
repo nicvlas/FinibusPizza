@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="a9d14218-7341-4840-b336-bd7502f8559e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinibusPizza/Niveau.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinibusPizza/Niveau.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/MenuControleur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/MenuControleur.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/MenuListeNiveauControleur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/MenuListeNiveauControleur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Niveau.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Niveau.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controleur/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controleur/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controleur/MenuControleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controleur/MenuControleur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controleur/MenuListeNiveauControleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controleur/MenuListeNiveauControleur.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

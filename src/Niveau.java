@@ -256,7 +256,7 @@ public class Niveau {
 	 */
 	public String[] elementsNiveau(String element) {
 		String[] retour = element.split( "/" );
-		if(retour.length != 8) {
+		if(retour.length != 8 || retour.length != 9) {
 			throw new InternalError(element + " ne correspond pas � un String d'un fichier contenant des ingr�dients traitables");
 		}
 		return retour;

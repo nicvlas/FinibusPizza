@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -24,14 +25,11 @@ public class MenuControleur implements Initializable {
 
     }
 
-    public void affichageListeNiveau(){
-        Main.ListeNiveauStage.show();
-        // get a handle to the stage
-        Stage stage = (Stage) btnQuitterApp.getScene().getWindow();
-        // do what you have to do
-        stage.close();
+    public void affichageListeNiveau() throws IOException {
+        Main.changementFenetre("../fxml/MenuListeNiveau.fxml", "FinibusPizza : Liste niveaux");
     }
-    public void affichagePers(){
+    public void affichagePers() throws IOException {
+        Main.changementFenetre("../fxml/MenuParamètres.fxml", "FinibusPizza : Personnalisation");
     }
     public void quitterApp(){
         // get a handle to the stage
