@@ -8,6 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -43,10 +44,12 @@ public class MenuCreationNiveauControleur implements Initializable {
 
     }
 
-    public void retourMenu(ActionEvent actionEvent) {
+    public void retourMenu(ActionEvent actionEvent) throws IOException {
+		Main.changementFenetre("../fxml/Menu.fxml", "FinibusPizza : Menu");
     }
 
-    public void retourMenuPers(ActionEvent actionEvent) {
+    public void retourMenuPers(ActionEvent actionEvent) throws IOException {
+		Main.changementFenetre("../fxml/MenuParametres.fxml", "FinibusPizza : Personnalisation");
     }
 
     public void choixDifficulte(ActionEvent actionEvent) {
