@@ -29,7 +29,7 @@ public class MenuControleur implements Initializable {
         Main.changementFenetre("../fxml/MenuListeNiveau.fxml", "FinibusPizza : Liste niveaux");
     }
     public void affichagePers() throws IOException {
-        Main.changementFenetre("../fxml/MenuParamètres.fxml", "FinibusPizza : Personnalisation");
+        Main.changementFenetre("../fxml/MenuParametres.fxml", "FinibusPizza : Personnalisation");
     }
     public void quitterApp(){
         // get a handle to the stage
