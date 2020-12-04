@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -23,36 +24,32 @@ public class MenuListeNiveauControleur implements Initializable {
     @FXML
     Button btnRetourMenu;
 
+    private String[] niveau;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ArrayList<String> tmp = listeNomNiveau();
+        ArrayList<String[]> tmp = listeNiveau();
+        comboListNivClass.getItems().add("Select");
+        comboListNivPerso.getItems().add("Select");
+        comboListNivClass.getSelectionModel().select(0);
+        comboListNivPerso.getSelectionModel().select(0);
         for(int i = 0; i < tmp.size(); i++){
-            comboListNivClass.getItems().add(tmp.get(i));
+            comboListNivClass.getItems().add(tmp.get(i)[0] + " " + tmp.get(i)[1]);
         }
-        ArrayList<String> tmp1 = listeNomNiveauPers();
+        ArrayList<String[]> tmp1 = listeNiveauPers();
         for(int i = 0; i < tmp1.size(); i++){
-            comboListNivPerso.getItems().add(tmp1.get(i));
+            comboListNivPerso.getItems().add(tmp1.get(i)[0] + " " + tmp1.get(i)[1]);
         }
+        btnListNivClass.setDisable(true);
+        btnListNivPerso.setDisable(true);
     }
 
     public void retourMenu(){
-
-    }
-    private ArrayList<String> listeNomNiveau(){
-        ArrayList<String[]> tmp  = listeNiveau();
-        ArrayList<String> tmp1 = new ArrayList<String>();
-        for(int i = 0; i < tmp.size(); i++){
-            tmp1.add(tmp.get(i)[0]);
-        }
-        return tmp1;
-    }
-    private ArrayList<String> listeNomNiveauPers(){
-        ArrayList<String[]> tmp  = listeNiveauPers();
-        ArrayList<String> tmp1 = new ArrayList<String>();
-        for(int i = 0; i < tmp.size(); i++){
-            tmp1.add(tmp.get(i)[0]);
-        }
-        return tmp1;
+        Main.menuStage.show();
+        // get a handle to the stage
+        Stage stage = (Stage) btnRetourMenu.getScene().getWindow();
+        // do what you have to do
+        stage.close();
     }
     private ArrayList<String[]> listeNiveau() {
         ArrayList<String[]> tmp = null;
@@ -101,10 +98,22 @@ public class MenuListeNiveauControleur implements Initializable {
 
     }
     public void choixListNivPerso(){
-
+        if(this.comboListNivPerso.getSelectionModel().getSelectedIndex() != 0){
+            this.comboListNivClass.setDisable(true);
+            btnListNivPerso.setDisable(false);
+        } else {
+            this.comboListNivClass.setDisable(false);
+            btnListNivPerso.setDisable(true);
+        }
     }
     public void ListNivClassChoix(){
-
+        if(this.comboListNivClass.getSelectionModel().getSelectedIndex() != 0){
+            this.comboListNivPerso.setDisable(true);
+            btnListNivClass.setDisable(false);
+        } else {
+            this.comboListNivPerso.setDisable(false);
+            btnListNivClass.setDisable(true);
+        }
     }
     public void validationChoixNivClass(){
 

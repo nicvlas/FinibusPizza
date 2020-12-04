@@ -14,11 +14,13 @@ public class Main extends Application {
     public static Parent root;
     public static Parent rootcreationNiveau;
     public static Parent rootListeNiveau;
+    public static Stage menuStage = new Stage();
     public static Stage creationNiveauStage = new Stage();
     public static Stage ListeNiveauStage = new Stage();
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
+            menuStage = primaryStage;
             //Création écran Menu
             root = FXMLLoader.load(getClass().getResource("../fxml/Menu.fxml"));
             primaryStage.setTitle("PizzaFinibus : Menu");
