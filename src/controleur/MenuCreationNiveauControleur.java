@@ -3,16 +3,16 @@ package controleur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import modele.Niveau;
 
 public class MenuCreationNiveauControleur implements Initializable {
+    //Pour tester, créer fichier temporaire contenant le niveau créer. SI la page est fermée, on ne fait rien et ça s'effacera. Si l'utilisateur appuye
+    //sur effacer dans la page d'edition, on efface le fichier et reset l'interface. si il est validé on récupère la donnée si elle est dans un fichier tmp.
     @FXML
     Button btnReset;
     @FXML
@@ -41,7 +41,16 @@ public class MenuCreationNiveauControleur implements Initializable {
     Spinner nbKarenClient;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        SpinnerValueFactory<Integer> valueFactory = //
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 15, 1);
+        minNbIng.setValueFactory(valueFactory);
+        SpinnerValueFactory<Integer> valueFactory1 = //
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(2, 16, 3);
 
+        minNbIng.setValueFactory(valueFactory1);
+        selectDifficulte.getItems().add("");
+        selectDifficulte.getItems().add("Normal");
+        selectDifficulte.getItems().add("Karen");
     }
     public void verificationValidation(){
 
@@ -67,5 +76,38 @@ public class MenuCreationNiveauControleur implements Initializable {
     }
 
     public void reset(ActionEvent actionEvent) {
+    }
+
+    public void minChangement(){
+        SpinnerValueFactory<Integer> valueFactory1 = //
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(Integer.parseInt(minNbIng.getValue().toString())+1, 16,Integer.parseInt(maxNbIng.getValue().toString()));
+        maxNbIng.setValueFactory(valueFactory1);
+        SpinnerValueFactory<Integer> valueFactory = //
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(1,Integer.parseInt(maxNbIng.getValue().toString()),Integer.parseInt(minNbIng.getValue().toString()));
+        minNbIng.setValueFactory(valueFactory);
+
+    }
+    public void maxChangement(){
+        SpinnerValueFactory<Integer> valueFactory = //
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(1,Integer.parseInt(maxNbIng.getValue().toString()),Integer.parseInt(minNbIng.getValue().toString()));
+        minNbIng.setValueFactory(valueFactory);
+        SpinnerValueFactory<Integer> valueFactory1 = //
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(Integer.parseInt(minNbIng.getValue().toString())+1, 16,Integer.parseInt(maxNbIng.getValue().toString()));
+        maxNbIng.setValueFactory(valueFactory1);
+    }
+
+    public void margeTresorChangement(MouseEvent mouseEvent) {
+    }
+
+    public void margeTempsChangement(MouseEvent mouseEvent) {
+    }
+
+    public void nbFacileChangement(MouseEvent mouseEvent) {
+    }
+
+    public void nbNormalChangement(MouseEvent mouseEvent) {
+    }
+
+    public void nbKarenChangement(MouseEvent mouseEvent) {
     }
 }

@@ -109,13 +109,13 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Spinner fx:id="minNbIng" prefHeight="26.0" prefWidth="59.0" />
+                                    <Spinner fx:id="minNbIng" prefHeight="26.0" prefWidth="59.0" onMouseClicked="#minChangement"/>
                                     <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="83.0" text="   Max">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Spinner fx:id="maxNbIng" prefHeight="26.0" prefWidth="59.0" />
+                                    <Spinner fx:id="maxNbIng" prefHeight="26.0" prefWidth="59.0" onMouseClicked="#maxChangement"/>
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="354.0">
@@ -125,7 +125,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Spinner fx:id="margeTresor" prefHeight="26.0" prefWidth="59.0" />
+                                    <Spinner fx:id="margeTresor" prefHeight="26.0" prefWidth="59.0" onMouseClicked="#margeTresorChangement"/>
                                     <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="83.0" text="\%">
                                        <font>
                                           <Font size="18.0" />
@@ -140,7 +140,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Spinner fx:id="margeTemps" prefHeight="26.0" prefWidth="59.0" />
+                                    <Spinner fx:id="margeTemps" prefHeight="26.0" prefWidth="59.0" onMouseClicked="#margeTempsChangement"/>
                                     <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="83.0" text="\%">
                                        <font>
                                           <Font size="18.0" />
@@ -175,9 +175,9 @@
                               <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="18.0" prefWidth="203.0" style="-fx-background-color: lightgrey; -fx-border-color: black;" text="Nombre" />
-                                    <Spinner fx:id="nbFacileClient" prefHeight="26.0" prefWidth="99.0" />
-                                    <Spinner fx:id="nbNormalClient" prefHeight="26.0" prefWidth="99.0" />
-                                    <Spinner fx:id="nbKarenClient" prefHeight="26.0" prefWidth="99.0" />
+                                    <Spinner fx:id="nbFacileClient" prefHeight="26.0" prefWidth="99.0" onMouseClicked="#nbFacileChangement"/>
+                                    <Spinner fx:id="nbNormalClient" prefHeight="26.0" prefWidth="99.0" onMouseClicked="#nbNormalChangement"/>
+                                    <Spinner fx:id="nbKarenClient" prefHeight="26.0" prefWidth="99.0" onMouseClicked="#nbKarenChangement"/>
                                  </children>
                               </VBox>
                            </children>
