@@ -20,7 +20,7 @@
          <children>
             <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/fond.jpg" />
+                  <Image url="@../../../../../../git/FinibusPizza/src/FinibusPizza/img/fond.jpg" />
                </image>
             </ImageView>
             <VBox alignment="TOP_CENTER" layoutX="140.0" layoutY="70.0" prefHeight="579.0" prefWidth="1000.0">
@@ -64,7 +64,7 @@
                                     <Font size="17.0" />
                                  </font>
                               </Button>
-                              <Button fx:id=" " mnemonicParsing="false" onAction="#validerEtJouer" text="Valider et jouer">
+                              <Button fx:id="btnValideJouer" mnemonicParsing="false" onAction="#validerEtJouer" text="Valider et jouer">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -94,7 +94,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="selectDifficulte" prefWidth="150.0" promptText="Select" />
+                                    <ComboBox fx:id="selectDifficulte" onAction="#verificationValidation" prefWidth="150.0" promptText="Select" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="354.0">
@@ -109,13 +109,13 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Spinner fx:id="minNbIng" prefHeight="26.0" prefWidth="59.0" onMouseClicked="#minChangement"/>
+                                    <Spinner fx:id="minNbIng" onMouseClicked="#minChangement" prefHeight="26.0" prefWidth="59.0" />
                                     <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="83.0" text="   Max">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Spinner fx:id="maxNbIng" prefHeight="26.0" prefWidth="59.0" onMouseClicked="#maxChangement"/>
+                                    <Spinner fx:id="maxNbIng" onMouseClicked="#maxChangement" prefHeight="26.0" prefWidth="59.0" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="354.0">
@@ -125,22 +125,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Spinner fx:id="margeTresor" prefHeight="26.0" prefWidth="59.0" />
-                                    <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="83.0" text="\%">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="354.0">
-                                 <children>
-                                    <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="202.0" text="Marge temps de jeu :">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <Spinner fx:id="margeTemps" prefHeight="26.0" prefWidth="59.0"/>
+                                    <Spinner fx:id="margeTresor" onMouseClicked="#verificationValidation" prefHeight="26.0" prefWidth="82.0" />
                                     <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="83.0" text="\%">
                                        <font>
                                           <Font size="18.0" />
@@ -175,9 +160,9 @@
                               <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="18.0" prefWidth="203.0" style="-fx-background-color: lightgrey; -fx-border-color: black;" text="Nombre" />
-                                    <Spinner fx:id="nbFacileClient" prefHeight="26.0" prefWidth="99.0"/>
-                                    <Spinner fx:id="nbNormalClient" prefHeight="26.0" prefWidth="99.0" />
-                                    <Spinner fx:id="nbKarenClient" prefHeight="26.0" prefWidth="99.0" />
+                                    <Spinner fx:id="nbFacileClient" onMouseClicked="#verificationValidation" prefHeight="26.0" prefWidth="99.0" />
+                                    <Spinner fx:id="nbNormalClient" onMouseClicked="#verificationValidation" prefHeight="26.0" prefWidth="99.0" />
+                                    <Spinner fx:id="nbKarenClient" onMouseClicked="#verificationValidation" prefHeight="26.0" prefWidth="99.0" />
                                  </children>
                               </VBox>
                            </children>
