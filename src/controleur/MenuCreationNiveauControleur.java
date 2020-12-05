@@ -43,7 +43,9 @@ public class MenuCreationNiveauControleur implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
     }
+    public void verificationValidation(){
 
+    }
     public void retourMenu(ActionEvent actionEvent) throws IOException {
 		Main.changementFenetre("../fxml/Menu.fxml", "FinibusPizza : Menu");
     }

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.MenuModificationNiveau">
    <children>
       <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -111,12 +111,12 @@
          <bottom>
             <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="mnModifier" layoutX="16.0" layoutY="64.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="367.0" text="Modifier">
+                  <Button fx:id="mnModifier" layoutX="16.0" layoutY="64.0" mnemonicParsing="false" onAction="#modifier" prefHeight="48.0" prefWidth="367.0" text="Modifier">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="mnSupprimer" layoutX="14.0" layoutY="131.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="367.0" text="Supprimer">
+                  <Button fx:id="mnSupprimer" layoutX="14.0" layoutY="131.0" mnemonicParsing="false" onAction="#suppr" prefHeight="49.0" prefWidth="367.0" text="Supprimer">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -135,12 +135,12 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="mnRetourPersonnsalisation" layoutX="299.0" layoutY="619.0" mnemonicParsing="false" text="Retour personnsalisation" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="299.0" AnchorPane.rightAnchor="686.0" AnchorPane.topAnchor="619.0">
+      <Button fx:id="mnRetourPersonnsalisation" layoutX="299.0" layoutY="619.0" mnemonicParsing="false" onAction="#retourPersonnalisation" text="Retour personnalisation" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="299.0" AnchorPane.rightAnchor="686.0" AnchorPane.topAnchor="619.0">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="mnRetourMenu" layoutX="687.0" layoutY="619.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="295.0" text="Retour menu" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="687.0" AnchorPane.rightAnchor="298.0" AnchorPane.topAnchor="619.0">
+      <Button fx:id="mnRetourMenu" layoutX="687.0" layoutY="619.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="51.0" prefWidth="295.0" text="Retour menu" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="687.0" AnchorPane.rightAnchor="298.0" AnchorPane.topAnchor="619.0">
          <font>
             <Font size="24.0" />
          </font>

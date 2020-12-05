@@ -64,7 +64,7 @@
                                     <Font size="17.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="btnValideJouer" mnemonicParsing="false" onAction="#validerEtJouer" text="Valider et jouer">
+                              <Button fx:id=" " mnemonicParsing="false" onAction="#validerEtJouer" text="Valider et jouer">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
