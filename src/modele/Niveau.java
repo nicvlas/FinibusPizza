@@ -28,6 +28,7 @@ public class Niveau {
 	private float score;
 	private float scoreCuisson;
 	private float scorePizzaIng;
+	private boolean tmp;
 	//!-----Type � v�rifier-------!
 	//Tresorerie de d�but de partie(calculable + marge!)
 	private float tresorerie = 0;
@@ -45,7 +46,7 @@ public class Niveau {
 	private int tempstmp = 0;
 	//Nombre de guichet ouvert, maximum 3 
 	private int nbPersonneComptoir;
-	public Niveau(String nom, Difficulte diff, int nb1TypeClient, int nb2TypeClient, int nb3TypeClient, float margeTresor, int minIng, int maxIng) {
+	public Niveau(String nom, Difficulte diff, int nb1TypeClient, int nb2TypeClient, int nb3TypeClient, float margeTresor, int minIng, int maxIng, boolean tmp) {
 		this.nbClients = nb1TypeClient + nb2TypeClient + nb3TypeClient;
 		if(margeTresor < 0 || nb1TypeClient < 0 || nb2TypeClient < 0 || nb3TypeClient < 0 || minIng <= 0 || this.nbClients == 0 || maxIng <= 0) {
 			throw new IllegalArgumentException("Les valeurs num�riques ne peuvent �tre n�gative !");

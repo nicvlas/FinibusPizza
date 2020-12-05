@@ -37,6 +37,7 @@ public class MenuCreationNiveauControleur implements Initializable {
     Spinner nbNormalClient;
     @FXML
     Spinner nbKarenClient;
+    static Niveau niv;
     //Verification si données entrantes, sinon faire ce qu'il y a écrit
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -45,6 +46,10 @@ public class MenuCreationNiveauControleur implements Initializable {
         selectDifficulte.getItems().add("Normal");
         selectDifficulte.getItems().add("Karen");
     }
+    public static Niveau getNiv(){
+        return niv;
+    }
+    //A faire lors création du controlleur du jeu, inclure dans le initialize !!!
     public void verificationExistenceDonnesEntrantes() throws IOException {
     }
     public void miseAZero(){
@@ -92,14 +97,14 @@ public class MenuCreationNiveauControleur implements Initializable {
     public void retourMenuPers(ActionEvent actionEvent) throws IOException {
 		Main.changementFenetre("../fxml/MenuParametres.fxml", "FinibusPizza : Personnalisation");
     }
-    //Donner les données de ce niveau à la page suivant SANS tmp dans le constructeur
-    //Enregistrer le niveau dans le fichier pers
+    //Enregistrer le niveau dans le fichier
+    //Enregistrer le niveau dans le niv
     public void validerEtJouer(ActionEvent actionEvent) {
     }
-    //Enregistrer le niveau dans le fichier pers
+    //Enregistrer le niveau dans le fichier
     public void validerCrea(ActionEvent actionEvent) {
     }
-    //Donner les données de ce niveau à la page suivant SANS tmp dans le constructeur
+    //Donner les données de ce niveau à la page suivant avec tmp dans le constructeur niv
     public void tester(ActionEvent actionEvent) {
     }
     //TOut effacer
