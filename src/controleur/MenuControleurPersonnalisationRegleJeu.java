@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 
 public class MenuControleurPersonnalisationRegleJeu implements Initializable{
 
@@ -24,100 +25,100 @@ public class MenuControleurPersonnalisationRegleJeu implements Initializable{
     Button prjParDefaut;
 
     @FXML
-    Spinner<?> prjPourboireFacile;
+    Spinner<Integer> prjPourboireFacile;
 
     @FXML
-    Spinner<?> prjPourboireNormal;
+    Spinner<Integer> prjPourboireNormal;
 
     @FXML
-    Spinner<?> prjPourboireKaren;
+    Spinner<Integer> prjPourboireKaren;
 
     @FXML
-    Spinner<?> prjMargeFacile;
+    Spinner<Double> prjMargeFacile;
 
     @FXML
-    Spinner<?> prjMargeNormal;
+    Spinner<Double> prjMargeNormal;
 
     @FXML
-    Spinner<?> prjMargeKaren;
+    Spinner<Double> prjMargeKaren;
 
     @FXML
-    Spinner<?> prjMinIngredientFacile;
+    Spinner<Integer> prjMinIngredientFacile;
 
     @FXML
-    Spinner<?> prjMinIngredientNormal;
+    Spinner<Integer> prjMinIngredientNormal;
 
     @FXML
-    Spinner<?> prjMinIngredientKaren;
+    Spinner<Integer> prjMinIngredientKaren;
 
     @FXML
-    Spinner<?> prjMaxIngredientFacile;
+    Spinner<Integer> prjMaxIngredientFacile;
 
     @FXML
-    Spinner<?> prjMaxIngredientNormal;
+    Spinner<Integer> prjMaxIngredientNormal;
 
     @FXML
-    Spinner<?> prjMaxIngredientKaren;
+    Spinner<Integer> prjMaxIngredientKaren;
 
     @FXML
-    public Spinner<Integer> prjPrixAchatOignons = new Spinner<Integer>(1,12,10);
+    Spinner<Integer> prjPrixAchatOignons;
     
     @FXML
-    Spinner<Integer> prjPrixAchatChampignons= new Spinner<Integer>(1,12,10);
+    Spinner<Integer> prjPrixAchatChampignons;
 
     @FXML
-    Spinner<Integer> prjPrixAchatOeufs= new Spinner<Integer>(1,12,10);
+    Spinner<Integer> prjPrixAchatOeufs;
 
     @FXML
-    Spinner<Integer> prjPrixVenteOignons= new Spinner<Integer>(1,12,10);
+    Spinner<Integer> prjPrixVenteOignons;
 
     @FXML
-    Spinner<Integer> prjPrixVenteChampignons= new Spinner<Integer>(1,12,10);
+    Spinner<Integer> prjPrixVenteChampignons;
 
     @FXML
-    Spinner<Integer> prjPrixVenteOeufs= new Spinner<Integer>(1,12,10);
+    Spinner<Integer> prjPrixVenteOeufs;
 
     @FXML
-    Spinner<Integer> prjPrixAchatBacon= new Spinner<Integer>(1,12,10);
+    Spinner<Integer> prjPrixAchatBacon;
 
     @FXML
-    Spinner<Integer> prjPrixVenteBacon= new Spinner<Integer>(1,12,10);
+    Spinner<Integer> prjPrixVenteBacon;
 
     @FXML
-    Spinner<Integer> prjPrixAchatPoulet= new Spinner<Integer>(1,12,10);
+    Spinner<Integer> prjPrixAchatPoulet;
 
     @FXML
-    Spinner<Integer> prjPrixVentePoulet= new Spinner<Integer>(1,12,10);
+    Spinner<Integer> prjPrixVentePoulet;
 
     @FXML
-    Spinner<Integer> prjPrixAchatChorizo= new Spinner<Integer>(1,12,10);
+    Spinner<Integer> prjPrixAchatChorizo;
 
     @FXML
-    Spinner<Integer> prjPrixAchatFrommages= new Spinner<Integer>(1,12,10);
+    Spinner<Integer> prjPrixAchatFrommages;
 
     @FXML
-    Spinner<Integer> prjPrixAchatTomates= new Spinner<Integer>(1,12,10);
+    Spinner<Integer> prjPrixAchatTomates;
 
     @FXML
-    Spinner<Integer> prjPrixVenteChorizo= new Spinner<Integer>(1,12,10);
+    Spinner<Integer> prjPrixVenteChorizo;
 
     @FXML
-    Spinner<Integer> prjPrixVenteFrommages= new Spinner<Integer>(1,12,10);
+    Spinner<Integer> prjPrixVenteFrommages;
 
     @FXML
-    Spinner<Integer> prjPrixVenteTomates= new Spinner<Integer>(1,12,10);
+    Spinner<Integer> prjPrixVenteTomates;
 
     @FXML
-    Spinner<Integer> prjPrixAchatCreme= new Spinner<Integer>(1,12,10);
+    Spinner<Integer> prjPrixAchatCreme;
 
     @FXML
-    Spinner<Integer> prjPrixVenteCreme= new Spinner<Integer>(1,12,10);
+    Spinner<Integer> prjPrixVenteCreme;
 
     @FXML
-    Spinner<Integer> prjPrixAchatSauceTomate= new Spinner<Integer>(1,12,10);
+    Spinner<Integer> prjPrixAchatSauceTomate;
 
     @FXML
-    Spinner<Integer> prjPrixVenteSauceTomate= new Spinner<Integer>(1,12,10);
+    Spinner<Integer> prjPrixVenteSauceTomate;
 
  
     /**
@@ -128,24 +129,40 @@ public class MenuControleurPersonnalisationRegleJeu implements Initializable{
     	//setValue(1) pour l'instant, à voir car problème avec la récupération de la valeur initiale
         prjPrixAchatOignons.getValueFactory().setValue(1);
         prjPrixAchatChampignons.getValueFactory().setValue(1);
-        prjPrixAchatOeufs.getValueFactory().setValue(1);
-        prjPrixVenteOignons.getValueFactory().setValue(1);
-        prjPrixVenteChampignons.getValueFactory().setValue(1);
-        prjPrixVenteOeufs.getValueFactory().setValue(1);
-        prjPrixAchatBacon.getValueFactory().setValue(1);
-        prjPrixVenteBacon.getValueFactory().setValue(1);
-        prjPrixAchatPoulet.getValueFactory().setValue(1);
-        prjPrixVentePoulet.getValueFactory().setValue(1);
-        prjPrixAchatChorizo.getValueFactory().setValue(1);
-        prjPrixAchatFrommages.getValueFactory().setValue(1);
+        prjPrixAchatOeufs.getValueFactory().setValue(2);
+        prjPrixVenteOignons.getValueFactory().setValue(2);
+        prjPrixVenteChampignons.getValueFactory().setValue(2);
+        prjPrixVenteOeufs.getValueFactory().setValue(3);
+        prjPrixAchatBacon.getValueFactory().setValue(3);
+        prjPrixVenteBacon.getValueFactory().setValue(4);
+        prjPrixAchatPoulet.getValueFactory().setValue(3);
+        prjPrixVentePoulet.getValueFactory().setValue(4);
+        prjPrixAchatChorizo.getValueFactory().setValue(3);
+        prjPrixAchatFrommages.getValueFactory().setValue(2);
         prjPrixAchatTomates.getValueFactory().setValue(1);
-        prjPrixVenteChorizo.getValueFactory().setValue(1);
-        prjPrixVenteFrommages.getValueFactory().setValue(1);
-        prjPrixVenteTomates.getValueFactory().setValue(1);
-        prjPrixAchatCreme.getValueFactory().setValue(1);
-        prjPrixVenteCreme.getValueFactory().setValue(1);
-        prjPrixAchatSauceTomate.getValueFactory().setValue(1);
-        prjPrixVenteSauceTomate.getValueFactory().setValue(1);
+        prjPrixVenteChorizo.getValueFactory().setValue(4);
+        prjPrixVenteFrommages.getValueFactory().setValue(3);
+        prjPrixVenteTomates.getValueFactory().setValue(2);
+        prjPrixAchatCreme.getValueFactory().setValue(2);
+        prjPrixVenteCreme.getValueFactory().setValue(3);
+        prjPrixAchatSauceTomate.getValueFactory().setValue(2);
+        prjPrixVenteSauceTomate.getValueFactory().setValue(3);
+        
+        prjPourboireFacile.getValueFactory().setValue(10);
+        prjPourboireNormal.getValueFactory().setValue(10);
+        prjPourboireKaren.getValueFactory().setValue(10);
+        
+        prjMargeFacile.getValueFactory().setValue(1.2);
+        prjMargeNormal.getValueFactory().setValue(1.1);
+        prjMargeKaren.getValueFactory().setValue(1.0);
+        
+        prjMinIngredientFacile.getValueFactory().setValue(2);
+        prjMinIngredientNormal.getValueFactory().setValue(3);
+        prjMinIngredientKaren.getValueFactory().setValue(4);
+        
+        prjMaxIngredientFacile.getValueFactory().setValue(3);
+        prjMaxIngredientNormal.getValueFactory().setValue(4);
+        prjMaxIngredientKaren.getValueFactory().setValue(5);
     }
 
     /**
@@ -182,6 +199,7 @@ public class MenuControleurPersonnalisationRegleJeu implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		System.out.println(prjPrixAchatOignons.getValueFactory().getValue());
 	}
 
 }
