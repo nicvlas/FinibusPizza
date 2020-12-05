@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9d14218-7341-4840-b336-bd7502f8559e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commande.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Difficulte.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ingredients.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Niveau.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pate.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controleur/MenuCreationNiveauControleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controleur/MenuCreationNiveauControleur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fxml/MenuCreationNiveau.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/MenuCreationNiveau.fxml" afterDir="false" />
     </list>
@@ -36,6 +28,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />

@@ -11,8 +11,6 @@ import java.util.ResourceBundle;
 import modele.Niveau;
 
 public class MenuCreationNiveauControleur implements Initializable {
-    //Pour tester, créer fichier temporaire contenant le niveau créer. SI la page est fermée, on ne fait rien et ça s'effacera. Si l'utilisateur appuye
-    //sur effacer dans la page d'edition, on efface le fichier et reset l'interface. si il est validé on récupère la donnée si elle est dans un fichier tmp.
     @FXML
     Button btnReset;
     @FXML
@@ -39,6 +37,7 @@ public class MenuCreationNiveauControleur implements Initializable {
     Spinner nbNormalClient;
     @FXML
     Spinner nbKarenClient;
+    //Verification si données entrantes, sinon faire ce qu'il y a écrit
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         SpinnerValueFactory<Integer> valueFactory = //
@@ -52,6 +51,7 @@ public class MenuCreationNiveauControleur implements Initializable {
         selectDifficulte.getItems().add("Normal");
         selectDifficulte.getItems().add("Karen");
     }
+    //Verifier si il y a au moins une données dans les trois nb des types de clients et si la difficulté a été choisi
     public void verificationValidation(){
 
     }
@@ -62,19 +62,17 @@ public class MenuCreationNiveauControleur implements Initializable {
     public void retourMenuPers(ActionEvent actionEvent) throws IOException {
 		Main.changementFenetre("../fxml/MenuParametres.fxml", "FinibusPizza : Personnalisation");
     }
-
-    public void choixDifficulte(ActionEvent actionEvent) {
-    }
-
+    //Donner les données de ce niveau à la page suivant SANS tmp dans le constructeur
+    //Enregistrer le niveau dans le fichier pers
     public void validerEtJouer(ActionEvent actionEvent) {
     }
-
+    //Enregistrer le niveau dans le fichier pers
     public void validerCrea(ActionEvent actionEvent) {
     }
-
+    //Donner les données de ce niveau à la page suivant SANS tmp dans le constructeur
     public void tester(ActionEvent actionEvent) {
     }
-
+    //TOut effacer
     public void reset(ActionEvent actionEvent) {
     }
 
@@ -96,18 +94,4 @@ public class MenuCreationNiveauControleur implements Initializable {
         maxNbIng.setValueFactory(valueFactory1);
     }
 
-    public void margeTresorChangement(MouseEvent mouseEvent) {
-    }
-
-    public void margeTempsChangement(MouseEvent mouseEvent) {
-    }
-
-    public void nbFacileChangement(MouseEvent mouseEvent) {
-    }
-
-    public void nbNormalChangement(MouseEvent mouseEvent) {
-    }
-
-    public void nbKarenChangement(MouseEvent mouseEvent) {
-    }
 }
