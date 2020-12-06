@@ -136,34 +136,24 @@
                      </children>
                   </Pane>
                   <Spinner fx:id="prjPrixAchatOignons" initialValue="1" layoutX="173.0" layoutY="34.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
-     				<editable>true</editable>
                   </Spinner>
                   <Spinner fx:id="prjPrixAchatChampignons" initialValue="1" layoutX="173.0" layoutY="63.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
-                  	<editable>true</editable>
                   </Spinner>
                   <Spinner fx:id="prjPrixAchatOeufs" initialValue="2" layoutX="173.0" layoutY="93.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
-     				<editable>true</editable>
 				  </Spinner>
                   <Spinner fx:id="prjPrixVenteOignons" initialValue="2" layoutX="312.0" layoutY="34.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
-     				<editable>true</editable>
 				  </Spinner>
                   <Spinner fx:id="prjPrixVenteChampignons" initialValue="2" layoutX="312.0" layoutY="63.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
-     				<editable>true</editable>
 				  </Spinner>
                   <Spinner fx:id="prjPrixVenteOeufs" initialValue="3" layoutX="312.0" layoutY="93.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
-     				<editable>true</editable>
 				  </Spinner>
                   <Spinner fx:id="prjPrixAchatBacon" initialValue="3" layoutX="173.0" layoutY="125.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
-     				<editable>true</editable>
                   </Spinner>
                   <Spinner fx:id="prjPrixVenteBacon" initialValue="4" layoutX="312.0" layoutY="125.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
-     				<editable>true</editable>
                   </Spinner>
                   <Spinner fx:id="prjPrixAchatPoulet" initialValue="3" layoutX="173.0" layoutY="157.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
-     				<editable>true</editable>
                   </Spinner>
                   <Spinner fx:id="prjPrixVentePoulet" initialValue="4" layoutX="312.0" layoutY="157.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
-     				<editable>true</editable>
                   </Spinner>
                   <Label layoutX="32.0" layoutY="37.0" text="Oignons">
                      <font>
@@ -215,34 +205,24 @@
                   </Pane>
                   
                   <Spinner fx:id="prjPrixAchatChorizo" initialValue="3" layoutX="173.0" layoutY="34.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
-					<editable>true</editable>
 				  </Spinner>
                   <Spinner fx:id="prjPrixAchatFrommages" initialValue="2" layoutX="173.0" layoutY="63.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
-					<editable>true</editable>
                   </Spinner>
                   <Spinner fx:id="prjPrixAchatTomates" initialValue="1" layoutX="173.0" layoutY="93.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
-                  	<editable>true</editable>
                   </Spinner>
                   <Spinner fx:id="prjPrixVenteChorizo" initialValue="4" layoutX="312.0" layoutY="34.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
-                  	<editable>true</editable>
                   </Spinner>
                   <Spinner fx:id="prjPrixVenteFrommages" initialValue="3" layoutX="312.0" layoutY="63.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
-                  	<editable>true</editable>
                   </Spinner>
                   <Spinner fx:id="prjPrixVenteTomates" initialValue="2" layoutX="312.0" layoutY="93.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
-                  	<editable>true</editable>
                   </Spinner>
                   <Spinner fx:id="prjPrixAchatCreme" initialValue="2" layoutX="173.0" layoutY="125.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
-                  	<editable>true</editable>
                   </Spinner>
                   <Spinner fx:id="prjPrixVenteCreme" initialValue="3" layoutX="312.0" layoutY="125.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
-                  	<editable>true</editable>
 				  </Spinner>
                   <Spinner fx:id="prjPrixAchatSauceTomate" initialValue="2" layoutX="173.0" layoutY="157.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
-                  	<editable>true</editable>
                   </Spinner>
                   <Spinner fx:id="prjPrixVenteSauceTomate" initialValue="3" layoutX="312.0" layoutY="157.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
-                  	<editable>true</editable>
                   </Spinner>
                   <Label layoutX="36.0" layoutY="38.0" text="(Viandes) chorizo">
                      <font>
