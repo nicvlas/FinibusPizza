@@ -280,6 +280,7 @@ public class Niveau {
 				  tmpP.add(tmpBB1);
 				  tmpBB1 = bufferP.readLine();
 			  }
+			  bufferP.close();
     	   }
     	   catch (IOException e) {
     	      e.printStackTrace();
@@ -318,6 +319,8 @@ public class Niveau {
 				  tmpN.add(tmpBB1);
 				  tmpBB1 = bufferN.readLine();
 			  }
+			  bufferP.close();
+			  bufferN.close();
     	   }
     	   catch (IOException e) {
     	      e.printStackTrace();
@@ -350,6 +353,7 @@ public class Niveau {
 				  tmpB.add(tmpBB);
 				  tmpBB = bufferB.readLine();
 			  }
+			  bufferB.close();
     	   }
     	   catch (IOException e) {
     	      e.printStackTrace();
@@ -381,6 +385,7 @@ public class Niveau {
 				tmpI.add(tmpBB);
 				tmpBB = bufferI.readLine();
 			}
+			bufferI.close();
   	   }
   	   catch (IOException e) {
   	      e.printStackTrace();
@@ -597,7 +602,8 @@ public class Niveau {
 	  	      // parcourir le fichier
 	  	      while(tmp.get(tmp.size()-1) != null) {
 	  	    	tmp.add(buffer.readLine());
-	  	      } 
+	  	      }
+	  	      buffer.close();
 	  	   }
 	  	   catch (IOException e) {
 	  	      e.printStackTrace();
