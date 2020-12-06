@@ -1,0 +1,5 @@
+Niveau1/Facile/4/2/0/1.5/2/3
+Niveau2/Facile/4/2/0/1.3/2/4
+Niveau3/Facile/5/2/0/1.4/2/5
+Niveau4/Normal/4/2/2/1.2/3/8
+Niveau5/Normal/4/2/3/1.2/5/9

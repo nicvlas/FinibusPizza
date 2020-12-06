@@ -11,7 +11,7 @@ Shigeru
 Elise
 Charles
 Mickael
-Salomé
+SalomÃ©
 Patricia
 Zelda
 Pascal
@@ -24,4 +24,4 @@ Louna
 Luna
 Iris
 Claire
-Léa
+LÃ©a

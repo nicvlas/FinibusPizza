@@ -3,9 +3,27 @@
   <component name="ChangeListManager">
     <list default="true" id="a9d14218-7341-4840-b336-bd7502f8559e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controleur/MenuControleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controleur/MenuControleur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/MenuControleur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/MenuControleur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/MenuControleurPersonnalisationRegleJeu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/MenuControleurPersonnalisationRegleJeu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/MenuCreationNiveauControleur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/MenuCreationNiveauControleur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/MenuListeNiveauControleur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/MenuListeNiveauControleur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinibusPizza/fxml/MenuCreationNiveau.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinibusPizza/fxml/MenuCreationNiveau.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinibusPizza/fxml/PersonnalisationRegleDeJeu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinibusPizza/fxml/PersonnalisationRegleDeJeu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinibusPizza/modele/Niveau$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinibusPizza/modele/Niveau$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinibusPizza/modele/Niveau.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinibusPizza/modele/Niveau.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinibusPizza/textes/niveauxPers" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinibusPizza/textes/niveauxPers" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controleur/MenuCreationNiveauControleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controleur/MenuCreationNiveauControleur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controleur/MenuListeNiveauControleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controleur/MenuListeNiveauControleur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fxml/MenuCreationNiveau.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/MenuCreationNiveau.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modele/Niveau.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modele/Niveau.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/textes/bases" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/textes/clients" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/textes/ingredients" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/textes/niveaux" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/textes/niveauxPers" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/textes/noms" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/textes/pates" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/textes/prenoms" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,10 +55,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../spinnerTest" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last.edited.regexp" value="N" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/DialogFX-master/org/thehecklers/dialogfx" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">

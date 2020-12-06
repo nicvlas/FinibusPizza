@@ -6,13 +6,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import modele.Difficulte;
 import modele.Niveau;
 
-public class MenuCreationNiveauControleur implements Initializable {
+public class MenuCreationNiveauControleur implements Initializable{
+    @FXML
+    Label avertissement;
+    @FXML
+    Label reussite;
     @FXML
     Button btnReset;
     @FXML
@@ -45,14 +51,48 @@ public class MenuCreationNiveauControleur implements Initializable {
         selectDifficulte.getItems().add("Facile");
         selectDifficulte.getItems().add("Normal");
         selectDifficulte.getItems().add("Karen");
+        nomNivADonner();
     }
     public static Niveau getNiv(){
         return niv;
+    }
+    public void setNiv(){
+        String difficulteTmp = this.selectDifficulte.getSelectionModel().getSelectedItem().toString();
+        Difficulte difficulte = null;
+        switch(difficulteTmp){
+            case "Normal":
+                difficulte = Difficulte.Normal;
+                break;
+            case "Karen":
+                difficulte = Difficulte.Karen;
+                break;
+            default:
+                difficulte = Difficulte.Facile;
+                break;
+        }
+        int nb1TypeClient = (int) this.nbFacileClient.getValue();
+        int nb2TypeClient = (int) this.nbNormalClient.getValue();
+        int nb3TypeClient = (int) this.nbKarenClient.getValue();
+        float margeTresor = (float)(Float.valueOf(this.margeTresor.getValue().toString())/100);
+        int minIng = (int) this.minNbIng.getValue();
+        int maxIng = (int) this.maxNbIng.getValue();
+        niv = new Niveau(this.nomNiveau.getText().toString(),
+                difficulte,
+                nb1TypeClient,
+                nb2TypeClient,
+                nb3TypeClient,
+                margeTresor,
+                minIng,
+                maxIng,
+                true);
+
     }
     //A faire lors création du controlleur du jeu, inclure dans le initialize !!!
     public void verificationExistenceDonnesEntrantes() throws IOException {
     }
     public void miseAZero(){
+        this.reussite.setOpacity(0);
+        this.avertissement.setOpacity(0);
         SpinnerValueFactory<Integer> valueFactory = //
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 15, 1);
         minNbIng.setValueFactory(valueFactory);
@@ -99,13 +139,107 @@ public class MenuCreationNiveauControleur implements Initializable {
     }
     //Enregistrer le niveau dans le fichier
     //Enregistrer le niveau dans le niv
-    public void validerEtJouer(ActionEvent actionEvent) {
+    public void validerEtJouer(ActionEvent actionEvent) throws IOException {
+        validerCrea();
+        //Main.changementFenetre("../NiveauAvantPriseCommande.fxml", "FinibusPizza : Personnalisation");
+    }
+    private ArrayList<String> listeNiveauPers() {
+        ArrayList<String> tmp = null;
+        try {
+            tmp = new ArrayList<String>();
+            //lire le fichier
+            FileReader file = new FileReader(getClass().getResource("../textes/niveauxPers.txt").getFile());
+            BufferedReader buffer = new BufferedReader(file);
+            String tmpB = buffer.readLine();
+            // parcourir le fichier
+            while (tmpB != null) {
+                tmp.add(tmpB);
+                tmpB = buffer.readLine();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tmp;
+    }
+    public boolean verificationExistanceNiv() throws IOException {
+        String nomFichier=getClass().getResource("../textes/niveauxPers.txt").getFile();
+        File file = new File(nomFichier);
+        long filenb = file.length();
+        System.out.println(filenb + "");
+        if(filenb == 0)
+        {
+            System.out.println(filenb + "");
+            return false;
+        }
+        ArrayList<String> tmpList = listeNiveauPers();
+        String difficulte = this.selectDifficulte.getSelectionModel().getSelectedItem().toString();
+        String nb1TypeClient = this.nbFacileClient.getValue() + "";
+        String nb2TypeClient = this.nbNormalClient.getValue() + "";
+        String nb3TypeClient = this.nbKarenClient.getValue() + "";
+        String margeTresor = (float)(Float.valueOf(this.margeTresor.getValue().toString())/100) + "";
+        String minIng = this.minNbIng.getValue() + "";
+        String maxIng = this.maxNbIng.getValue() + "";
+        String niveauS = difficulte + "/" + nb1TypeClient + "/" + nb2TypeClient + "/" + nb3TypeClient + "/" + margeTresor + "/" + minIng + "/" + maxIng;
+        for(int i = 0; i < tmpList.size(); i++){
+            if(tmpList.get(i).replaceAll("^[^/]*/","") == niveauS ){
+                return true;
+            }
+        }
+        return false;
+    }
+    private String[] elementsNiveau(String element) {
+        String[] retour = element.split( "/" );
+        if(retour.length != 8) {
+            throw new InternalError(element + " ne correspond pas � un String d'un fichier contenant des ingr�dients traitables");
+        }
+        return retour;
+    }
+    private void nomNivADonner(){
+        if(listeNiveauPers().size() != 0) {
+            String[] tmp = elementsNiveau(listeNiveauPers().get(listeNiveauPers().size() - 1));
+            int tmp1 = Integer.valueOf(tmp[0].replaceAll("Niveau", "")) + 1;
+            this.nomNiveau.setText("Niveau" + tmp1);
+        } else {
+            this.nomNiveau.setText("Niveau1");
+        }
     }
     //Enregistrer le niveau dans le fichier
-    public void validerCrea(ActionEvent actionEvent) {
+    public void validerCrea() throws IOException {
+        if (verificationExistanceNiv()){
+            this.avertissement.setOpacity(1);
+        } else {
+            setNiv();
+            String difficulte = this.selectDifficulte.getSelectionModel().getSelectedItem().toString();
+            String nb1TypeClient = this.nbFacileClient.getValue() + "";
+            String nb2TypeClient = this.nbNormalClient.getValue() + "";
+            String nb3TypeClient = this.nbKarenClient.getValue() + "";
+            String margeTresor = (float)(Float.valueOf(this.margeTresor.getValue().toString())/100) + "";
+            String minIng = this.minNbIng.getValue() + "";
+            String maxIng = this.maxNbIng.getValue() + "";
+            String niveauS = this.nomNiveau.getText() + "/" + difficulte + "/" + nb1TypeClient + "/" + nb2TypeClient + "/" + nb3TypeClient + "/" + margeTresor + "/" + minIng + "/" + maxIng;
+            //Enregistrement dans fichier niveauxPers
+            String nomFichier=getClass().getResource("../textes/niveauxPers").getFile();
+            PrintWriter writer = new PrintWriter(nomFichier, "UTF-8");
+            if(new File(nomFichier).length() == 0) {
+                writer.print(niveauS);
+                System.out.println("t");
+            } else {
+                writer.print("");
+                writer.print(niveauS);
+                System.out.println("t1");
+            }
+            this.reussite.setOpacity(1);
+            nomNivADonner();
+        }
     }
     //Donner les données de ce niveau à la page suivant avec tmp dans le constructeur niv
-    public void tester(ActionEvent actionEvent) {
+    public void tester(ActionEvent actionEvent) throws IOException {
+        if (verificationExistanceNiv()){
+            this.avertissement.setOpacity(1);
+        } else{
+            //Main.changementFenetre("../NiveauAvantPriseCommande.fxml", "FinibusPizza : Personnalisation");
+        }
+
     }
     //TOut effacer
     public void reset(ActionEvent actionEvent) {

@@ -53,7 +53,7 @@ public class Niveau {
 		} else if (minIng > maxIng) {
 			throw new IllegalArgumentException("La valeur d'ingr�dients minimum doit �tre inf�rieur � celle d'ingr�dients maximal");
 		}
-		if(nom == null || difficulte == null) {
+		if(nom == null || diff == null) {
 			throw new IllegalArgumentException("le nom et la difficult� ne peuvent �tre nuls");
 		}
 		this.nom = nom;
@@ -73,7 +73,7 @@ public class Niveau {
 			this.nbPersonneComptoir=1;
 				
 		}
-			
+		this.tmp=tmp;
 	}
 	public ArrayList<Commande> getCommandes() {
 		return commandes;
@@ -272,7 +272,7 @@ public class Niveau {
         ArrayList<String> tmpP = new ArrayList<String>();
 	      try {
     	      //lire le fichier
-    	      FileReader fileP = new FileReader("C:\\Users\\david\\git\\FinibusPizza\\src\\FinibusPizza\\textes\\pates");
+    	      FileReader fileP = new FileReader(getClass().getResource("../textes/pates.txt").getFile());
     	      BufferedReader bufferP = new BufferedReader(fileP);
 			  String tmpBB1 = bufferP.readLine();
 			  // parcourir le fichier
@@ -301,8 +301,8 @@ public class Niveau {
         ArrayList<String> tmpP = new ArrayList<String>();
 	      try {
     	      //lire le fichier
-    	      FileReader fileN = new FileReader(getClass().getResource("./textes/noms").getFile());
-    	      FileReader fileP = new FileReader(getClass().getResource("./textes/prenoms").getFile());
+    	      FileReader fileN = new FileReader(getClass().getResource("./textes/noms.txt").getFile());
+    	      FileReader fileP = new FileReader(getClass().getResource("./textes/prenoms.txt").getFile());
     	      BufferedReader bufferN = new BufferedReader(fileN);
     	      BufferedReader bufferP = new BufferedReader(fileP);
     	      tmpN.add(bufferN.readLine());
@@ -342,7 +342,7 @@ public class Niveau {
         ArrayList<String> tmpB = new ArrayList<String>();
 	      try {
     	      //lire le fichier
-    	      FileReader fileB = new FileReader(getClass().getResource("./textes/bases").getFile());
+    	      FileReader fileB = new FileReader(getClass().getResource("./textes/bases.txt").getFile());
     	      BufferedReader bufferB = new BufferedReader(fileB);
 			  String tmpBB = bufferB.readLine();
 			  // parcourir le fichier
@@ -373,7 +373,7 @@ public class Niveau {
 		ingredientsList.put(base, 1);
 		try {
   	      //lire le fichier
-  	      FileReader fileI = new FileReader(getClass().getResource("./textes/ingredients").getFile());
+  	      FileReader fileI = new FileReader(getClass().getResource("./textes/ingredients.txt").getFile());
   	      BufferedReader bufferI = new BufferedReader(fileI);
 			String tmpBB = bufferI.readLine();
 			// parcourir le fichier
@@ -591,7 +591,7 @@ public class Niveau {
 		/*ArrayList<String> tmp = new ArrayList<String>();
 		try {
 	  	      //lire le fichier
-	  	      FileReader file = new FileReader(getClass().getResource("./textes/niveaux").getFile());
+	  	      FileReader file = new FileReader(getClass().getResource("./textes/niveaux.txt").getFile());
 	  	      BufferedReader buffer = new BufferedReader(file);
 	  	      tmp.add(buffer.readLine());
 	  	      // parcourir le fichier
