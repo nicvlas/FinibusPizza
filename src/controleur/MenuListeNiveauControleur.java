@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
+import modele.Difficulte;
 import modele.Niveau;
 
 import java.io.BufferedReader;
@@ -92,15 +93,49 @@ public class MenuListeNiveauControleur implements Initializable {
         }
         return retour;
     }
-    /*public void setNiv(){
-        niveau = new Niveau()
-    }*/
     public Niveau getNiv(){
         return niveau;
     }
     //A faire avec le setNiv
-    public void validationChoixListNivPerso(){
-
+    public void setNivPers(){
+        ArrayList<String[]> listenv = listeNiveauPers();
+        String[] niveauS = listenv.get(this.comboListNivPerso.getSelectionModel().getSelectedIndex());
+        Difficulte difficulte = null;
+        switch( niveauS[1]){
+            case "Normal":
+                difficulte = Difficulte.Normal;
+                break;
+            case "Karen":
+                difficulte = Difficulte.Karen;
+                break;
+            default:
+                difficulte = Difficulte.Facile;
+                break;
+        }
+        niveau = new Niveau(niveauS[0], difficulte,Integer.valueOf(niveauS[2]),Integer.valueOf(niveauS[3]),Integer.valueOf(niveauS[4]), Float.valueOf(niveauS[5]),Integer.valueOf(niveauS[6]),Integer.valueOf(niveauS[7]),false);
+                //9
+    }
+    public void setNivClass(){
+        ArrayList<String[]> listenv = listeNiveau();
+        String[] niveauS = listenv.get(this.comboListNivClass.getSelectionModel().getSelectedIndex());
+        Difficulte difficulte = null;
+        switch( niveauS[1]){
+            case "Normal":
+                difficulte = Difficulte.Normal;
+                break;
+            case "Karen":
+                difficulte = Difficulte.Karen;
+                break;
+            default:
+                difficulte = Difficulte.Facile;
+                break;
+        }
+        niveau = new Niveau(niveauS[0], difficulte,Integer.valueOf(niveauS[2]),Integer.valueOf(niveauS[3]),Integer.valueOf(niveauS[4]), Float.valueOf(niveauS[5]),Integer.valueOf(niveauS[6]),Integer.valueOf(niveauS[7]),false);
+        //9
+    }
+    public void validationChoixListNivPerso() throws IOException {
+        setNivPers();
+        Main.changementFenetre("../NiveauAvantPriseCommande.fxml", "FinibusPizza : Jeu");
     }
     public void choixListNivPerso(){
         if(this.comboListNivPerso.getSelectionModel().getSelectedIndex() != 0){
@@ -121,8 +156,9 @@ public class MenuListeNiveauControleur implements Initializable {
         }
     }
     //A faire avec le setNiv
-    public void validationChoixNivClass(){
-
+    public void validationChoixNivClass() throws IOException {
+        setNivClass();
+        Main.changementFenetre("../NiveauAvantPriseCommande.fxml", "FinibusPizza : Jeu");
     }
 
 }

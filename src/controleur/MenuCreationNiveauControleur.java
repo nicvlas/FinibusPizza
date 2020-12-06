@@ -142,7 +142,7 @@ public class MenuCreationNiveauControleur implements Initializable{
     public void validerEtJouer(ActionEvent actionEvent) throws IOException {
         validerCrea();
         setNiv(false);
-        Main.changementFenetre("../NiveauAvantPriseCommande.fxml", "FinibusPizza : Personnalisation");
+        Main.changementFenetre("../NiveauAvantPriseCommande.fxml", "FinibusPizza : Jeu");
     }
     private ArrayList<String> listeNiveauPers() {
         ArrayList<String> tmp = null;
@@ -244,7 +244,7 @@ public class MenuCreationNiveauControleur implements Initializable{
             this.reussite.setOpacity(0);
         } else{
             setNiv(true);
-            Main.changementFenetre("../NiveauAvantPriseCommande.fxml", "FinibusPizza : Personnalisation");
+            Main.changementFenetre("../NiveauAvantPriseCommande.fxml", "FinibusPizza : Jeu");
         }
 
     }

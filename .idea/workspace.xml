@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a9d14218-7341-4840-b336-bd7502f8559e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/MenuCreationNiveauControleur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinibusPizza/controleur/MenuCreationNiveauControleur.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinibusPizza/textes/niveauxPers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinibusPizza/textes/niveauxPers.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controleur/MenuCreationNiveauControleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controleur/MenuCreationNiveauControleur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modele/Niveau.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modele/Niveau.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/textes/niveauxPers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/textes/niveauxPers.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controleur/MenuListeNiveauControleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controleur/MenuListeNiveauControleur.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
