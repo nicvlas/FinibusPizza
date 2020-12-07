@@ -461,7 +461,7 @@ public class Niveau {
 	 * @param score
 	 */
 	public void setScoreCuisson(float score) {
-		this.scoreCuisson = score;
+		this.scoreCuisson += score;
 	}
 	/**
 	 * Permet de calculer le score de la pizza � l'unit�. A utiliser � chaque fois qu'une pizza est donn�e � un client
@@ -494,6 +494,7 @@ public class Niveau {
 		//!---selon le temps de cuisson, le temps et le respect des ingr�dients----!
 		int scoreTresor;
 		this.scorePizzaIng = this.scorePizzaIng/this.commandes.size();
+		this.scoreCuisson = this.scoreCuisson/this.commandes.size();
 		if(this.scoreATresorerie[0] <  getTresorerietmp() && getTresorerietmp() < this.scoreATresorerie[1]) {
 			scoreTresor = 2;
 		} else if (this.scoreATresorerie[1] <  getTresorerietmp() && getTresorerietmp() < this.scoreATresorerie[2]) {
