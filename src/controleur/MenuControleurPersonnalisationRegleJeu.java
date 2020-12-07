@@ -112,13 +112,20 @@ public class MenuControleurPersonnalisationRegleJeu implements Initializable{
     Spinner<Integer> prjPrixAchatCreme;
 
     @FXML
-    Spinner<Integer> prjPrixVenteCreme;
+    Spinner<Double> prjPrixVenteCreme;
 
     @FXML
     Spinner<Integer> prjPrixAchatSauceTomate;
 
     @FXML
-    Spinner<Integer> prjPrixVenteSauceTomate;
+    Spinner<Double> prjPrixVenteSauceTomate;
+    
+    @FXML
+    Spinner<Integer> prjPrixAchatPate;
+
+    @FXML
+    Spinner<Integer> prjPrixVentePate;
+
 
  
     /**
@@ -144,9 +151,9 @@ public class MenuControleurPersonnalisationRegleJeu implements Initializable{
         prjPrixVenteFrommages.getValueFactory().setValue(3);
         prjPrixVenteTomates.getValueFactory().setValue(2);
         prjPrixAchatCreme.getValueFactory().setValue(2);
-        prjPrixVenteCreme.getValueFactory().setValue(3);
-        prjPrixAchatSauceTomate.getValueFactory().setValue(2);
-        prjPrixVenteSauceTomate.getValueFactory().setValue(3);
+        prjPrixVenteCreme.getValueFactory().setValue(2.5);
+        prjPrixAchatSauceTomate.getValueFactory().setValue(1);
+        prjPrixVenteSauceTomate.getValueFactory().setValue(1.5);
         
         prjPourboireFacile.getValueFactory().setValue(10);
         prjPourboireNormal.getValueFactory().setValue(10);
@@ -163,6 +170,9 @@ public class MenuControleurPersonnalisationRegleJeu implements Initializable{
         prjMaxIngredientFacile.getValueFactory().setValue(3);
         prjMaxIngredientNormal.getValueFactory().setValue(4);
         prjMaxIngredientKaren.getValueFactory().setValue(5);
+        
+        prjPrixVentePate.getValueFactory().setValue(7);
+        prjPrixAchatPate.getValueFactory().setValue(5);
     }
 
     /**
@@ -173,7 +183,6 @@ public class MenuControleurPersonnalisationRegleJeu implements Initializable{
     @FXML
     public void retourMenu(ActionEvent event) throws IOException {
 		Main.changementFenetre("../fxml/Menu.fxml", "FinibusPizza : Menu");
-
     }
 
     /**
@@ -184,7 +193,6 @@ public class MenuControleurPersonnalisationRegleJeu implements Initializable{
     @FXML
     public void retourPersonnalisation(ActionEvent event) throws IOException {
 		Main.changementFenetre("../fxml/MenuParametres.fxml", "FinibusPizza : Personnalisation");
-
     }
 
     /**
