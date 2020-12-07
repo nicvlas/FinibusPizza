@@ -9,7 +9,6 @@ import modele.Difficulte;
 import modele.Niveau;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
@@ -73,9 +72,7 @@ public class MenuListeNiveauControleur implements Initializable {
         try {
             tmp = new ArrayList<String[]>();
             //lire le fichier
-            File filetmp = new File("src/textes/niveaux.txt");
-            FileReader file = new FileReader(filetmp.getAbsolutePath());
-
+            FileReader file = new FileReader(getClass().getResource("../textes/niveaux.txt").getFile());
             BufferedReader buffer = new BufferedReader(file);
             String tmpB = buffer.readLine();
             // parcourir le fichier
@@ -93,8 +90,7 @@ public class MenuListeNiveauControleur implements Initializable {
         try {
             tmp = new ArrayList<String[]>();
             //lire le fichier
-            File filetmp = new File("src/textes/niveauxPers.txt");
-            FileReader file = new FileReader(filetmp.getAbsolutePath());
+            FileReader file = new FileReader(getClass().getResource("../textes/niveauxPers.txt").getFile());
             BufferedReader buffer = new BufferedReader(file);
             String tmpB = buffer.readLine();
             // parcourir le fichier
