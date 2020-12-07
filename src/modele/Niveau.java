@@ -25,7 +25,7 @@ public class Niveau {
 	//Trois temps, les trois d�signant donc les trois �toiles obtenables (calculable !)
 	private int[] scoreAuTemps;
 	private float[] scoreATresorerie;
-	private float score;
+	private int score;
 	private float scoreCuisson;
 	private float scorePizzaIng;
 	private boolean tmp;
@@ -514,7 +514,7 @@ public class Niveau {
 		} else {
 			scoreTemps = 3;
 		}
-		float score = (scoreTemps == 0 || scoreTresor ==0 || scoreCuisson == 0 || scorePizzaIng ==0)?0:(scoreTemps+scoreTresor+scoreCuisson+scorePizzaIng)/3;
+		int score = (int)((scoreTemps == 0 || scoreTresor ==0 || scoreCuisson == 0 || scorePizzaIng ==0)?0:(scoreTemps+scoreTresor+scoreCuisson+scorePizzaIng)/3);
 		this.score = score;
 	}
 	/**
