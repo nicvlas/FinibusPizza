@@ -26,29 +26,29 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="prjRetourPersonnalisation" layoutX="229.0" layoutY="619.0" mnemonicParsing="false" onAction="#retourPersonnalisation" prefHeight="51.0" prefWidth="295.0" text="Retour personnalisation" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="263.0" AnchorPane.rightAnchor="722.0" AnchorPane.topAnchor="619.0">
+      <Button fx:id="prjRetourPersonnalisation" layoutX="263.0" layoutY="645.0" mnemonicParsing="false" onAction="#retourPersonnalisation" prefHeight="51.0" prefWidth="295.0" text="Retour personnalisation" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="263.0" AnchorPane.rightAnchor="722.0" AnchorPane.topAnchor="645.0">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="prjRetourMenu" layoutX="722.0" layoutY="619.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="51.0" prefWidth="295.0" text="Retour menu" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="722.0" AnchorPane.rightAnchor="263.0" AnchorPane.topAnchor="619.0">
+      <Button fx:id="prjRetourMenu" layoutX="719.0" layoutY="645.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="51.0" prefWidth="295.0" text="Retour menu" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="719.0" AnchorPane.rightAnchor="266.0" AnchorPane.topAnchor="645.0">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <AnchorPane layoutX="86.0" layoutY="139.0" prefHeight="433.0" prefWidth="1081.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="86.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="145.0">
+      <AnchorPane layoutX="86.0" layoutY="139.0" prefHeight="485.0" prefWidth="1108.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="86.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="145.0">
          <children>
-            <Button fx:id="prjValider" layoutX="672.0" layoutY="374.0" mnemonicParsing="false" onAction="#valider" prefHeight="42.0" prefWidth="256.0" text="Valider" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="672.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="374.0">
+            <Button fx:id="prjValider" layoutX="672.0" layoutY="420.0" mnemonicParsing="false" onAction="#valider" prefHeight="51.0" prefWidth="256.0" text="Valider" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="672.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="420.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="prjParDefaut" layoutX="180.0" layoutY="374.0" mnemonicParsing="false" onAction="#resetDefaut" prefHeight="42.0" prefWidth="256.0" text="Par défaut" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="672.0" AnchorPane.topAnchor="374.0">
+            <Button fx:id="prjParDefaut" layoutX="180.0" layoutY="420.0" mnemonicParsing="false" onAction="#resetDefaut" prefHeight="51.0" prefWidth="256.0" text="Par défaut" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="672.0" AnchorPane.topAnchor="420.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Pane layoutX="180.0" layoutY="230.0" prefHeight="129.0" prefWidth="802.0" style="-fx-background-color: #eee;" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="230.0">
+            <Pane layoutX="180.0" layoutY="254.0" prefHeight="144.0" prefWidth="748.0" style="-fx-background-color: #eee;" AnchorPane.bottomAnchor="87.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="254.0">
                <children>
                   <Pane prefHeight="30.0" prefWidth="748.0" style="-fx-background-color: #ddd;">
                      <children>
@@ -94,27 +94,27 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Spinner fx:id="prjPourboireFacile" amountToStepBy="1" initialValue="10" min="0" max="12" layoutX="173.0" layoutY="34.0" prefHeight="25.0" prefWidth="62.0" />
-                  <Spinner fx:id="prjPourboireNormal" amountToStepBy="1" initialValue="10" min="0" max="12" layoutX="173.0" layoutY="63.0" prefHeight="25.0" prefWidth="62.0" />
-                  <Spinner fx:id="prjPourboireKaren" amountToStepBy="1" initialValue="10" min="0" max="12" layoutX="173.0" layoutY="93.0" prefHeight="25.0" prefWidth="62.0" />
+                  <Spinner fx:id="prjPourboireFacile" amountToStepBy="1" initialValue="10" layoutX="173.0" layoutY="34.0" max="12" min="0" prefHeight="25.0" prefWidth="62.0" />
+                  <Spinner fx:id="prjPourboireNormal" amountToStepBy="1" initialValue="10" layoutX="173.0" layoutY="63.0" max="12" min="0" prefHeight="25.0" prefWidth="62.0" />
+                  <Spinner fx:id="prjPourboireKaren" amountToStepBy="1" initialValue="10" layoutX="173.0" layoutY="93.0" max="12" min="0" prefHeight="25.0" prefWidth="62.0" />
                   
                   
-                  <Spinner fx:id="prjMargeFacile" amountToStepBy="0.1" initialValue="1.2" min="0" max="2" layoutX="312.0" layoutY="34.0" prefHeight="25.0" prefWidth="62.0" />
-                  <Spinner fx:id="prjMargeNormal" amountToStepBy="0.1" initialValue="1.1" min="0" max="2" layoutX="312.0" layoutY="63.0" prefHeight="25.0" prefWidth="62.0" />
-                  <Spinner fx:id="prjMargeKaren" amountToStepBy="0.1" initialValue="1" min="0" max="2" layoutX="312.0" layoutY="93.0" prefHeight="25.0" prefWidth="62.0" />
+                  <Spinner fx:id="prjMargeFacile" amountToStepBy="0.1" initialValue="1.2" layoutX="312.0" layoutY="34.0" max="2" min="0" prefHeight="25.0" prefWidth="62.0" />
+                  <Spinner fx:id="prjMargeNormal" amountToStepBy="0.1" initialValue="1.1" layoutX="312.0" layoutY="63.0" max="2" min="0" prefHeight="25.0" prefWidth="62.0" />
+                  <Spinner fx:id="prjMargeKaren" amountToStepBy="0.1" initialValue="1" layoutX="312.0" layoutY="93.0" max="2" min="0" prefHeight="25.0" prefWidth="62.0" />
                   
                   
-                  <Spinner fx:id="prjMinIngredientFacile" amountToStepBy="1" initialValue="2" min="1" max="9" layoutX="453.0" layoutY="34.0" prefHeight="25.0" prefWidth="62.0" />
-                  <Spinner fx:id="prjMinIngredientNormal" amountToStepBy="1" initialValue="3" min="1" max="9" layoutX="453.0" layoutY="63.0" prefHeight="25.0" prefWidth="62.0" />
-                  <Spinner fx:id="prjMinIngredientKaren" amountToStepBy="1" initialValue="4" min="1" max="9" layoutX="453.0" layoutY="93.0" prefHeight="25.0" prefWidth="62.0" />
+                  <Spinner fx:id="prjMinIngredientFacile" amountToStepBy="1" initialValue="2" layoutX="453.0" layoutY="34.0" max="9" min="1" prefHeight="25.0" prefWidth="62.0" />
+                  <Spinner fx:id="prjMinIngredientNormal" amountToStepBy="1" initialValue="3" layoutX="453.0" layoutY="63.0" max="9" min="1" prefHeight="25.0" prefWidth="62.0" />
+                  <Spinner fx:id="prjMinIngredientKaren" amountToStepBy="1" initialValue="4" layoutX="453.0" layoutY="93.0" max="9" min="1" prefHeight="25.0" prefWidth="62.0" />
                   
                   
-                  <Spinner fx:id="prjMaxIngredientFacile" amountToStepBy="1" initialValue="3" min="0" max="9" layoutX="620.0" layoutY="34.0" prefHeight="25.0" prefWidth="62.0" />
-                  <Spinner fx:id="prjMaxIngredientNormal" amountToStepBy="1" initialValue="4" min="0" max="9" layoutX="620.0" layoutY="63.0" prefHeight="25.0" prefWidth="62.0" />
-                  <Spinner fx:id="prjMaxIngredientKaren" amountToStepBy="1" initialValue="5" min="0" max="9" layoutX="620.0" layoutY="93.0" prefHeight="25.0" prefWidth="62.0" />
+                  <Spinner fx:id="prjMaxIngredientFacile" amountToStepBy="1" initialValue="3" layoutX="620.0" layoutY="34.0" max="9" min="0" prefHeight="25.0" prefWidth="62.0" />
+                  <Spinner fx:id="prjMaxIngredientNormal" amountToStepBy="1" initialValue="4" layoutX="620.0" layoutY="63.0" max="9" min="0" prefHeight="25.0" prefWidth="62.0" />
+                  <Spinner fx:id="prjMaxIngredientKaren" amountToStepBy="1" initialValue="5" layoutX="620.0" layoutY="93.0" max="9" min="0" prefHeight="25.0" prefWidth="62.0" />
                </children>
             </Pane>
-            <Pane layoutX="101.0" layoutY="19.0" prefHeight="196.0" prefWidth="415.0" style="-fx-background-color: #eee;">
+            <Pane layoutX="101.0" layoutY="19.0" prefHeight="224.0" prefWidth="415.0" style="-fx-background-color: #eee;">
                <children>
                   <Pane prefHeight="30.0" prefWidth="415.0" style="-fx-background-color: #ddd;">
                      <children>
@@ -182,7 +182,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="593.0" layoutY="19.0" prefHeight="196.0" prefWidth="415.0" style="-fx-background-color: #eee;">
+            <Pane layoutX="593.0" layoutY="19.0" prefHeight="224.0" prefWidth="415.0" style="-fx-background-color: #eee;">
                <children>
                   <Pane prefHeight="30.0" prefWidth="415.0" style="-fx-background-color: #ddd;">
                      <children>
@@ -218,11 +218,11 @@
                   </Spinner>
                   <Spinner fx:id="prjPrixAchatCreme" initialValue="2" layoutX="173.0" layoutY="125.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
                   </Spinner>
-                  <Spinner fx:id="prjPrixVenteCreme" initialValue="3" layoutX="312.0" layoutY="125.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
+                  <Spinner fx:id="prjPrixVenteCreme" amountToStepBy="0.1" initialValue="2.5" layoutX="312.0" layoutY="125.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
 				  </Spinner>
-                  <Spinner fx:id="prjPrixAchatSauceTomate" initialValue="2" layoutX="173.0" layoutY="157.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
+                  <Spinner fx:id="prjPrixAchatSauceTomate" initialValue="1" layoutX="173.0" layoutY="157.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
                   </Spinner>
-                  <Spinner fx:id="prjPrixVenteSauceTomate" initialValue="3" layoutX="312.0" layoutY="157.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
+                  <Spinner fx:id="prjPrixVenteSauceTomate" amountToStepBy="0.1" initialValue="1.5" layoutX="312.0" layoutY="157.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0">
                   </Spinner>
                   <Label layoutX="36.0" layoutY="38.0" text="(Viandes) chorizo">
                      <font>
@@ -249,6 +249,13 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
+                  <Label layoutX="36.0" layoutY="191.0" text="Pâte">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Spinner fx:id="prjPrixAchatPate" initialValue="5" layoutX="173.0" layoutY="188.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0" />
+                  <Spinner fx:id="prjPrixVentePate" initialValue="7" layoutX="312.0" layoutY="188.0" max="10" min="0" prefHeight="25.0" prefWidth="62.0" />
                </children>
             </Pane>
          </children>
