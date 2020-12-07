@@ -94,7 +94,7 @@ public class MenuModificationNiveau implements Initializable {
         try {
         	listNiveau = new ArrayList<String[]>();
             //lire le fichier
-            FileReader file = new FileReader(getClass().getResource("../textes/niveaux").getFile());
+            FileReader file = new FileReader(getClass().getResource("../textes/niveaux.txt").getFile());
             BufferedReader buffer = new BufferedReader(file);
             String niveauDeLaListe = buffer.readLine();
             // parcourir le fichier

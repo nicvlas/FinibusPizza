@@ -61,6 +61,7 @@ public class MenuListeNiveauControleur implements Initializable {
         }
         btnListNivClass.setDisable(true);
         btnListNivPerso.setDisable(true);
+        comboListNivClass.setVisibleRowCount(6);
     }
 
     public void retourMenu() throws IOException {
@@ -71,7 +72,7 @@ public class MenuListeNiveauControleur implements Initializable {
         try {
             tmp = new ArrayList<String[]>();
             //lire le fichier
-            FileReader file = new FileReader(getClass().getResource("../textes/niveaux").getFile());
+            FileReader file = new FileReader(getClass().getResource("../textes/niveaux.txt").getFile());
             BufferedReader buffer = new BufferedReader(file);
             String tmpB = buffer.readLine();
             // parcourir le fichier
@@ -89,7 +90,7 @@ public class MenuListeNiveauControleur implements Initializable {
         try {
             tmp = new ArrayList<String[]>();
             //lire le fichier
-            FileReader file = new FileReader(getClass().getResource("../textes/niveauxPers").getFile());
+            FileReader file = new FileReader(getClass().getResource("../textes/niveauxPers.txt").getFile());
             BufferedReader buffer = new BufferedReader(file);
             String tmpB = buffer.readLine();
             // parcourir le fichier
@@ -131,7 +132,7 @@ public class MenuListeNiveauControleur implements Initializable {
 			// TODO: handle exception
 			System.out.println(e);
 		}
-    	niv = new Niveau(nom, diff, nb1TypeClient, nb2TypeClient, nb3TypeClient, margeTresor, minIng, maxIng);
+    	niv = new Niveau(nom, diff, nb1TypeClient, nb2TypeClient, nb3TypeClient, margeTresor, minIng, maxIng,false);
     	//Main.changementFenetre("../fxml/Niveau.fxml", "FinibusPizza : Niveau");
     }
     
@@ -175,7 +176,7 @@ public class MenuListeNiveauControleur implements Initializable {
 			// TODO: handle exception
 			System.out.println(e);
 		}
-    	niv = new Niveau(nom, diff, nb1TypeClient, nb2TypeClient, nb3TypeClient, margeTresor, minIng, maxIng);
+    	niv = new Niveau(nom, diff, nb1TypeClient, nb2TypeClient, nb3TypeClient, margeTresor, minIng, maxIng,false);
     	//Main.changementFenetre("../fxml/Niveau.fxml", "FinibusPizza : Niveau");
     }
 
