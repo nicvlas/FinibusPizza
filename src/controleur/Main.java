@@ -10,7 +10,6 @@ import javafx.stage.WindowEvent;
 
 import java.io.*;
 
-import static com.sun.javafx.scene.control.skin.Utils.getResource;
 
 public class Main extends Application {
     public static Parent root;

@@ -3,3 +3,6 @@ Niveau2/Facile/4/2/0/1.3/2/4
 Niveau3/Facile/5/2/0/1.4/2/5
 Niveau4/Facile/3/2/2/1.2/3/8
 Niveau5/Facile/10/0/0/0.12/3/4
+Niveau6/Facile/5/0/0/0.2/1/3
+Niveau7/Normal/5/5/0/0.2/6/7
+Niveau8/Karen/5/5/5/0.1/10/13

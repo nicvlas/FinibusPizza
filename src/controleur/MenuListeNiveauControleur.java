@@ -45,6 +45,7 @@ public class MenuListeNiveauControleur implements Initializable {
         }
         btnListNivClass.setDisable(true);
         btnListNivPerso.setDisable(true);
+        comboListNivPerso.setVisibleRowCount(6);
     }
 
     public void retourMenu() throws IOException {
