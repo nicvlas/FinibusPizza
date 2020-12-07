@@ -15,6 +15,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+//import com.sun.javafx.scene.web.Printable;
+
 public class MenuListeNiveauControleur implements Initializable {
     @FXML
     Button btnListNivClass;
@@ -27,11 +29,25 @@ public class MenuListeNiveauControleur implements Initializable {
     @FXML
     Button btnRetourMenu;
 
-    static Niveau niveau;
+    private String[] niveau;
+    
+    private ArrayList<String[]> tmp;
+    private ArrayList<String[]> tmp1;
+    
+    
+    private String nom = "";
+    private int nb1TypeClient = 0;
+	private int nb2TypeClient = 0;
+	private int nb3TypeClient = 0;
+	private Float margeTresor = 0f;
+	private int minIng = 0;
+	private int maxIng = 0;
+    
+	public static Niveau niv;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ArrayList<String[]> tmp = listeNiveau();
+        tmp = listeNiveau();
         comboListNivClass.getItems().add("Select");
         comboListNivPerso.getItems().add("Select");
         comboListNivClass.getSelectionModel().select(0);
@@ -39,13 +55,12 @@ public class MenuListeNiveauControleur implements Initializable {
         for(int i = 0; i < tmp.size(); i++){
             comboListNivClass.getItems().add(tmp.get(i)[0] + " " + tmp.get(i)[1]);
         }
-        ArrayList<String[]> tmp1 = listeNiveauPers();
+        tmp1 = listeNiveauPers();
         for(int i = 0; i < tmp1.size(); i++){
             comboListNivPerso.getItems().add(tmp1.get(i)[0] + " " + tmp1.get(i)[1]);
         }
         btnListNivClass.setDisable(true);
         btnListNivPerso.setDisable(true);
-        comboListNivPerso.setVisibleRowCount(6);
     }
 
     public void retourMenu() throws IOException {
@@ -56,7 +71,7 @@ public class MenuListeNiveauControleur implements Initializable {
         try {
             tmp = new ArrayList<String[]>();
             //lire le fichier
-            FileReader file = new FileReader(getClass().getResource("../textes/niveaux.txt").getFile());
+            FileReader file = new FileReader(getClass().getResource("../textes/niveaux").getFile());
             BufferedReader buffer = new BufferedReader(file);
             String tmpB = buffer.readLine();
             // parcourir le fichier
@@ -74,7 +89,7 @@ public class MenuListeNiveauControleur implements Initializable {
         try {
             tmp = new ArrayList<String[]>();
             //lire le fichier
-            FileReader file = new FileReader(getClass().getResource("../textes/niveauxPers.txt").getFile());
+            FileReader file = new FileReader(getClass().getResource("../textes/niveauxPers").getFile());
             BufferedReader buffer = new BufferedReader(file);
             String tmpB = buffer.readLine();
             // parcourir le fichier
@@ -90,54 +105,36 @@ public class MenuListeNiveauControleur implements Initializable {
     private String[] elementsNiveau(String element) {
         String[] retour = element.split( "/" );
         if(retour.length != 8) {
-            throw new InternalError(element + " ne correspond pas � un String d'un fichier contenant des ingr�dients traitables");
+            throw new InternalError(element + " ne correspond pas ï¿½ un String d'un fichier contenant des ingrï¿½dients traitables");
         }
         return retour;
     }
-    public Niveau getNiv(){
-        return niveau;
+    public void validationChoixListNivPerso(){
+    	int index = comboListNivPerso.getSelectionModel().getSelectedIndex();
+    	String[] niveauSelect = tmp1.get(index);
+    	String nom = niveauSelect[0];
+    	Difficulte diff;
+    	if(niveauSelect[1] == "Facile")
+    		diff = Difficulte.Facile;
+    	else if(niveauSelect[1] == "Normal")
+    		diff = Difficulte.Normal;
+    	else
+    		diff = Difficulte.Karen;
+    	try {
+    		int nb1TypeClient = Integer.parseInt(niveauSelect[2]);
+        	int nb2TypeClient = Integer.parseInt(niveauSelect[3]);
+        	int nb3TypeClient = Integer.parseInt(niveauSelect[4]);
+        	Float margeTresor = Float.parseFloat(niveauSelect[5]);
+        	int minIng = Integer.parseInt(niveauSelect[6]);
+        	int maxIng = Integer.parseInt(niveauSelect[7]);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
+    	niv = new Niveau(nom, diff, nb1TypeClient, nb2TypeClient, nb3TypeClient, margeTresor, minIng, maxIng);
+    	//Main.changementFenetre("../fxml/Niveau.fxml", "FinibusPizza : Niveau");
     }
-    //A faire avec le setNiv
-    public void setNivPers(){
-        ArrayList<String[]> listenv = listeNiveauPers();
-        String[] niveauS = listenv.get(this.comboListNivPerso.getSelectionModel().getSelectedIndex());
-        Difficulte difficulte = null;
-        switch( niveauS[1]){
-            case "Normal":
-                difficulte = Difficulte.Normal;
-                break;
-            case "Karen":
-                difficulte = Difficulte.Karen;
-                break;
-            default:
-                difficulte = Difficulte.Facile;
-                break;
-        }
-        niveau = new Niveau(niveauS[0], difficulte,Integer.valueOf(niveauS[2]),Integer.valueOf(niveauS[3]),Integer.valueOf(niveauS[4]), Float.valueOf(niveauS[5]),Integer.valueOf(niveauS[6]),Integer.valueOf(niveauS[7]),false);
-                //9
-    }
-    public void setNivClass(){
-        ArrayList<String[]> listenv = listeNiveau();
-        String[] niveauS = listenv.get(this.comboListNivClass.getSelectionModel().getSelectedIndex());
-        Difficulte difficulte = null;
-        switch( niveauS[1]){
-            case "Normal":
-                difficulte = Difficulte.Normal;
-                break;
-            case "Karen":
-                difficulte = Difficulte.Karen;
-                break;
-            default:
-                difficulte = Difficulte.Facile;
-                break;
-        }
-        niveau = new Niveau(niveauS[0], difficulte,Integer.valueOf(niveauS[2]),Integer.valueOf(niveauS[3]),Integer.valueOf(niveauS[4]), Float.valueOf(niveauS[5]),Integer.valueOf(niveauS[6]),Integer.valueOf(niveauS[7]),false);
-        //9
-    }
-    public void validationChoixListNivPerso() throws IOException {
-        setNivPers();
-        Main.changementFenetre("../NiveauAvantPriseCommande.fxml", "FinibusPizza : Jeu");
-    }
+    
     public void choixListNivPerso(){
         if(this.comboListNivPerso.getSelectionModel().getSelectedIndex() != 0){
             this.comboListNivClass.setDisable(true);
@@ -156,10 +153,30 @@ public class MenuListeNiveauControleur implements Initializable {
             btnListNivClass.setDisable(true);
         }
     }
-    //A faire avec le setNiv
-    public void validationChoixNivClass() throws IOException {
-        setNivClass();
-        Main.changementFenetre("../NiveauAvantPriseCommande.fxml", "FinibusPizza : Jeu");
+    public void validationChoixNivClass() throws IOException{
+    	int index = comboListNivClass.getSelectionModel().getSelectedIndex();
+    	String[] niveauSelect = tmp.get(index);
+    	String nom = niveauSelect[0];
+    	Difficulte diff;
+    	if(niveauSelect[1] == "Facile")
+    		diff = Difficulte.Facile;
+    	else if(niveauSelect[1] == "Normal")
+    		diff = Difficulte.Normal;
+    	else
+    		diff = Difficulte.Karen;
+    	try {
+    		int nb1TypeClient = Integer.parseInt(niveauSelect[2]);
+        	int nb2TypeClient = Integer.parseInt(niveauSelect[3]);
+        	int nb3TypeClient = Integer.parseInt(niveauSelect[4]);
+        	Float margeTresor = Float.parseFloat(niveauSelect[5]);
+        	int minIng = Integer.parseInt(niveauSelect[6]);
+        	int maxIng = Integer.parseInt(niveauSelect[7]);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
+    	niv = new Niveau(nom, diff, nb1TypeClient, nb2TypeClient, nb3TypeClient, margeTresor, minIng, maxIng);
+    	//Main.changementFenetre("../fxml/Niveau.fxml", "FinibusPizza : Niveau");
     }
 
 }
