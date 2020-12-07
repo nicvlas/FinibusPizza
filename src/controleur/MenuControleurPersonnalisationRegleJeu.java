@@ -350,22 +350,22 @@ public class MenuControleurPersonnalisationRegleJeu implements Initializable{
 			
 			String lineFacile = cli.readLine();
 			String[] tabFacile = lineFacile.split("/");
-			prjPourboireFacile.getValueFactory().setValue(Integer.parseInt(tabFacile[1]));
-			prjMargeFacile.getValueFactory().setValue(Double.parseDouble(tabFacile[2]));
+			prjMargeFacile.getValueFactory().setValue(Double.parseDouble(tabFacile[1]));
+			prjPourboireFacile.getValueFactory().setValue(Integer.parseInt(tabFacile[2]));
 			prjMinIngredientFacile.getValueFactory().setValue(Integer.parseInt(tabFacile[3]));
 			prjMaxIngredientFacile.getValueFactory().setValue(Integer.parseInt(tabFacile[4]));
 
 			String lineNormal = cli.readLine();
 			String[] tabNormal = lineNormal.split("/");
-			prjPourboireNormal.getValueFactory().setValue(Integer.parseInt(tabNormal[1]));
-			prjMargeNormal.getValueFactory().setValue(Double.parseDouble(tabNormal[2]));
+			prjMargeNormal.getValueFactory().setValue(Double.parseDouble(tabNormal[1]));
+			prjPourboireNormal.getValueFactory().setValue(Integer.parseInt(tabNormal[2]));
 			prjMinIngredientNormal.getValueFactory().setValue(Integer.parseInt(tabNormal[3]));
 			prjMaxIngredientNormal.getValueFactory().setValue(Integer.parseInt(tabNormal[4]));
 			
 			String lineKaren = cli.readLine();
 			String[] tabKaren = lineKaren.split("/");
-			prjPourboireKaren.getValueFactory().setValue(Integer.parseInt(tabKaren[1]));
-			prjMargeKaren.getValueFactory().setValue(Double.parseDouble(tabKaren[2]));
+			prjMargeKaren.getValueFactory().setValue(Double.parseDouble(tabKaren[1]));
+			prjPourboireKaren.getValueFactory().setValue(Integer.parseInt(tabKaren[2]));
 			prjMinIngredientKaren.getValueFactory().setValue(Integer.parseInt(tabKaren[3]));
 			prjMaxIngredientKaren.getValueFactory().setValue(Integer.parseInt(tabKaren[4]));
 			
