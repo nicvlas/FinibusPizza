@@ -269,9 +269,9 @@ public class MenuControleurPersonnalisationRegleJeu implements Initializable{
 		   System.out.println("Modification terminée pâte !");
 		   
 		   //clients
-		   String client = "Facile/"+prjMargeFacile.getValue()+prjPourboireFacile.getValue()+"/"+prjMinIngredientFacile.getValue()+"/"+prjMaxIngredientFacile.getValue()+"\n" +
-				   			"Normal/"+prjMargeNormal.getValue()+prjPourboireNormal.getValue()+"/"+prjMinIngredientNormal.getValue()+"/"+prjMaxIngredientNormal.getValue()+"\n" +
-				   			"Karen/"+prjMargeKaren.getValue()+prjPourboireKaren.getValue()+"/"+prjMinIngredientKaren.getValue()+"/"+prjMaxIngredientKaren.getValue();
+		   String client = "Facile/"+prjMargeFacile.getValue()+"/"+prjPourboireFacile.getValue()+"/"+prjMinIngredientFacile.getValue()+"/"+prjMaxIngredientFacile.getValue()+"\n" +
+				   			"Normal/"+prjMargeNormal.getValue()+"/"+prjPourboireNormal.getValue()+"/"+prjMinIngredientNormal.getValue()+"/"+prjMaxIngredientNormal.getValue()+"\n" +
+				   			"Karen/"+prjMargeKaren.getValue()+"/"+prjPourboireKaren.getValue()+"/"+prjMinIngredientKaren.getValue()+"/"+prjMaxIngredientKaren.getValue();
 
 			File fileClient = new File("src/textes/clients.txt");
 			
