@@ -22,31 +22,31 @@ public class MenuModificationNiveau implements Initializable {
 	 Label mnNomDuNiveau;
 
 	@FXML
-	 ChoiceBox<?> mnSelectDifficulte;
+	 ChoiceBox<String> mnSelectDifficulte;
 
 	@FXML
-	 Spinner<?> mnMinIngredient;
+	 Spinner<Integer> mnMinIngredient;
 
 	@FXML
-	 Spinner<?> mnMaxIngredient;
+	 Spinner<Integer> mnMaxIngredient;
 
 	@FXML
-	 Spinner<?> mnMargeTresorerie;
+	 Spinner<Float> mnMargeTresorerie;
 
 	@FXML
-	 Spinner<?> mnMargeTemps;
+	 Spinner<Float> mnMargeTemps;
 
 	@FXML
-	 Spinner<?> mnNbFacile;
+	 Spinner<Integer> mnNbFacile;
 
 	@FXML
-	 Spinner<?> mnNbNormal;
+	 Spinner<Integer> mnNbNormal;
 
 	@FXML
-	 Spinner<?> mnNbKaren;
+	 Spinner<Integer> mnNbKaren;
 
 	@FXML
-	 ChoiceBox<?> mnSelectNomNiveau;
+	 ChoiceBox<String> mnSelectNomNiveau;
 
 	@FXML
 	 Button mnModifier;
@@ -61,7 +61,7 @@ public class MenuModificationNiveau implements Initializable {
 	 Button mnRetourMenu;
 	
     public void modifier(ActionEvent event) {
-
+    	
     }
 
     public void retourMenu(ActionEvent e) throws IOException {
@@ -73,13 +73,47 @@ public class MenuModificationNiveau implements Initializable {
     }
 
     public void suppr(ActionEvent event) {
-
+    	
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		ArrayList<String[]>listNiveau = listeNiveau();
+		mnSelectNomNiveau.getItems().add("Select");
+		mnSelectNomNiveau.getSelectionModel().select(0);
+		for(int i = 0; i<listNiveau.size(); i++) {
+			mnSelectNomNiveau.getItems().add(listNiveau.get(i)[0]);
+		}
+		mnModifier.setDisable(true);
+		mnModifier.setDisable(true);
 	}
 	
+	private ArrayList<String[]> listeNiveau() {
+        ArrayList<String[]> listNiveau = null;
+        try {
+        	listNiveau = new ArrayList<String[]>();
+            //lire le fichier
+            FileReader file = new FileReader(getClass().getResource("../textes/niveaux").getFile());
+            BufferedReader buffer = new BufferedReader(file);
+            String niveauDeLaListe = buffer.readLine();
+            // parcourir le fichier
+            while (niveauDeLaListe != null) {
+            	listNiveau.add(elementsNiveau(niveauDeLaListe));
+            	niveauDeLaListe = buffer.readLine();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listNiveau;
+    }
+	
+	private String[] elementsNiveau(String element) {
+        String[] retour = element.split( "/" );
+        if(retour.length != 8) {
+            throw new InternalError(element + " ne correspond pas ï¿½ un String d'un fichier contenant des ingrï¿½dients traitables");
+        }
+        return retour;
+    }
 
 }
