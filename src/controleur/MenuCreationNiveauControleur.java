@@ -94,7 +94,7 @@ public class MenuCreationNiveauControleur implements Initializable{
         this.reussite.setOpacity(0);
         this.avertissement.setOpacity(0);
         SpinnerValueFactory<Integer> valueFactory = //
-                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 15, 1);
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 14, 1);
         minNbIng.setValueFactory(valueFactory);
         SpinnerValueFactory<Integer> valueFactory1 = //
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(2, 16, 3);
@@ -257,8 +257,9 @@ public class MenuCreationNiveauControleur implements Initializable{
         SpinnerValueFactory<Integer> valueFactory1 = //
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(Integer.parseInt(minNbIng.getValue().toString())+1, 16,Integer.parseInt(maxNbIng.getValue().toString()));
         maxNbIng.setValueFactory(valueFactory1);
+            int max = (Integer.parseInt(maxNbIng.getValue().toString()) > 14)?14:Integer.parseInt(maxNbIng.getValue().toString());
         SpinnerValueFactory<Integer> valueFactory = //
-                new SpinnerValueFactory.IntegerSpinnerValueFactory(1,Integer.parseInt(maxNbIng.getValue().toString()),Integer.parseInt(minNbIng.getValue().toString()));
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(1,max,Integer.parseInt(minNbIng.getValue().toString()));
         minNbIng.setValueFactory(valueFactory);
 
     }
