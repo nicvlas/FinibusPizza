@@ -7,6 +7,7 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import modele.Difficulte;
 import modele.Niveau;
+//import sun.tools.tree.ThisExpression;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -36,6 +37,8 @@ public class MenuListeNiveauControleur implements Initializable {
     
     
     private String nom = "";
+    private String difficulteString;
+    private Difficulte difficulte;
     private int nb1TypeClient = 0;
 	private int nb2TypeClient = 0;
 	private int nb3TypeClient = 0;
@@ -47,6 +50,7 @@ public class MenuListeNiveauControleur implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	niv = null;
         tmp = listeNiveau();
         comboListNivClass.getItems().add("Select");
         comboListNivPerso.getItems().add("Select");
@@ -67,6 +71,9 @@ public class MenuListeNiveauControleur implements Initializable {
     public void retourMenu() throws IOException {
         Main.changementFenetre("../fxml/Menu.fxml", "FinibusPizza : Menu");
     }
+    /*
+     * Récupération des niveaux classiques dans le fichier de sauvegarde
+     */
     private ArrayList<String[]> listeNiveau() {
         ArrayList<String[]> tmp = null;
         try {
@@ -85,6 +92,9 @@ public class MenuListeNiveauControleur implements Initializable {
         }
         return tmp;
     }
+    /*
+     * Récupération des niveaux personnalisés dans le fichier de sauvegarde
+     */
     private ArrayList<String[]> listeNiveauPers() {
         ArrayList<String[]> tmp = null;
         try {
@@ -106,78 +116,92 @@ public class MenuListeNiveauControleur implements Initializable {
     private String[] elementsNiveau(String element) {
         String[] retour = element.split( "/" );
         if(retour.length != 8) {
-            throw new InternalError(element + " ne correspond pas ï¿½ un String d'un fichier contenant des ingrï¿½dients traitables");
+            throw new InternalError(element + " ne correspond pas Ã¯Â¿Â½ un String d'un fichier contenant des ingrÃ¯Â¿Â½dients traitables");
         }
         return retour;
     }
-    public void validationChoixListNivPerso(){
-    	int index = comboListNivPerso.getSelectionModel().getSelectedIndex();
-    	String[] niveauSelect = tmp1.get(index);
-    	String nom = niveauSelect[0];
-    	Difficulte diff;
-    	if(niveauSelect[1] == "Facile")
-    		diff = Difficulte.Facile;
-    	else if(niveauSelect[1] == "Normal")
-    		diff = Difficulte.Normal;
-    	else
-    		diff = Difficulte.Karen;
-    	try {
-    		int nb1TypeClient = Integer.parseInt(niveauSelect[2]);
-        	int nb2TypeClient = Integer.parseInt(niveauSelect[3]);
-        	int nb3TypeClient = Integer.parseInt(niveauSelect[4]);
-        	Float margeTresor = Float.parseFloat(niveauSelect[5]);
-        	int minIng = Integer.parseInt(niveauSelect[6]);
-        	int maxIng = Integer.parseInt(niveauSelect[7]);
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e);
-		}
-    	niv = new Niveau(nom, diff, nb1TypeClient, nb2TypeClient, nb3TypeClient, margeTresor, minIng, maxIng,false);
-    	//Main.changementFenetre("../fxml/Niveau.fxml", "FinibusPizza : Niveau");
-    }
-    
+    /*
+     * Choix du niveau dans la ComboBox niveau personnalisé
+     */
     public void choixListNivPerso(){
         if(this.comboListNivPerso.getSelectionModel().getSelectedIndex() != 0){
             this.comboListNivClass.setDisable(true);
             btnListNivPerso.setDisable(false);
+            //Récupération du niveau personnalisé
+            niveau = tmp1.get(this.comboListNivPerso.getSelectionModel().getSelectedIndex()-1);
         } else {
             this.comboListNivClass.setDisable(false);
             btnListNivPerso.setDisable(true);
         }
     }
+    /*
+     * Choix du niveau dans la ComboBox niveau classique
+     */
     public void ListNivClassChoix(){
         if(this.comboListNivClass.getSelectionModel().getSelectedIndex() != 0){
             this.comboListNivPerso.setDisable(true);
             btnListNivClass.setDisable(false);
+          //Récupération du niveau classique
+            niveau = tmp.get(this.comboListNivClass.getSelectionModel().getSelectedIndex()-1);
         } else {
             this.comboListNivPerso.setDisable(false);
             btnListNivClass.setDisable(true);
         }
     }
-    public void validationChoixNivClass() throws IOException{
-    	int index = comboListNivClass.getSelectionModel().getSelectedIndex();
-    	String[] niveauSelect = tmp.get(index);
-    	String nom = niveauSelect[0];
-    	Difficulte diff;
-    	if(niveauSelect[1] == "Facile")
-    		diff = Difficulte.Facile;
-    	else if(niveauSelect[1] == "Normal")
-    		diff = Difficulte.Normal;
-    	else
-    		diff = Difficulte.Karen;
+    
+    /*
+     * Validation du choix d'un niveau classique
+     */
+    public void validationChoixNivClass(){
+    	//Rempli les éléments d'un niveau et créer un niveau
     	try {
-    		int nb1TypeClient = Integer.parseInt(niveauSelect[2]);
-        	int nb2TypeClient = Integer.parseInt(niveauSelect[3]);
-        	int nb3TypeClient = Integer.parseInt(niveauSelect[4]);
-        	Float margeTresor = Float.parseFloat(niveauSelect[5]);
-        	int minIng = Integer.parseInt(niveauSelect[6]);
-        	int maxIng = Integer.parseInt(niveauSelect[7]);
-		} catch (Exception e) {
+    		nom = niveau[0];
+        	difficulteString = niveau[1];
+        	switch(difficulteString) {
+        	case "Facile":difficulte =Difficulte.Facile;break;
+        	case "Normal":difficulte =Difficulte.Normal;break;
+        	case "Karen":difficulte =Difficulte.Karen;break;
+        	}
+        	nb1TypeClient = Integer.parseInt(niveau[2]);
+        	nb2TypeClient = Integer.parseInt(niveau[3]);
+        	nb3TypeClient = Integer.parseInt(niveau[4]);
+        	margeTresor = Float.parseFloat(niveau[5]);
+        	minIng = Integer.parseInt(niveau[6]);
+        	maxIng = Integer.parseInt(niveau[7]);
+        	System.out.println(nom+" "+difficulte+" "+nb1TypeClient+" "+nb2TypeClient+" "+nb3TypeClient+" "+margeTresor+" "+minIng+" "+maxIng);
+        	niv = new Niveau(nom, difficulte, nb1TypeClient, nb2TypeClient, nb3TypeClient, margeTresor, minIng, maxIng, true);
+    	}
+    	catch (Exception e) {
 			// TODO: handle exception
-			System.out.println(e);
+    		e.printStackTrace();
 		}
-    	niv = new Niveau(nom, diff, nb1TypeClient, nb2TypeClient, nb3TypeClient, margeTresor, minIng, maxIng,false);
-    	//Main.changementFenetre("../fxml/Niveau.fxml", "FinibusPizza : Niveau");
     }
-
+    
+    /*
+     * Validation du choix d'un niveau personnalisé
+     */
+    public void validationChoixListNivPerso(){
+    	//Rempli les éléments d'un niveau et créer un niveau
+    	try {
+    		nom = niveau[0];
+        	difficulteString = niveau[1];
+        	switch(difficulteString) {
+        	case "Facile":difficulte =Difficulte.Facile;break;
+        	case "Normal":difficulte =Difficulte.Normal;break;
+        	case "Karen":difficulte =Difficulte.Karen;break;
+        	}
+        	nb1TypeClient = Integer.parseInt(niveau[2]);
+        	nb2TypeClient = Integer.parseInt(niveau[3]);
+        	nb3TypeClient = Integer.parseInt(niveau[4]);
+        	margeTresor = Float.parseFloat(niveau[5]);
+        	minIng = Integer.parseInt(niveau[6]);
+        	maxIng = Integer.parseInt(niveau[7]);
+        	System.out.println(nom+" "+difficulte+" "+nb1TypeClient+" "+nb2TypeClient+" "+nb3TypeClient+" "+margeTresor+" "+minIng+" "+maxIng);
+        	niv = new Niveau(nom, difficulte, nb1TypeClient, nb2TypeClient, nb3TypeClient, margeTresor, minIng, maxIng, true);
+    	}
+    	catch (Exception e) {
+			// TODO: handle exception
+    		e.printStackTrace();
+		}
+    }
 }
