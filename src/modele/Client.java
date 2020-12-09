@@ -11,12 +11,15 @@ public class Client {
 	private String nomClient;
 	private Difficulte typeClient;
 	private int tempsClient;
-	private float pourboire;
-	private int[] nbTypeIngredients;// Tableau min, max nombre type d'ingrï¿½dients
+	private int pourboire = 0;
+	private int[] nbTypeIngredients;// Tableau min, max nombre type d'ingrÃ¯Â¿Â½dients
 	private String[] lesNomsClient;
-	private float margeTemps;
+	private float margeTemps = 0f;
 	
-	//Faire un fichier avec margeTemps, pourboire initial, min et max nombre type d'ingrï¿½dients
+	private static ArrayList<String[]> tmpC;
+	private static Difficulte difficulteFichier;
+	
+	//Faire un fichier avec margeTemps, pourboire initial, min et max nombre type d'ingrÃ¯Â¿Â½dients
 	
 	public Difficulte getTypeClient() {
 		return typeClient;
@@ -33,116 +36,122 @@ public class Client {
 	public int[] getnbTypeIngredients() {
 		return nbTypeIngredients;
 	}
+	
+	public float getMargeTemps() {
+		return margeTemps;
+	}
 
-	/**
-	 * Constructeur du client
-	 * @param typeClient : type de client (simple, normal, difficile, Karen)
-	 */
-	public Client(Difficulte typeClient){
-		this.lesNomsClient = new String[] {"Michel","Bernard","Christophe","Alexandre","Jean","Camille","CÃ©cile","Elise","Bernadette","Manon"};
-		this.typeClient = typeClient;
-		this.nbTypeIngredients = new int[2];
-		Random rd = new Random();
-		switch(this.typeClient){
-			case Facile:{
-				//DÃ©finir le nom du client
-				this.nomClient = this.lesNomsClient[(rd.nextInt(9 - 0) + 0)];
-				//Nombre max de type d'ingrÃ©dients (Valeur test sans compter la pÃ¢te et la base)
-				this.nbTypeIngredients[0] = 2;
-				this.nbTypeIngredients[1] = 3;
-				this.margeTemps=1.3f;
-				break;}
-			case Normal:{
-				//DÃ©finir le nom du client
-				this.nomClient = this.lesNomsClient[(rd.nextInt(9 - 0) + 0)];
-				//Nombre max de type d'ingrÃ©dients (Valeur test sans compter la pÃ¢te et la base)
-				this.nbTypeIngredients[0]=3;
-				this.nbTypeIngredients[1] = 4;
-				this.margeTemps=1.2f;
-				break;}
-			case Karen:{
-				//DÃ©finir le nom du client
-				this.nomClient = "Karen";
-				//Nombre max de type d'ingrÃ©dients (Valeur test sans compter la pÃ¢te et la base)
-				this.nbTypeIngredients[0] = 4;
-				this.nbTypeIngredients[1] = 5;
-				this.margeTemps=1.1f;
-				break;}
-		}
-		this.tempsClient = 0;
-		this.pourboire = 0f;
+	public void setMargeTemps(float margeTemps) {
+		this.margeTemps = margeTemps;
 	}
 	
 	/**
 	 * Constructeur du client
 	 * @param typeClient : type de client (simple, normal, difficile, Karen)
 	 */
-	public Client(String nom, Difficulte typeClient){
+	public Client(Difficulte typeClient, int tempsClient){
+		this.lesNomsClient = new String[] {"Michel","Bernard","Christophe","Alexandre","Jean","Camille","CÃƒÂ©cile","Elise","Bernadette","Manon"};
 		this.typeClient = typeClient;
-		this.tempsClient = 0;
-		this.pourboire = 0f;
+		this.nbTypeIngredients = new int[2];
+		this.nbTypeIngredients[0] = 0;
+		this.nbTypeIngredients[0] = 0;
+		this.tempsClient = tempsClient;
+		parametreClient();
+		try {
+			for(String[] t : tmpC) {
+				if(t[0].equals("Facile"))
+					difficulteFichier = Difficulte.Facile;
+				else if(t[0].equals("Normal"))
+					difficulteFichier = Difficulte.Normal;
+				else
+					difficulteFichier = Difficulte.Karen;
+				if(typeClient == difficulteFichier) {
+					this.margeTemps = Float.parseFloat(t[1]);
+					this.pourboire = Integer.parseInt(t[2]);
+					this.nbTypeIngredients[0] = Integer.parseInt(t[3]);
+					this.nbTypeIngredients[1] = Integer.parseInt(t[4]);
+				}
+			}
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		Random rd = new Random();
+		this.nomClient = this.lesNomsClient[(rd.nextInt(9 - 0) + 0)];
+	}
+	
+	/**
+	 * Constructeur du client
+	 * @param typeClient : type de client (simple, normal, difficile, Karen)
+	 */
+	public Client(String nom, Difficulte typeClient, int tempsClient){
+		this.typeClient = typeClient;
 		this.nomClient = nom;
-		switch(this.typeClient){
-			case Facile:{
-				//Nombre max de type d'ingrÃ©dients (Valeur test sans compter la pÃ¢te et la base)
-				this.nbTypeIngredients[0] = 2;
-				this.nbTypeIngredients[1] = 3;
-				this.margeTemps=1.3f;
-				break;}
-			case Normal:{
-				//Nombre max de type d'ingrÃ©dients (Valeur test sans compter la pÃ¢te et la base)
-				this.nbTypeIngredients[0]=3;
-				this.nbTypeIngredients[1] = 4;
-				this.margeTemps=1.2f;
-				break;}
-			case Karen:{
-				//Nombre max de type d'ingrÃ©dients (Valeur test sans compter la pÃ¢te et la base)
-				this.nbTypeIngredients[0] = 4;
-				this.nbTypeIngredients[1] = 5;
-				this.margeTemps=1.1f;
-				break;}
+		this.nbTypeIngredients = new int[2];
+		this.nbTypeIngredients[0] = 0;
+		this.nbTypeIngredients[0] = 0;
+		this.tempsClient = tempsClient;
+		parametreClient();
+		try {
+			for(String[] t : tmpC) {
+				if(t[0].equals("Facile"))
+					difficulteFichier = Difficulte.Facile;
+				else if(t[0].equals("Normal"))
+					difficulteFichier = Difficulte.Normal;
+				else
+					difficulteFichier = Difficulte.Karen;
+				if(typeClient == difficulteFichier) {
+					this.margeTemps = Float.parseFloat(t[1]);
+					this.pourboire = Integer.parseInt(t[2]);
+					this.nbTypeIngredients[0] = Integer.parseInt(t[3]);
+					this.nbTypeIngredients[1] = Integer.parseInt(t[4]);
+				}
+			}
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 	
 	/*
-	 * Lecture des paramètres des clients
+	 * Lecture des paramÃ¨tres des clients
 	 */
-	public void parametreClient() {
-		ArrayList<String[]> tmpC = new ArrayList<String[]>();
+	private void parametreClient() {
 		try {
+			tmpC = new ArrayList<String[]>();
+			//Lecture du fichier
 			FileReader file = new FileReader(getClass().getResource("../textes/clients.txt").getFile());
-			//FileReader file = new FileReader(new File(getClass().getResource("../textes/clients.txt").toURI()));
-			BufferedReader buffer = new BufferedReader(file);
-			String tmpC1 = buffer.readLine();
-			
-			while (tmpC1 != null) {
-                tmpC.add(elementsClients(tmpC1));
-                tmpC1 = buffer.readLine();
+            BufferedReader buffer = new BufferedReader(file);
+            String tmpC2 = buffer.readLine();
+            // parcourir le fichier
+            while (tmpC2 != null) {
+                tmpC.add(elementsClients(tmpC2));
+                tmpC2 = buffer.readLine();
             }
 		}
-		catch(Exception e) {
+		catch (Exception e) {
+			// TODO: handle exception
 			e.printStackTrace();
-		}
-		for (int i = 0; i < tmpC.size(); i++) {
-			System.out.println(tmpC.get(i)+" | ");
 		}
 	}
 	
-	public String[] elementsClients(String element) {
+	private String[] elementsClients(String element) {
 		String[] retour = element.split( "/" );
-		/*if(retour.length != 3 || retour.length != 4) {
-			throw new InternalError(element + " ne correspond pas à un String d'un fichier contenant des clients traitables");
-		}*/
-		return retour;
+        if(retour.length != 5) {
+            throw new InternalError(element + " ne correspond pas à un String d'un fichier contenant des clients traitables");
+        }
+        return retour;
 	}
 	
 	
 	/**
-	 * Permet de dÃ©terminer le pourboire du client
-	 * @param tempsPreparation : le temps de prÃ©paration de la commande
+	 * Permet de dÃƒÂ©terminer le pourboire du client
+	 * @param tempsPreparation : le temps de prÃƒÂ©paration de la commande
 	 * @return pourboire : le pourboire du client
 	 */
-	public float pourboire(Integer tempsPreparation){
+	public void pourboire(Integer tempsPreparation){
 		int tempsFinal = this.tempsClient - tempsPreparation;
 		//Traitement du pourboire
 		if(tempsFinal >= 0){
@@ -157,35 +166,21 @@ public class Client {
 					}
 				}
 			}
-		return this.pourboire;
 	}
 	
 	/**
 	 * Retourne les informations du client
 	 */
 	public String toString(){
-		return "Nom : "+this.nomClient+" Type : "+this.typeClient+" Temps d'attente du client : "+this.tempsClient+" pourboire : "+this.pourboire;
+		return this.nomClient+" "+this.typeClient+" "+this.tempsClient+" "+margeTemps+" "+this.pourboire+" "+nbTypeIngredients[0]+" "+nbTypeIngredients[1];
 	}
 	
 	public static void main(String[] args) {
-		Client c1 = new Client(Difficulte.Facile);
-		Client c2 = new Client(Difficulte.Karen);
-		System.out.println(c1.toString());
-		System.out.println(c2.toString());
+		Client c1 = new Client(Difficulte.Facile,40);
+		Client c2 = new Client("Karen1",Difficulte.Karen,15);
 		c1.pourboire(30);
 		System.out.println(c1.toString());
 		System.out.println(c2.toString());
-		System.out.println("_____");
-		c1.parametreClient();
+		
 	}
-
-	public float getMargeTemps() {
-		return margeTemps;
-	}
-
-	public void setMargeTemps(float margeTemps) {
-		this.margeTemps = margeTemps;
-	}
-
 }
- 
