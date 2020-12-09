@@ -75,7 +75,6 @@ public class MenuListeNiveauControleur implements Initializable {
      * Récupération des niveaux classiques dans le fichier de sauvegarde
      */
     private ArrayList<String[]> listeNiveau() {
-        ArrayList<String[]> tmp = null;
         try {
             tmp = new ArrayList<String[]>();
             //lire le fichier
@@ -96,7 +95,6 @@ public class MenuListeNiveauControleur implements Initializable {
      * Récupération des niveaux personnalisés dans le fichier de sauvegarde
      */
     private ArrayList<String[]> listeNiveauPers() {
-        ArrayList<String[]> tmp = null;
         try {
             tmp = new ArrayList<String[]>();
             //lire le fichier
@@ -169,7 +167,7 @@ public class MenuListeNiveauControleur implements Initializable {
         	minIng = Integer.parseInt(niveau[6]);
         	maxIng = Integer.parseInt(niveau[7]);
         	System.out.println(nom+" "+difficulte+" "+nb1TypeClient+" "+nb2TypeClient+" "+nb3TypeClient+" "+margeTresor+" "+minIng+" "+maxIng);
-        	niv = new Niveau(nom, difficulte, nb1TypeClient, nb2TypeClient, nb3TypeClient, margeTresor, minIng, maxIng, true);
+        	niv = new Niveau(nom, difficulte, nb1TypeClient, nb2TypeClient, nb3TypeClient, margeTresor, minIng, maxIng, false);
     	}
     	catch (Exception e) {
 			// TODO: handle exception
@@ -197,7 +195,7 @@ public class MenuListeNiveauControleur implements Initializable {
         	minIng = Integer.parseInt(niveau[6]);
         	maxIng = Integer.parseInt(niveau[7]);
         	System.out.println(nom+" "+difficulte+" "+nb1TypeClient+" "+nb2TypeClient+" "+nb3TypeClient+" "+margeTresor+" "+minIng+" "+maxIng);
-        	niv = new Niveau(nom, difficulte, nb1TypeClient, nb2TypeClient, nb3TypeClient, margeTresor, minIng, maxIng, true);
+        	niv = new Niveau(nom, difficulte, nb1TypeClient, nb2TypeClient, nb3TypeClient, margeTresor, minIng, maxIng, false);
     	}
     	catch (Exception e) {
 			// TODO: handle exception
