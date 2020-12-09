@@ -96,20 +96,20 @@ public class MenuListeNiveauControleur implements Initializable {
      */
     private ArrayList<String[]> listeNiveauPers() {
         try {
-            tmp = new ArrayList<String[]>();
+            tmp1 = new ArrayList<String[]>();
             //lire le fichier
             FileReader file = new FileReader(getClass().getResource("../textes/niveauxPers.txt").getFile());
             BufferedReader buffer = new BufferedReader(file);
             String tmpB = buffer.readLine();
             // parcourir le fichier
             while (tmpB != null) {
-                tmp.add(elementsNiveau(tmpB));
+                tmp1.add(elementsNiveau(tmpB));
                 tmpB = buffer.readLine();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return tmp;
+        return tmp1;
     }
     private String[] elementsNiveau(String element) {
         String[] retour = element.split( "/" );
