@@ -12,14 +12,14 @@ public class Client {
 	private Difficulte typeClient;
 	private int tempsClient;
 	private int pourboire = 0;
-	private int[] nbTypeIngredients;// Tableau min, max nombre type d'ingrÃ¯Â¿Â½dients
-	private String[] lesNomsClient;
+	private int[] nbTypeIngredients;// Tableau min, max nombre type d'ingrÃƒÂ¯Ã‚Â¿Ã‚Â½dients
 	private float margeTemps = 0f;
 	
 	private static ArrayList<String[]> tmpC;
+	private static ArrayList<String>tmpCPrenom;
 	private static Difficulte difficulteFichier;
 	
-	//Faire un fichier avec margeTemps, pourboire initial, min et max nombre type d'ingrÃ¯Â¿Â½dients
+	//Faire un fichier avec margeTemps, pourboire initial, min et max nombre type d'ingrÃƒÂ¯Ã‚Â¿Ã‚Â½dients
 	
 	public Difficulte getTypeClient() {
 		return typeClient;
@@ -54,7 +54,7 @@ public class Client {
 	 * @param typeClient : type de client (simple, normal, difficile, Karen)
 	 */
 	public Client(Difficulte typeClient){
-		this.lesNomsClient = new String[] {"Michel","Bernard","Christophe","Alexandre","Jean","Camille","CÃƒÂ©cile","Elise","Bernadette","Manon"};
+		prenomClient();
 		this.typeClient = typeClient;
 		this.nbTypeIngredients = new int[2];
 		this.nbTypeIngredients[0] = 0;
@@ -82,7 +82,7 @@ public class Client {
 			e.printStackTrace();
 		}
 		Random rd = new Random();
-		this.nomClient = this.lesNomsClient[(rd.nextInt(9 - 0) + 0)];
+		this.nomClient = this.tmpCPrenom.get((rd.nextInt(tmpCPrenom.size() - 0) + 0));
 	}
 	
 	/**
@@ -120,7 +120,7 @@ public class Client {
 	}
 	
 	/*
-	 * Lecture des paramÃ¨tres des clients
+	 * Lecture des paramÃƒÂ¨tres des clients
 	 */
 	private void parametreClient() {
 		try {
@@ -141,10 +141,32 @@ public class Client {
 		}
 	}
 	
+	/*
+	 * Lecture des prenoms des clients
+	 */
+	private void prenomClient() {
+		try {
+			tmpCPrenom = new ArrayList<String>();
+			//Lecture du fichier
+			FileReader file = new FileReader(getClass().getResource("../textes/prenoms.txt").getFile());
+            BufferedReader buffer = new BufferedReader(file);
+            String tmpC2 = buffer.readLine();
+            // parcourir le fichier
+            while (tmpC2 != null) {
+            	tmpCPrenom.add(tmpC2);
+                tmpC2 = buffer.readLine();
+            }
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
 	private String[] elementsClients(String element) {
 		String[] retour = element.split( "/" );
         if(retour.length != 5) {
-            throw new InternalError(element + " ne correspond pas à un String d'un fichier contenant des clients traitables");
+            throw new InternalError(element + " ne correspond pas Ã  un String d'un fichier contenant des clients traitables");
         }
         return retour;
 	}
