@@ -33,6 +33,10 @@ public class Client {
 		return pourboire;
 	}
 	
+	public void setTempsClient(int tempsClient) {
+		this.tempsClient = tempsClient;
+	}
+	
 	public int[] getnbTypeIngredients() {
 		return nbTypeIngredients;
 	}
@@ -49,13 +53,13 @@ public class Client {
 	 * Constructeur du client
 	 * @param typeClient : type de client (simple, normal, difficile, Karen)
 	 */
-	public Client(Difficulte typeClient, int tempsClient){
+	public Client(Difficulte typeClient){
 		this.lesNomsClient = new String[] {"Michel","Bernard","Christophe","Alexandre","Jean","Camille","CÃƒÂ©cile","Elise","Bernadette","Manon"};
 		this.typeClient = typeClient;
 		this.nbTypeIngredients = new int[2];
 		this.nbTypeIngredients[0] = 0;
 		this.nbTypeIngredients[0] = 0;
-		this.tempsClient = tempsClient;
+		this.tempsClient = 0;
 		parametreClient();
 		try {
 			for(String[] t : tmpC) {
@@ -85,13 +89,13 @@ public class Client {
 	 * Constructeur du client
 	 * @param typeClient : type de client (simple, normal, difficile, Karen)
 	 */
-	public Client(String nom, Difficulte typeClient, int tempsClient){
+	public Client(String nom, Difficulte typeClient){
 		this.typeClient = typeClient;
 		this.nomClient = nom;
 		this.nbTypeIngredients = new int[2];
 		this.nbTypeIngredients[0] = 0;
 		this.nbTypeIngredients[0] = 0;
-		this.tempsClient = tempsClient;
+		this.tempsClient = 0;
 		parametreClient();
 		try {
 			for(String[] t : tmpC) {
@@ -147,28 +151,6 @@ public class Client {
 	
 	
 	/**
-	 * Permet de dÃƒÂ©terminer le pourboire du client
-	 * @param tempsPreparation : le temps de prÃƒÂ©paration de la commande
-	 * @return pourboire : le pourboire du client
-	 */
-	public void pourboire(Integer tempsPreparation){
-		int tempsFinal = this.tempsClient - tempsPreparation;
-		//Traitement du pourboire
-		if(tempsFinal >= 0){
-			this.pourboire += 3;
-			if(tempsFinal > 5){
-				this.pourboire += 3;
-				if(tempsFinal > 10) {
-					this.pourboire += 3;
-					if(tempsFinal > 15) {
-						this.pourboire += 3;
-						}
-					}
-				}
-			}
-	}
-	
-	/**
 	 * Retourne les informations du client
 	 */
 	public String toString(){
@@ -176,9 +158,8 @@ public class Client {
 	}
 	
 	public static void main(String[] args) {
-		Client c1 = new Client(Difficulte.Facile,40);
-		Client c2 = new Client("Karen1",Difficulte.Karen,15);
-		c1.pourboire(30);
+		Client c1 = new Client(Difficulte.Facile);
+		Client c2 = new Client("Karen1",Difficulte.Karen);
 		System.out.println(c1.toString());
 		System.out.println(c2.toString());
 		
