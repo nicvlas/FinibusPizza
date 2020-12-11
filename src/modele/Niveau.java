@@ -333,7 +333,7 @@ public class Niveau {
 	      if(d != Difficulte.Karen) {
 	    	  nomPrenom = tmpP.get(nbP) + " " + tmpN.get(nbN) ;
 	      } else {
-	    	  nomPrenom = "Karen " +  tmpN.get(nbN-1);
+	    	  nomPrenom = "Karen " +  tmpN.get(nbN);
 	      }
 	      return new Client(nomPrenom,d);
 	      
