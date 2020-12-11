@@ -19,7 +19,7 @@ public class Niveau {
 	//Liste contenant au maximum les trois types de clients possibles en tant que cl� enfin de savoir le nombre de clients par type
 	private HashMap<Difficulte, Integer> clients = new HashMap<Difficulte, Integer>();
 	//liste contenant des commandes � g�n�rer
-	private ArrayList<Commande> commandes = new ArrayList<Commande>();
+	private Commande [] commandes;
 	//Temps total de partie(calculable + marge!)
 	private int tempsPartie = 0; 
 	//Trois temps, les trois d�signant donc les trois �toiles obtenables (calculable !)
@@ -74,8 +74,10 @@ public class Niveau {
 				
 		}
 		this.tmp=tmp;
+		this.commandes = new Commande[nb1TypeClient+ nb2TypeClient+ nb3TypeClient];
+
 	}
-	public ArrayList<Commande> getCommandes() {
+	public Commande[] getCommandes() {
 		return commandes;
 	}
 	public int getTempsTmp() {
@@ -246,7 +248,7 @@ public class Niveau {
 	 */
 	public String[] elementsIngredients(String element) {
 		String[] retour = element.split( "/" );
-		if(retour.length != 3 || retour.length != 4) {
+		if(retour.length != 3 && retour.length != 4) {
 			throw new InternalError(element + " ne correspond pas � un String d'un fichier contenant des ingr�dients traitables");
 		}
 		return retour;
@@ -286,8 +288,8 @@ public class Niveau {
     	      e.printStackTrace();
     	   }
 	      
-	      int nbPates = r3.nextInt((tmpP.size()) + 1);
-	      String pateTmp = tmpP.get(nbPates-1);
+	      int nbPates = r3.nextInt((tmpP.size()));
+	      String pateTmp = tmpP.get(nbPates);
 	      String[] pateTmp1 = elementsIngredients(pateTmp);
 	      return new Pate(pateTmp1[0], Float.valueOf(pateTmp1[1]), Float.valueOf(pateTmp1[2]), "yes");
 	}
@@ -302,8 +304,8 @@ public class Niveau {
         ArrayList<String> tmpP = new ArrayList<String>();
 	      try {
     	      //lire le fichier
-    	      FileReader fileN = new FileReader(getClass().getResource("./textes/noms.txt").getFile());
-    	      FileReader fileP = new FileReader(getClass().getResource("./textes/prenoms.txt").getFile());
+    	      FileReader fileN = new FileReader(getClass().getResource("../textes/noms.txt").getFile());
+    	      FileReader fileP = new FileReader(getClass().getResource("../textes/prenoms.txt").getFile());
     	      BufferedReader bufferN = new BufferedReader(fileN);
     	      BufferedReader bufferP = new BufferedReader(fileP);
     	      tmpN.add(bufferN.readLine());
@@ -325,11 +327,11 @@ public class Niveau {
     	   catch (IOException e) {
     	      e.printStackTrace();
     	   }
-	      int nbN = r3.nextInt((tmpN.size()) + 1);
-	      int nbP = r3.nextInt((tmpP.size()) + 1);
+	      int nbN = r3.nextInt((tmpN.size()));
+	      int nbP = r3.nextInt((tmpP.size()));
 	      String nomPrenom;
 	      if(d != Difficulte.Karen) {
-	    	  nomPrenom = tmpP.get(nbP-1) + " " + tmpN.get(nbN-1) ;
+	    	  nomPrenom = tmpP.get(nbP) + " " + tmpN.get(nbN) ;
 	      } else {
 	    	  nomPrenom = "Karen " +  tmpN.get(nbN-1);
 	      }
@@ -345,7 +347,7 @@ public class Niveau {
         ArrayList<String> tmpB = new ArrayList<String>();
 	      try {
     	      //lire le fichier
-    	      FileReader fileB = new FileReader(getClass().getResource("./textes/bases.txt").getFile());
+    	      FileReader fileB = new FileReader(getClass().getResource("../textes/bases.txt").getFile());
     	      BufferedReader bufferB = new BufferedReader(fileB);
 			  String tmpBB = bufferB.readLine();
 			  // parcourir le fichier
@@ -358,8 +360,9 @@ public class Niveau {
     	   catch (IOException e) {
     	      e.printStackTrace();
     	   }
-	      int nbBases = r2.nextInt((tmpB.size()) + 1);
-	      String baseTmp = tmpB.get(nbBases-1);
+
+	      int nbBases = r2.nextInt(tmpB.size());
+	      String baseTmp = tmpB.get(nbBases);
 	      String[] baseTmp1 = elementsIngredients(baseTmp);
 	      return new Ingredients(baseTmp1[0], Float.valueOf(baseTmp1[1]), Float.valueOf(baseTmp1[2]), "yes");
 	}
@@ -377,7 +380,7 @@ public class Niveau {
 		ingredientsList.put(base, 1);
 		try {
   	      //lire le fichier
-  	      FileReader fileI = new FileReader(getClass().getResource("./textes/ingredients.txt").getFile());
+  	      FileReader fileI = new FileReader(getClass().getResource("../textes/ingredients.txt").getFile());
   	      BufferedReader bufferI = new BufferedReader(fileI);
 			String tmpBB = bufferI.readLine();
 			// parcourir le fichier
@@ -399,11 +402,11 @@ public class Niveau {
 		Ingredients ing;
 		for(int i = nbTypeIng; i>0 ; i--) {
 			nbIng = r2.nextInt(nbIngredient[1]-nbIngredient[0]+1)+nbIngredient[0];
-			nbIngExistant = r2.nextInt((tmpI.size()) + 1);
-			ingTmp = tmpI.get(nbIngExistant-1);
+			nbIngExistant = r2.nextInt(tmpI.size());
+			ingTmp = tmpI.get(nbIngExistant);
 			while(ingTmp == catchTmp) {
-				nbIngExistant = r2.nextInt((tmpI.size()) + 1);
-				ingTmp = tmpI.get(nbIngExistant-1);
+				nbIngExistant = r2.nextInt(tmpI.size());
+				ingTmp = tmpI.get(nbIngExistant);
 			}
 			catchTmp = ingTmp;
 			ingTmp1 = elementsIngredients(ingTmp);
@@ -426,9 +429,11 @@ public class Niveau {
         	  Random r = new Random();
               int place = r.nextInt(this.nbClients);
               //Verification si la place est libre
-              while(this.commandes.get(place) != null) {
-            	  place = r.nextInt(this.nbClients);
-              }
+			  if(this.commandes.length != 0) {
+				  while (this.commandes[place] != null) {
+					  place = r.nextInt(this.nbClients);
+				  }
+			  }
              //generation commande selon client obtenu
 
               //generation client
@@ -445,8 +450,7 @@ public class Niveau {
               HashMap<Ingredients, Integer> listeIng = generationListeIngredients(c.getnbTypeIngredients(), this.nbIngredients, base);
               
               Commande commande = new Commande(c, listeIng, pate);
-              
-              this.commandes.add(place, commande);
+              this.commandes[place] = commande;
               //!--Attente code client --!//
               this.setTempsPartiePetitaPetit((int) (commande.getTempsPreparation()*c.getMargeTemps()));
               this.margeTemps+=(int) (commande.getTempsPreparation()*c.getMargeTemps()) - commande.getTempsPreparation(); 
@@ -493,8 +497,8 @@ public class Niveau {
 	public void setScore() {
 		//!---selon le temps de cuisson, le temps et le respect des ingr�dients----!
 		int scoreTresor;
-		this.scorePizzaIng = this.scorePizzaIng/this.commandes.size();
-		this.scoreCuisson = this.scoreCuisson/this.commandes.size();
+		this.scorePizzaIng = this.scorePizzaIng/this.commandes.length;
+		this.scoreCuisson = this.scoreCuisson/this.commandes.length;
 		if(this.scoreATresorerie[0] <  getTresorerietmp() && getTresorerietmp() < this.scoreATresorerie[1]) {
 			scoreTresor = 2;
 		} else if (this.scoreATresorerie[1] <  getTresorerietmp() && getTresorerietmp() < this.scoreATresorerie[2]) {
@@ -632,8 +636,6 @@ public class Niveau {
 				dur = Difficulte.Facile;
 		}
 		Niveau niveauEnCours = new Niveau(donneesNiv[0],dur,Integer.parseInt(donneesNiv[2]),Integer.parseInt(donneesNiv[3]),Integer.parseInt(donneesNiv[4]),Float.parseFloat(donneesNiv[5]),Integer.parseInt(donneesNiv[6]),Integer.parseInt(donneesNiv[7]));*/
-		ArrayList<Commande> commandes = this.getCommandes();
-		
 		
 	}
 
