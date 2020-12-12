@@ -16,6 +16,7 @@ public class Commande {
 	private float AchatCommande;
 	private float VenteCommande;
 	private int tempsCuisson;
+	private float marge;
 	
 	public Client getUnClient() {
 		return unClient;
@@ -92,6 +93,8 @@ public class Commande {
 		}
 
 		this.VenteCommande = this.VenteCommande - this.AchatCommande;//soustraction du coût de fabrication au profit
+		
+		this.marge = 1.25f;
 	}
 
 	/**
@@ -128,8 +131,16 @@ public class Commande {
 	 * la donne au client contre moins d'argent et estReussite = false. Si la pizza
 	 * est trop cuite, il faut la recommencer et estReussite = false.
 	 */
-	public void cuire() {
-
+	public Integer[] cuire() {
+		float tempsCuissonAutorise = this.marge * this.tempsCuisson;
+		
+        Integer[] tabMarge = new Integer[2];
+        
+        tabMarge[0] = this.tempsCuisson;
+        
+        tabMarge[1] = (int) tempsCuissonAutorise;
+        
+        return tabMarge;
 	}
 
 	/**
