@@ -21,6 +21,7 @@ public class Main extends Application {
             //Création écran Menu
             root = FXMLLoader.load(getClass().getResource("../fxml/Menu.fxml"));
             primaryStage.setTitle("PizzaFinibus : Menu");
+            primaryStage.setResizable(false);
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
         } catch(Exception e) {
