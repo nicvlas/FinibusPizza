@@ -281,7 +281,7 @@ public class NiveauAPCControleur implements Initializable {
 					if(!pause && !arret){
 						AffichetempsClient();
 						nbClientRestant.setText("Client restant : "+clientsRestant.size());
-						lbl_argent.setText("TrÃ©sorerie : "+(niveauActuel.getTresorerietmp()));
+						lbl_argent.setText("Trésorerie : "+(niveauActuel.getTresorerietmp()));
 					}
 					if(arret){
 						secondes.stop();
@@ -405,7 +405,7 @@ public class NiveauAPCControleur implements Initializable {
 	public void initialisationAllPizza(){
     	initialisationNbIngredientPizza();
     	menuReset();
-    	lblPetrissage.setText("PÃ©trissage en attente");
+    	lblPetrissage.setText("Pétrissage en attente");
     	btn_gestion.setDisable(true);
     	progressBarCuisson.setProgress(0);
         progressBarMarg.setProgress(0);
