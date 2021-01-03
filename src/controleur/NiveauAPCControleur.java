@@ -319,7 +319,7 @@ public class NiveauAPCControleur implements Initializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		lbl_argent.setText("Tr√©sorerie : "+niveauActuel.getTresorerietmp());
+		lbl_argent.setText("TrÈsorerie : "+niveauActuel.getTresorerietmp());
 		initialisationAllPizza();
 		secondes.setCycleCount(Timeline.INDEFINITE);
 		secondes.play();
@@ -343,7 +343,7 @@ public class NiveauAPCControleur implements Initializable {
         }, 1000,1000);
 	}
 	/*
-	 * R√©cup√©rer la liste des ingr√©dients sous forme de listes
+	 * RÈcupÈrer la liste des ingrÈdients sous forme de listes
 	 */
 	public void definirListeIngredient() {
 		try {
@@ -384,7 +384,7 @@ public class NiveauAPCControleur implements Initializable {
 			tmpB2.add(elementsIngredients(s));
 	}
 	/*
-	 * Initialise le nombre d'ingr√©dients sur la pizza
+	 * Initialise le nombre d'ingrÈdients sur la pizza
 	 */
 	public void initialisationNbIngredientPizza() 
 	{
@@ -450,7 +450,7 @@ public class NiveauAPCControleur implements Initializable {
 		lblErreurPetrir.setVisible(false);
     }
 	/*
-	 * Ouverture le menu de pr√©paration de la p√¢te
+	 * Ouverture le menu de prÈparation de la p√¢te
 	 */
 	public void menuPreparationPate() {
 		paneCuisson.setVisible(false);
@@ -463,7 +463,7 @@ public class NiveauAPCControleur implements Initializable {
 		btn_gestion.setDisable(true);
 	}
 	/*
-	 * Ouverture le menu de pr√©paration de la pizza
+	 * Ouverture le menu de prÈparation de la pizza
 	 */
 	public void menuPreparationPizza() {
 		paneCuisson.setVisible(false);
@@ -518,7 +518,7 @@ public class NiveauAPCControleur implements Initializable {
 		btnValiderPizza.setDisable(true);
 	}
 	/*
-	 * Remet √† zero les √©l√©ments de la commande choisie
+	 * Remet √† zero les ÈlÈments de la commande choisie
 	 */
 	public void resetCommandeAffichage(){
 		base.setVisible(false);
@@ -537,7 +537,7 @@ public class NiveauAPCControleur implements Initializable {
         btnValidationPizzaCote.setDisable(true);*/
     }
 	/*
-	 * Active ou d√©sactive les boutons des clients
+	 * Active ou dÈsactive les boutons des clients
 	 */
 	public void btnChoixClientActif(boolean t){
         btn_c3.setDisable(t);
@@ -797,7 +797,7 @@ public class NiveauAPCControleur implements Initializable {
 	}
 
 	/*
-	 * Place l'ingr√©dient sur la pizza
+	 * Place l'ingrÈdient sur la pizza
 	 */
 	public void mettreIngredient(MouseEvent e) {
 		btnCuisson.setDisable(false);
@@ -910,8 +910,8 @@ public class NiveauAPCControleur implements Initializable {
 		};
 	}
 	/*
-	 * Indique si l'utilisateur peut mettre l'ingr√©dient
-	 * @param lb : le label de l'ingr√©dient √† mettre
+	 * Indique si l'utilisateur peut mettre l'ingrÈdient
+	 * @param lb : le label de l'ingrÈdient √† mettre
 	 */
 	public boolean mettreIngredientNb(Label lb)
 	{
@@ -941,7 +941,7 @@ public class NiveauAPCControleur implements Initializable {
 	
 	
 	/*
-	 * Cr√©ation de la pizza misDeCote
+	 * CrÈation de la pizza misDeCote
 	 */
 	public void validerPizzaPreparation(ActionEvent event) {
 		HashMap<Ingredients, Integer> ingredientsActuels = new HashMap<Ingredients, Integer>();
@@ -975,7 +975,7 @@ public class NiveauAPCControleur implements Initializable {
 	public String[] elementsIngredients(String element) {
 		String[] retour = element.split( "/" );
 		if(retour.length != 3 && retour.length != 4) {
-			throw new InternalError(element + " ne correspond pas √Ø¬ø¬Ω un String d'un fichier contenant des ingr√©dients traitables");
+			throw new InternalError(element + " ne correspond pas √Ø¬ø¬Ω un String d'un fichier contenant des ingrÈdients traitables");
 		}
 		return retour;
 	}
@@ -1007,7 +1007,7 @@ public class NiveauAPCControleur implements Initializable {
 		this.pizzaEnCoursDePreparation = null;
         this.pizzaEnCoursDeCuisson = null;
         this.misDeCote = null;
-        lblPetrissage.setText("P√©trissage en attente");
+        lblPetrissage.setText("PÈtrissage en attente");
 		menuPreparationPate();
     }
 	
@@ -1077,7 +1077,7 @@ public class NiveauAPCControleur implements Initializable {
 
 	/*
 	 * Prend la commande
-	 * @param e : d√©tecte le bouton qui a fait l'action
+	 * @param e : dÈtecte le bouton qui a fait l'action
 	 */
 	public void prendreCommande(ActionEvent e) {
 		commandeClient = (Button)e.getSource();
@@ -1193,18 +1193,18 @@ public class NiveauAPCControleur implements Initializable {
 
     public void sauvegardePizza(ActionEvent actionEvent) {
         this.misDeCote = this.pizzaEnCoursDeCuisson;
-        System.out.println("Pizza sauvegard√©e");
+        System.out.println("Pizza sauvegardÈe");
         this.pizzaEnCoursDeCuisson = null;
         this.pizzaEnCoursDePreparation=null;
 		menuGestionPizza();
-		lblPetrissage.setText("P√©trissage en attente");
+		lblPetrissage.setText("PÈtrissage en attente");
 		btnCuisson.setText("Cuisson");
 		//lbl_prixVentePizza.setText("Prix de vente : "+misDeCote.getVenteCommande());
 		String resumePizza = "";
 		for(Ingredients ing : misDeCote.getLesIngredients().keySet()) {
 			resumePizza+=" "+ing.getNom()+" x"+misDeCote.getLesIngredients().get(ing)+",";
 		}
-		lbl_resumePizza.setText("R√©sum√© de la pizza : "+resumePizza);
+		lbl_resumePizza.setText("RÈsumÈ de la pizza : "+resumePizza);
     }
     /*
      * Vendre la pizza (menu gestion pizza)
@@ -1235,7 +1235,7 @@ public class NiveauAPCControleur implements Initializable {
      */
     public void jeterLaPizza() {
     	System.out.println("Jeter la pizza");
-    	lblPetrissage.setText("P√©trissage en attente");
+    	lblPetrissage.setText("PÈtrissage en attente");
     	menuPreparationPate();
     	btnChoixClientActif(false);
 		DropShadow resetShadow = new DropShadow();
@@ -1290,7 +1290,7 @@ public class NiveauAPCControleur implements Initializable {
     }
 
 	/**
-	 * P√©trir la p√¢te. G√©n√®re une p√¢te dans pateActuelle. Enregistre l'heure
+	 * PÈtrir la p√¢te. GÈn√®re une p√¢te dans pateActuelle. Enregistre l'heure
 	 * syst√®me du clic.
 	 *
 	 * @param event
@@ -1329,14 +1329,14 @@ public class NiveauAPCControleur implements Initializable {
 		// System.out.println(start);
 		btnPetrir.setDisable(true);// on bloque le bouton
 		btnStop.setDisable(false);
-		lblPetrissage.setText("P√©trissage en cours !");
+		lblPetrissage.setText("PÈtrissage en cours !");
 
 	}
 
 	/**
-	 * Arr√™te le p√©trissage. Compare l'heure syst√®me d'arr√™t de p√©trissage √†
+	 * Arr√™te le pÈtrissage. Compare l'heure syst√®me d'arr√™t de pÈtrissage √†
 	 * celle du commencement. Si >5 ou <5, on recommence petrir(). Si =5, on
-	 * passe √† la pose des ingr√©dients
+	 * passe √† la pose des ingrÈdients
 	 *
 	 * @param event
 	 * @throws IOException
@@ -1347,16 +1347,16 @@ public class NiveauAPCControleur implements Initializable {
 		long end = System.currentTimeMillis(); // on prend l'heure syst√®me de
 												// fin de t√¢che
 		// System.out.println(end);
-		 long elapsedTime = (end - start) / 1000; // diff√©rence
+		 long elapsedTime = (end - start) / 1000; // diffÈrence
 		//long elapsedTime = 5;
 		btnStop.setDisable(true);// bloquage bouton
 
-		// si on a p√©tri moins ou plus que le temps de p√©trissage
+		// si on a pÈtri moins ou plus que le temps de pÈtrissage
 		if (elapsedTime < 5 || elapsedTime > 5) {
-			System.out.println(elapsedTime + " pas bien p√©tri");
+			System.out.println(elapsedTime + " pas bien pÈtri");
 			lblErreurPetrir.setVisible(true);
 			//checkGameOver("../fxml/EcranVictoire.fxml");
-			lblPetrissage.setText("P√©trissage en attente");
+			lblPetrissage.setText("PÈtrissage en attente");
 			btnPause.setDisable(false);
 			btnPetrir.setDisable(false);
 			btnStop.setDisable(true);
@@ -1366,13 +1366,13 @@ public class NiveauAPCControleur implements Initializable {
 			timerLabel.setDisable(true);
 		}
 
-		// R√©ussite
+		// RÈussite
 		else {
 			lblErreurPetrir.setVisible(false);
 			pateActuelle.setEstReussite(true);
-			// Pop-up alertant de la r√©ussite
+			// Pop-up alertant de la rÈussite
 			btnPause.setDisable(false);
-			lblPetrissage.setText("P√©trissage r√©ussi !");
+			lblPetrissage.setText("PÈtrissage rÈussi !");
 			btnPetrir.setDisable(false);
 			btnStop.setDisable(false);
 			btn_preppizza.setDisable(false);
@@ -1382,12 +1382,12 @@ public class NiveauAPCControleur implements Initializable {
 	}
 
 	/**
-	 * Permet d'ouvrir l'√©cran de victoire et d'afficher les informations selon
-	 * le niveau (nom du niveau et nombre d'√©toiles). Enregistre dans un fichier
-	 * texte le score associ√© au niveau
+	 * Permet d'ouvrir l'Ècran de victoire et d'afficher les informations selon
+	 * le niveau (nom du niveau et nombre d'Ètoiles). Enregistre dans un fichier
+	 * texte le score associÈ au niveau
 	 *
 	 * @param chemin
-	 *            d'acc√®s √† l'√©cran
+	 *            d'acc√®s √† l'Ècran
 	 * @param score
 	 * @author Nicolas
 	 */
@@ -1412,7 +1412,7 @@ public class NiveauAPCControleur implements Initializable {
 		
 		// Affiche le message
 		if (score > 0) {
-			// Affiche le nombre d'√©toiles correspondant au score
+			// Affiche le nombre d'Ètoiles correspondant au score
 			controllerVictoire.setVisibleEtoile(score);
 			controllerVictoire.setLabelEtat("Bravo !\nScore : "+score);
 			// si c'est un niveau test
@@ -1421,24 +1421,24 @@ public class NiveauAPCControleur implements Initializable {
 				controllerVictoire.btn_suivant_edit.setVisible(true);
 			}
 			// si c'est le dernier niveau classique OU si c'est un niveau
-			// personnalis√©
+			// personnalisÈ
 			if (niveauActuel.isEstDernier() || niveauActuel.isEstPerso()) {
 				controllerVictoire.btn_suivant_edit.setVisible(false);
 			}
 		} else {
-			primaryStage.setTitle("FinibusPizza : Vous avez √©chou√©");
+			primaryStage.setTitle("FinibusPizza : Vous avez ÈchouÈ");
 			controllerVictoire.setLabelEtat("GAME OVER");
 		}
 		
 		primaryStage.setScene(new Scene(root));
 		primaryStage.show();
 		File file = new File("src/textes/score.txt");
-		// cr√©er le fichier s'il n'existe pas
+		// crÈer le fichier s'il n'existe pas
 		if (!file.exists()) {
 			file.createNewFile();
 		}
 
-		// On √©crit dans un fichier le nom du niveau et le score
+		// On Ècrit dans un fichier le nom du niveau et le score
 		FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
 		BufferedWriter bw = new BufferedWriter(fw);
 		bw.write(niveauActuel.getNom() + "/" + score + "\n");
@@ -1446,7 +1446,7 @@ public class NiveauAPCControleur implements Initializable {
 	}
 
 	/**
-	 * V√©rifie l'√©tat de la tr√©sorerie pour le game over
+	 * VÈrifie l'Ètat de la trÈsorerie pour le game over
 	 * @param chemin
 	 * @throws IOException
 	 * @author Nicolas
