@@ -22,11 +22,7 @@ public class MenuCreationNiveauControleur implements Initializable{
     @FXML
     Button btnReset;
     @FXML
-    Button btnTester;
-    @FXML
     Button btnValider;
-    @FXML
-    Button btnValideJouer;
     @FXML
     Label nomNiveau;
     @FXML
@@ -81,7 +77,7 @@ public class MenuCreationNiveauControleur implements Initializable{
                 nb1TypeClient,
                 nb2TypeClient,
                 nb3TypeClient,
-                margeTresor,
+                margeTresor + 1,
                 minIng,
                 maxIng,
                 t);
@@ -120,13 +116,10 @@ public class MenuCreationNiveauControleur implements Initializable{
     public void verificationValidation(){
         boolean nbClient = Integer.parseInt(nbFacileClient.getValue().toString()) != 0 || Integer.parseInt(nbNormalClient.getValue().toString()) != 0 || Integer.parseInt(nbKarenClient.getValue().toString()) != 0;
         if(nbClient && this.selectDifficulte.getSelectionModel().getSelectedIndex() !=-1){
-            btnTester.setDisable(false);
+
             btnValider.setDisable(false);
-            btnValideJouer.setDisable(false);
         } else {
-            btnTester.setDisable(true);
             btnValider.setDisable(true);
-            btnValideJouer.setDisable(true);
 
         }
     }
@@ -136,13 +129,6 @@ public class MenuCreationNiveauControleur implements Initializable{
 
     public void retourMenuPers(ActionEvent actionEvent) throws IOException {
 		Main.changementFenetre("../fxml/MenuParametres.fxml", "FinibusPizza : Personnalisation");
-    }
-    //Enregistrer le niveau dans le fichier
-    //Enregistrer le niveau dans le niv
-    public void validerEtJouer(ActionEvent actionEvent) throws IOException {
-        validerCrea();
-        setNiv(false);
-        Main.changementFenetre("../NiveauAvantPriseCommande.fxml", "FinibusPizza : Jeu");
     }
     private ArrayList<String> listeNiveauPers() {
         ArrayList<String> tmp = null;
@@ -178,7 +164,7 @@ public class MenuCreationNiveauControleur implements Initializable{
         String nb1TypeClient = this.nbFacileClient.getValue() + "";
         String nb2TypeClient = this.nbNormalClient.getValue() + "";
         String nb3TypeClient = this.nbKarenClient.getValue() + "";
-        String margeTresor = (float)(Float.valueOf(this.margeTresor.getValue().toString())/100) + "";
+        String margeTresor = (float)(Float.valueOf(this.margeTresor.getValue().toString())/100 + 1) + "";
         String minIng = this.minNbIng.getValue() + "";
         String maxIng = this.maxNbIng.getValue() + "";
         String niveauS = difficulte + "/" + nb1TypeClient + "/" + nb2TypeClient + "/" + nb3TypeClient + "/" + margeTresor + "/" + minIng + "/" + maxIng;
@@ -219,7 +205,7 @@ public class MenuCreationNiveauControleur implements Initializable{
             String nb1TypeClient = this.nbFacileClient.getValue() + "";
             String nb2TypeClient = this.nbNormalClient.getValue() + "";
             String nb3TypeClient = this.nbKarenClient.getValue() + "";
-            String margeTresor = (float)(Float.valueOf(this.margeTresor.getValue().toString())/100) + "";
+            String margeTresor = (float)(Float.valueOf(this.margeTresor.getValue().toString())/100 + 1) + "";
             String minIng = this.minNbIng.getValue() + "";
             String maxIng = this.maxNbIng.getValue() + "";
 
@@ -236,17 +222,6 @@ public class MenuCreationNiveauControleur implements Initializable{
             this.reussite.setOpacity(1);
             this.avertissement.setOpacity(0);
         }
-    }
-    //Donner les données de ce niveau à la page suivant avec tmp dans le constructeur niv
-    public void tester(ActionEvent actionEvent) throws IOException {
-        if (verificationExistanceNiv()){
-            this.avertissement.setOpacity(1);
-            this.reussite.setOpacity(0);
-        } else{
-            setNiv(true);
-            Main.changementFenetre("../NiveauAvantPriseCommande.fxml", "FinibusPizza : Jeu");
-        }
-
     }
     //TOut effacer
     public void reset(ActionEvent actionEvent) {

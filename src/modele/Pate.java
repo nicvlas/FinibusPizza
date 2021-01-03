@@ -13,16 +13,19 @@ public class Pate extends Ingredients{
 	public int getTempsPetrissage() {
 		return tempsPetrissage;
 	}
+	
+	public void setEstReussite(boolean _estReussite) {
+		this.estReussite = _estReussite;
+	}
 
 	/**
 	 * Constructeur de la p�te
 	 * @param nom
 	 * @param prixAchat
 	 * @param prixVente
-	 * @param cheminDaccesImage
 	 */
-	public Pate(String nom, float prixAchat, float prixVente, String cheminDaccesImage) {
-		super(nom, prixAchat, prixVente, cheminDaccesImage);
+	public Pate(String nom, float prixAchat, float prixVente) {
+		super(nom, prixAchat, prixVente);
 		this.estReussite = false; //false car elle n'a pas encore �t� p�trie
 		this.tempsPetrissage = 5;
 	}
@@ -41,7 +44,7 @@ public class Pate extends Ingredients{
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Pate unePate = new Pate("pate", 1, 2, "lol");
+		Pate unePate = new Pate("pate", 1, 2);
 		unePate.petrir();
 		
 	}

@@ -31,11 +31,11 @@ public class MenuListeNiveauControleur implements Initializable {
     Button btnRetourMenu;
 
     private String[] niveau;
-    
+
     private ArrayList<String[]> tmp;
     private ArrayList<String[]> tmp1;
-    
-    
+
+
     private String nom = "";
     private String difficulteString;
     private Difficulte difficulte;
@@ -45,7 +45,7 @@ public class MenuListeNiveauControleur implements Initializable {
 	private Float margeTresor = 0f;
 	private int minIng = 0;
 	private int maxIng = 0;
-    
+
 	public static Niveau niv;
 
     @Override
@@ -66,6 +66,7 @@ public class MenuListeNiveauControleur implements Initializable {
         btnListNivClass.setDisable(true);
         btnListNivPerso.setDisable(true);
         comboListNivClass.setVisibleRowCount(6);
+        comboListNivPerso.setVisibleRowCount(6);
     }
 
     public void retourMenu() throws IOException {
@@ -146,7 +147,7 @@ public class MenuListeNiveauControleur implements Initializable {
             btnListNivClass.setDisable(true);
         }
     }
-    
+
     /*
      * Validation du choix d'un niveau classique
      */
@@ -168,13 +169,19 @@ public class MenuListeNiveauControleur implements Initializable {
         	maxIng = Integer.parseInt(niveau[7]);
         	System.out.println(nom+" "+difficulte+" "+nb1TypeClient+" "+nb2TypeClient+" "+nb3TypeClient+" "+margeTresor+" "+minIng+" "+maxIng);
         	niv = new Niveau(nom, difficulte, nb1TypeClient, nb2TypeClient, nb3TypeClient, margeTresor, minIng, maxIng, false);
+        	//Si c'est le niveau 5, c'est le dernier niveau
+        	if(niv.getNom().contains("5")){
+        		niv.setEstDernier(true);
+        	}
+        	System.out.println(niv.isEstDernier());
+        	Main.changementFenetre("../fxml/NiveauAvantPriseCommande.fxml", "FinibusPizza : Jeu");
     	}
     	catch (Exception e) {
 			// TODO: handle exception
     		e.printStackTrace();
 		}
     }
-    
+
     /*
      * Validation du choix d'un niveau personnalisé
      */
@@ -196,6 +203,8 @@ public class MenuListeNiveauControleur implements Initializable {
         	maxIng = Integer.parseInt(niveau[7]);
         	System.out.println(nom+" "+difficulte+" "+nb1TypeClient+" "+nb2TypeClient+" "+nb3TypeClient+" "+margeTresor+" "+minIng+" "+maxIng);
         	niv = new Niveau(nom, difficulte, nb1TypeClient, nb2TypeClient, nb3TypeClient, margeTresor, minIng, maxIng, false);
+        	niv.setEstPerso(true);
+        	Main.changementFenetre("../fxml/NiveauAvantPriseCommande.fxml", "FinibusPizza : Jeu");
     	}
     	catch (Exception e) {
 			// TODO: handle exception

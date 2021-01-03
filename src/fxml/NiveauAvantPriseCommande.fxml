@@ -1,66 +1,379 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.effect.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.NiveauAPCControleur">
    <children>
-      <Button fx:id="btn_menu" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" text="Menu">
-         <font>
-            <Font size="15.0" />
-         </font></Button>
-      <Label fx:id="lbl_temps" layoutX="86.0" layoutY="26.0" text="Temps">
-         <font>
-            <Font size="15.0" />
-         </font></Label>
-      <Label fx:id="lbl_argent" layoutX="157.0" layoutY="26.0" text="Argent">
-         <font>
-            <Font size="15.0" />
-         </font></Label>
+      <ImageView fitHeight="646.0" fitWidth="642.0" layoutX="641.0" layoutY="78.0" pickOnBounds="true">
+         <image>
+            <Image url="@../img/plancheTravail.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="604.0" fitWidth="644.0" layoutX="-3.0" layoutY="-1.0" pickOnBounds="true">
+         <image>
+            <Image url="@../img/murBrique.jpg" />
+         </image>
+      </ImageView>
       <Line fx:id="line_btm" endX="544.0" layoutX="95.0" layoutY="601.0" startX="-97.0" />
-      <Button fx:id="btn_c1" layoutX="76.0" layoutY="648.0" mnemonicParsing="false" text="Button" />
-      <Button fx:id="btn_c2" layoutX="292.0" layoutY="648.0" mnemonicParsing="false" text="Button" />
-      <Button fx:id="btn_c3" layoutX="516.0" layoutY="648.0" mnemonicParsing="false" text="Button" />
-      <ImageView fx:id="img_c1" fitHeight="209.0" fitWidth="118.0" layoutX="43.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="btn_c1" layoutX="62.0" layoutY="528.0" mnemonicParsing="false" onAction="#prendreCommande" text="Afficher" />
+      <Button fx:id="btn_c2" layoutX="281.0" layoutY="528.0" mnemonicParsing="false" onAction="#prendreCommande" text="Afficher" />
+      <Button fx:id="btn_c3" layoutX="514.0" layoutY="528.0" mnemonicParsing="false" onAction="#prendreCommande" text="Afficher" />
+      <ImageView fx:id="img_c1" fitHeight="209.0" fitWidth="118.0" layoutX="44.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/karen.jpg" />
          </image></ImageView>
-      <ImageView fx:id="img_c2" fitHeight="209.0" fitWidth="118.0" layoutX="259.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img_c2" fitHeight="209.0" fitWidth="118.0" layoutX="259.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/karen.jpg" />
          </image></ImageView>
-      <ImageView fx:id="img_c3" fitHeight="209.0" fitWidth="118.0" layoutX="483.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img_c3" fitHeight="209.0" fitWidth="118.0" layoutX="483.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/karen.jpg" />
          </image></ImageView>
-      <ImageView fx:id="img_principale" fitHeight="643.0" fitWidth="641.0" layoutX="640.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/fondNiveau.jpg" />
-         </image></ImageView>
-      <Button fx:id="btn_preppate" layoutX="640.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="160.0" text="Préparation pâte" textAlignment="CENTER" wrapText="true">
+      <Button fx:id="btn_preppate" layoutX="640.0" mnemonicParsing="false" onAction="#menuPreparationPate" prefHeight="78.0" prefWidth="160.0" text="Préparation pâte" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="15.0" />
          </font></Button>
       <Line fx:id="line_top" layoutX="1280.0" layoutY="80.0" startX="-640.0" />
-      <Button fx:id="btn_preppizza" layoutX="800.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="160.0" text="Préparation pizza" textAlignment="CENTER" wrapText="true">
+      <Button fx:id="btn_preppizza" layoutX="800.0" mnemonicParsing="false" onAction="#menuPreparationPizza" prefHeight="78.0" prefWidth="160.0" text="Préparation pizza" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Button fx:id="btn_gestion" layoutX="1120.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="160.0" text="Gestion pizza" textAlignment="CENTER" wrapText="true">
+      <Button fx:id="btn_gestion" layoutX="1120.0" mnemonicParsing="false" onAction="#menuGestionPizza" prefHeight="78.0" prefWidth="160.0" text="Gestion pizza" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Button fx:id="btn_cuisson" layoutX="960.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="160.0" text="Cuisson pizza" textAlignment="CENTER" wrapText="true">
+      <Button fx:id="btn_cuisson" layoutX="960.0" mnemonicParsing="false" onAction="#menuCuissonPizza" prefHeight="78.0" prefWidth="160.0" text="Cuisson pizza" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="15.0" />
          </font></Button>
       <Line fx:id="line_middle" endX="720.0" layoutX="280.0" layoutY="361.0" rotate="90.0" />
+      <Label fx:id="nbClientRestant" layoutX="14.0" layoutY="691.0" text="Client restant : " />
+      <Label fx:id="c1Temps" layoutX="95.0" layoutY="241.0" text="_">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Label fx:id="c2Temps" layoutX="311.0" layoutY="241.0" text="_">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Label fx:id="c3Temps" layoutX="535.0" layoutY="240.0" text="_">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Pane fx:id="paneNbCIngredient" layoutX="1.0" layoutY="600.0" prefHeight="123.0" prefWidth="633.0" style="-fx-background-color: #fff;">
+         <children>
+            <GridPane prefHeight="123.0" prefWidth="638.0" style="-fx-background-color: lightgrey;">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="312.4000244140625" minWidth="10.0" prefWidth="208.40003051757813" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="312.4000244140625" minWidth="10.0" prefWidth="229.8" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="510.00001525878906" minWidth="10.0" prefWidth="203.60000000000002" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/oignon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="oignonNb" text="X 0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="200.0" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/bacon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="baconNb" text="X 0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="200.0" GridPane.rowIndex="2">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/fromage.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="fromageNb" text="X 0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/champignon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="champignonNb" text="X 0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="200.0" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/poulet.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="pouletNb" text="X 0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/tomate.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="tomateNb" text="X 0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="200.0" GridPane.columnIndex="2">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/oeuf.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="oeufNb" text="X 0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="41.0" prefWidth="213.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/chorizo.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="chorizoNb" text="X 0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <children>
+                        <Label text="Base :" />
+                        <ImageView fx:id="base" fitHeight="45.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </HBox>
+               </children>
+            </GridPane>
+            <Line endX="546.5" endY="-4.5" layoutX="93.0" layoutY="5.0" startX="-96.49998474121094" startY="-4.5" />
+         </children>
+      </Pane>
+      <Pane fx:id="paneCuisson" layoutX="645.0" layoutY="79.0" prefHeight="640.0" prefWidth="633.0" visible="false">
+         <children>
+            <Button fx:id="btnCuisson" layoutX="517.0" layoutY="87.0" mnemonicParsing="false" onAction="#cuisson" text="Cuisson" />
+            <Button fx:id="btnSupprimerPizza" layoutX="517.0" layoutY="588.0" mnemonicParsing="false" onAction="#supprimerPizza" text="Suppression" />
+            <Button fx:id="btnSauvegardePizza" layoutX="383.0" layoutY="588.0" mnemonicParsing="false" onAction="#sauvegardePizza" text="Mettre de côté" />
+            <ProgressBar fx:id="progressBarCuisson" layoutX="36.0" layoutY="47.0" minHeight="18.0" prefHeight="18.0" prefWidth="562.0" progress="0.0" />
+            <ProgressBar fx:id="progressBarMarg" layoutX="36.0" layoutY="90.0" prefHeight="18.0" prefWidth="433.0" progress="0.0" />
+         </children>
+      </Pane>
+      <Pane fx:id="panePrepPizza" layoutX="640.0" layoutY="81.0" prefHeight="640.0" prefWidth="638.0" visible="false">
+         <children>
+            
+                  <ImageView fx:id="img_oignons" fitHeight="59.0" fitWidth="46.0" layoutX="56.0" layoutY="384.0" onMouseClicked="#mettreIngredient" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/oignon.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_champignons" fitHeight="46.0" fitWidth="44.0" layoutX="58.0" layoutY="482.0" onMouseClicked="#mettreIngredient" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/champignon.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_oeufs" fitHeight="54.0" fitWidth="41.0" layoutX="161.0" layoutY="478.0" onMouseClicked="#mettreIngredient" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/oeuf.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_bacon" fitHeight="53.0" fitWidth="58.0" layoutX="155.0" layoutY="385.0" onMouseClicked="#mettreIngredient" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/bacon.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_poulet" fitHeight="59.0" fitWidth="59.0" layoutX="260.0" layoutY="475.0" onMouseClicked="#mettreIngredient" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/poulet.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_chorizo" fitHeight="59.0" fitWidth="59.0" layoutX="260.0" layoutY="395.0" onMouseClicked="#mettreIngredient" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/chorizo.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_fromage" fitHeight="59.0" fitWidth="59.0" layoutX="387.0" layoutY="475.0" onMouseClicked="#mettreIngredient" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/fromage.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_tomates" fitHeight="59.0" fitWidth="59.0" layoutX="387.0" layoutY="388.0" onMouseClicked="#mettreIngredient" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/tomate.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_creme" fitHeight="59.0" fitWidth="59.0" layoutX="495.0" layoutY="475.0" onMouseClicked="#mettreIngredient" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/crème.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_sauceTomate" fitHeight="59.0" fitWidth="59.0" layoutX="484.0" layoutY="382.0" onMouseClicked="#mettreIngredient" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/sauceTomate.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="txt_oignons" layoutX="113.0" layoutY="403.0" text="x0" textFill="WHITE" />
+            <Label fx:id="txt_chapignon" layoutX="107.0" layoutY="496.0" text="x0" textFill="WHITE" />
+            <Label fx:id="txt_oeufs" layoutX="208.0" layoutY="496.0" text="x0" textFill="WHITE" />
+            <Label fx:id="txt_bacon" layoutX="208.0" layoutY="402.0" text="x0" textFill="WHITE" />
+            <Label fx:id="txt_poulet" layoutX="320.0" layoutY="497.0" text="x0" textFill="WHITE" />
+            <Label fx:id="txt_chorizo" layoutX="320.0" layoutY="403.0" text="x0" textFill="WHITE" />
+            <Label fx:id="txt_fromage" layoutX="453.0" layoutY="497.0" text="x0" textFill="WHITE" />
+            <Label fx:id="txt_tomate" layoutX="453.0" layoutY="403.0" text="x0" textFill="WHITE" />
+            <Label fx:id="txt_creme" layoutX="558.0" layoutY="497.0" text="x0" textFill="WHITE" />
+            <Label fx:id="txt_sauceTomate" layoutX="558.0" layoutY="403.0" text="x0" textFill="WHITE" />
+            <Label fx:id="txt_AVBase" layoutX="63.0" layoutY="558.0" prefHeight="17.0" prefWidth="513.0" textAlignment="CENTER" textFill="WHITE" />
+            <ImageView fx:id="img_principale" fitHeight="368.0" fitWidth="385.0" layoutX="135.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/pizza_pate.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_cremePizza" fitHeight="368.0" fitWidth="363.0" layoutX="135.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../img/pizza_creme.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_sauceTomatePizza" fitHeight="368.0" fitWidth="363.0" layoutX="135.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../img/pizza_sauceTomate.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_tomatePizza" fitHeight="368.0" fitWidth="363.0" layoutX="135.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../img/pizza_tomates.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_chorizoPizza" fitHeight="368.0" fitWidth="363.0" layoutX="135.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../img/pizza_chorizo.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_oignonPizza" fitHeight="368.0" fitWidth="363.0" layoutX="135.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../img/pizza_oignons.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_champignonPizza" fitHeight="368.0" fitWidth="363.0" layoutX="135.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../img/pizza_champignon.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_baconPizza" fitHeight="368.0" fitWidth="363.0" layoutX="135.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../img/pizza_bacon.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_pouletPizza" fitHeight="368.0" fitWidth="363.0" layoutX="135.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../img/poulet.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_oeufPizza" fitHeight="368.0" fitWidth="363.0" layoutX="135.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../img/pizza_oeufs.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_fromagePizza" fitHeight="368.0" fitWidth="363.0" layoutX="135.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../img/pizza_fromage.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnValiderPizza" layoutX="23.0" layoutY="594.0" mnemonicParsing="false" onAction="#validerPizzaPreparation" text="ValiderPizza" />
+            <Button fx:id="btnSupprimer_Pizza" layoutX="125.0" layoutY="594.0" mnemonicParsing="false" onAction="#supprimerPizza" text="Supprimer" />
+         </children>
+      </Pane>
+      <Pane fx:id="panePrepPate" layoutX="653.0" layoutY="124.0" prefHeight="582.0" prefWidth="616.0" visible="false">
+         <children>
+            <Label fx:id="lblPetrissage" prefHeight="64.0" prefWidth="289.0" text="Pétrissage en attente" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnStop" disable="true" layoutX="363.0" layoutY="236.0" mnemonicParsing="false" onAction="#stop" prefHeight="81.0" prefWidth="239.0" text="Stop" />
+            <Button fx:id="btnPetrir" layoutX="14.0" layoutY="236.0" mnemonicParsing="false" onAction="#petrir" prefHeight="80.0" prefWidth="239.0" text="Pétrir" />
+            <Label fx:id="timerLabel" layoutX="298.0" layoutY="124.0">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblErreurPetrir" alignment="CENTER" layoutX="79.0" layoutY="375.0" prefHeight="17.0" prefWidth="433.0" text="Vous n'avez pas bien pétri la pâte. Elle a été jetée">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label fx:id="lbl_nomClient1" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="497.0" prefHeight="17.0" prefWidth="146.0" text="nomClient1">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="lbl_nomClient2" alignment="CENTER" contentDisplay="CENTER" layoutX="244.0" layoutY="497.0" prefHeight="17.0" prefWidth="146.0" text="nomClient2" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="lbl_nomClient3" alignment="CENTER" contentDisplay="CENTER" layoutX="464.0" layoutY="497.0" prefHeight="17.0" prefWidth="155.0" text="nomClient3" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Pane fx:id="paneGestionPizza" layoutX="639.0" layoutY="81.0" prefHeight="640.0" prefWidth="641.0" visible="false">
+         <children>
+            <Label fx:id="lbl_resumePizza" layoutX="31.0" layoutY="24.0" text="Résumé de la pizza : " textFill="WHITE" />
+            <Label fx:id="lbl_prixVentePizza" layoutX="31.0" layoutY="67.0" text="Prix de vente : " visible="false" />
+            <Button layoutX="78.0" layoutY="128.0" mnemonicParsing="false" onAction="#vendreLaPizza" prefHeight="46.0" prefWidth="227.0" text="Vendre la pizza" />
+            <Button layoutX="354.0" layoutY="128.0" mnemonicParsing="false" onAction="#jeterLaPizza" prefHeight="46.0" prefWidth="227.0" text="Jeter la pizza" />
+         </children>
+      </Pane>
+      <Label fx:id="txt_choixClientDebut" alignment="CENTER" layoutX="651.0" layoutY="363.0" prefHeight="31.0" prefWidth="616.0" text="Veuillez choisir un client pour commencer" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Pane layoutX="16.0" layoutY="16.0" prefHeight="53.0" prefWidth="342.0" style="-fx-background-color: rgba(0,0,0,0.5);">
+         <children>
+            <Label fx:id="lbl_temps" layoutX="80.0" layoutY="13.0" text="Temps" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_argent" layoutX="151.0" layoutY="13.0" text="Argent" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnPause" layoutX="8.0" layoutY="8.0" mnemonicParsing="false" onAction="#pause" prefHeight="31.0" prefWidth="61.0" text="Pause">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

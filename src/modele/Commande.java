@@ -16,12 +16,12 @@ public class Commande {
 	private float AchatCommande;
 	private float VenteCommande;
 	private int tempsCuisson;
-	private float marge;
+	private float marge = 1.5F;
 	
 	public Client getUnClient() {
 		return unClient;
 	}
-
+	
 	public Pate getLaPate() {
 		return laPate;
 	}
@@ -80,21 +80,19 @@ public class Commande {
 			Ingredients ingredient = (Ingredients) (mapElement.getKey());
 			this.tempsPreparation += ingredient.getTempsDePoseIngredient();
 		}
-		this.tempsPreparation += this.laPate.getTempsPetrissage() + this.getTempsCuisson();
+		this.tempsPreparation += (this.laPate.getTempsPetrissage() + this.getTempsCuisson())*1.25;
 		
 
 		// calcul achat et vente commande
 		Iterator hmIterator2 = this.lesIngredients.entrySet().iterator();
-		while (hmIterator2.hasNext()) {
-			HashMap.Entry mapElement = (HashMap.Entry) hmIterator2.next();
-			Ingredients ingredient = (Ingredients) (mapElement.getKey());
-			this.AchatCommande += ingredient.getPrixAchat();
-			this.VenteCommande += ingredient.getPrixVente();
-		}
+        while (hmIterator2.hasNext()) {
+            HashMap.Entry mapElement = (HashMap.Entry) hmIterator2.next();
+            Ingredients ingredient = (Ingredients) (mapElement.getKey());
+            this.AchatCommande += ingredient.getPrixAchat() * (int)mapElement.getValue();
+            this.VenteCommande += ingredient.getPrixVente() * (int)mapElement.getValue();
+        }
 
-		this.VenteCommande = this.VenteCommande - this.AchatCommande;//soustraction du coût de fabrication au profit
-		
-		this.marge = 1.25f;
+		this.VenteCommande = this.VenteCommande;
 	}
 
 	/**
@@ -154,10 +152,10 @@ public class Commande {
 		// TODO Auto-generated method stub
 
 		Client c1 = new Client("Bernard", Difficulte.Facile);
-		Pate unePate = new Pate("pate", 1, 2, "lol");
+		Pate unePate = new Pate("pate", 1, 2);
 
-		Ingredients fromage = new Ingredients("Fromage", 1.8f, 2.3f,"lol");
-		Ingredients champignons = new Ingredients("Champignons", 1.8f, 2.3f, "lol");
+		Ingredients fromage = new Ingredients("Fromage", 1.8f, 2.3f);
+		Ingredients champignons = new Ingredients("Champignons", 1.8f, 2.3f);
 
 		HashMap<Ingredients, Integer> ingredientsC1 = new HashMap<Ingredients, Integer>();
 		ingredientsC1.put(fromage, 15);
@@ -165,7 +163,6 @@ public class Commande {
 
 		Commande commande1 = new Commande(c1, ingredientsC1, unePate);
 
-		System.out.println(commande1.toString());
 
 	}
 

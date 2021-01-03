@@ -24,7 +24,11 @@ public class Client {
 	public Difficulte getTypeClient() {
 		return typeClient;
 	}
-
+	
+	public String getNomClient() {
+		return nomClient;
+	}
+	
 	public int getTempsClient() {
 		return tempsClient;
 	}
@@ -59,14 +63,21 @@ public class Client {
 		this.nbTypeIngredients = new int[2];
 		this.nbTypeIngredients[0] = 0;
 		this.nbTypeIngredients[0] = 0;
-		this.tempsClient = 0;
+		if(typeClient == Difficulte.Facile)
+			this.tempsClient = 100;
+		else if(typeClient == Difficulte.Normal)
+			this.tempsClient = 90;
+		else
+			this.tempsClient = 80;
 		parametreClient();
 		try {
 			for(String[] t : tmpC) {
-				if(t[0].equals("Facile"))
+				if(t[0].equals("Facile")) {
 					difficulteFichier = Difficulte.Facile;
-				else if(t[0].equals("Normal"))
+				}
+				else if(t[0].equals("Normal")) {
 					difficulteFichier = Difficulte.Normal;
+				}
 				else
 					difficulteFichier = Difficulte.Karen;
 				if(typeClient == difficulteFichier) {
@@ -95,14 +106,21 @@ public class Client {
 		this.nbTypeIngredients = new int[2];
 		this.nbTypeIngredients[0] = 0;
 		this.nbTypeIngredients[0] = 0;
-		this.tempsClient = 0;
+		if(typeClient == Difficulte.Facile)
+			this.tempsClient = 90;
+		else if(typeClient == Difficulte.Normal)
+			this.tempsClient = 80;
+		else
+			this.tempsClient = 70;
 		parametreClient();
 		try {
 			for(String[] t : tmpC) {
-				if(t[0].equals("Facile"))
+				if(t[0].equals("Facile")) {
 					difficulteFichier = Difficulte.Facile;
-				else if(t[0].equals("Normal"))
+				}
+				else if(t[0].equals("Normal")) {
 					difficulteFichier = Difficulte.Normal;
+				}
 				else
 					difficulteFichier = Difficulte.Karen;
 				if(typeClient == difficulteFichier) {
@@ -182,8 +200,6 @@ public class Client {
 	public static void main(String[] args) {
 		Client c1 = new Client(Difficulte.Facile);
 		Client c2 = new Client("Karen1",Difficulte.Karen);
-		System.out.println(c1.toString());
-		System.out.println(c2.toString());
 		
 	}
 }
