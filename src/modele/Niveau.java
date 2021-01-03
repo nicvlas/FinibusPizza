@@ -12,23 +12,46 @@ import java.util.Random;
 
 
 public class Niveau {
+	private float tresorerieSansMarge;
+
+	public void setEstPerso(boolean estPerso) {
+		this.estPerso = estPerso;
+	}
+	public void setEstDernier(boolean estDernier) {
+		this.estDernier = estDernier;
+	}
+	public boolean isEstPerso() {
+		return estPerso;
+	}
+	public boolean isEstDernier() {
+		return estDernier;
+	}
+	private boolean estPerso;
+	private boolean estDernier;
 	//Nom du niveau
 	private String nom;
 	//Difficulte du niveau, � choisir selon l'enum�ratuon difficult�
-	private Difficulte difficulte; 
+	private Difficulte difficulte;
 	//Liste contenant au maximum les trois types de clients possibles en tant que cl� enfin de savoir le nombre de clients par type
 	private HashMap<Difficulte, Integer> clients = new HashMap<Difficulte, Integer>();
 	//liste contenant des commandes � g�n�rer
 	private Commande [] commandes;
 	//Temps total de partie(calculable + marge!)
-	private int tempsPartie = 0; 
+	private int tempsPartie = 0;
 	//Trois temps, les trois d�signant donc les trois �toiles obtenables (calculable !)
-	private int[] scoreAuTemps;
-	private float[] scoreATresorerie;
+	private int[] scoreAuTemps = new int[3];
+	private float[] scoreATresorerie = new float[3];
 	private int score;
 	private float scoreCuisson;
 	private float scorePizzaIng;
+
 	private boolean tmp;
+	public boolean isTmp() {
+		return tmp;
+	}
+	public int getScore() {
+		return this.score;
+	}
 	//!-----Type � v�rifier-------!
 	//Tresorerie de d�but de partie(calculable + marge!)
 	private float tresorerie = 0;
@@ -40,11 +63,11 @@ public class Niveau {
 	private int margeTemps = 0;
 	//marge de tresorerie
 	private float margeTresorerie;
-	//tresorerie cours partie 
+	//tresorerie cours partie
 	private float tresorerietmp = 0;
 	//Temps cours partie
 	private int tempstmp = 0;
-	//Nombre de guichet ouvert, maximum 3 
+	//Nombre de guichet ouvert, maximum 3
 	private int nbPersonneComptoir;
 	public Niveau(String nom, Difficulte diff, int nb1TypeClient, int nb2TypeClient, int nb3TypeClient, float margeTresor, int minIng, int maxIng, boolean tmp) {
 		this.nbClients = nb1TypeClient + nb2TypeClient + nb3TypeClient;
@@ -71,8 +94,10 @@ public class Niveau {
 			break;
 		default:
 			this.nbPersonneComptoir=1;
-				
+
 		}
+		this.estPerso = false;
+		this.estDernier = false;
 		this.tmp=tmp;
 		this.commandes = new Commande[nb1TypeClient+ nb2TypeClient+ nb3TypeClient];
 
@@ -94,6 +119,9 @@ public class Niveau {
 		clients.put(Difficulte.Normal, nbDeuxiemeTypeClient);
 		clients.put(Difficulte.Karen, nbTroisiemeTypeClient);
 	}
+	public float getMargeTresorerie(){
+		return this.margeTresorerie;
+	}
 	/**
 	 * Set ingr�dients
 	 * @param minIng
@@ -112,19 +140,21 @@ public class Niveau {
 	}
 	/**
 	 * Permet de calculer la tr�sorerie du niveau, en y ajoutant une marge donn�e dans la cr�ation du niveau
-	 * @parem marge 
+	 * @parem marge
 	 */
 	public void settresorerie(float marge, float tresor) {
+		this.tresorerieSansMarge = tresorerie;
 		this.tresorerie = tresor * marge;
-		this.setTresorerietmp(this.tresorerie); 
+		this.setTresorerietmp(this.tresorerie);
 	}
 	/**
 	 * Permet de calculer la tr�sorerie du niveau, en y ajoutant une marge donn�e dans la cr�ation du niveau
-	 * @parem marge 
+	 * @parem marge
 	 */
 	public void settresorerie(float marge) {
+		this.tresorerieSansMarge = tresorerie;
 		this.tresorerie *= marge;
-		this.setTresorerietmp(this.tresorerie); 
+		this.setTresorerietmp(this.tresorerie);
 	}
 	/**
 	 * Permet de calculer la tr�sorerie du niveau, en y ajoutant une marge donn�e dans la cr�ation du niveau
@@ -152,21 +182,21 @@ public class Niveau {
 	 * Permet de param�trer le score le plus bas
 	 */
 	public void setScoreAuTemps1() {
-		int score = this.margeTemps*(1/3);
+		int score = (int) ((this.margeTemps* this.tempsPartie - this.tempsPartie)*(0.33));
 		this.scoreAuTemps[0] = score;
 	}
 	/**
 	 * Permet de param�trer le score moyen
 	 */
 	public void setScoreAuTemps2() {
-		int scoreAuTemps = this.margeTemps*(2/3);
+		int scoreAuTemps = (int) ((this.margeTemps* this.tempsPartie - this.tempsPartie)*(0.66));
 		this.scoreAuTemps[1] = scoreAuTemps;
 	}
 	/**
 	 * Permet de param�trer le score le plus haut
 	 */
 	public void setScoreAuTemps3() {
-		int scoreAuTemps = this.margeTemps;
+		int scoreAuTemps = (this.margeTemps* this.tempsPartie - this.tempsPartie) ;
 		this.scoreAuTemps[2] = scoreAuTemps;
 	}
 	/**
@@ -181,21 +211,21 @@ public class Niveau {
 	 * Permet de param�trer le score le plus bas
 	 */
 	public void setScoreALaTresorerie1() {
-		float score = this.margeTresorerie*(1/3);
+		float score = (float) ((float) (this.margeTresorerie * (float)this.tresorerieSansMarge - (float)this.tresorerieSansMarge)*(0.33));
 		this.scoreATresorerie[0] = score;
 	}
 	/**
 	 * Permet de param�trer le score moyen
 	 */
 	public void setScoreALaTresorerie2() {
-		float score = this.margeTresorerie*(2/3);
+		float score = (float) ((float) (this.margeTresorerie * (float)this.tresorerieSansMarge - (float)this.tresorerieSansMarge)*(0.66));
 		this.scoreATresorerie[1] = score;
 	}
 	/**
 	 * Permet de param�trer le score le plus haut
 	 */
 	public void setScoreALaTresorerie3() {
-		float score = this.margeTresorerie;
+		float score = (float) (this.margeTresorerie * (float)this.tresorerieSansMarge - (float)this.tresorerieSansMarge);
 		this.scoreATresorerie[2] = score;
 	}
 	/**
@@ -206,7 +236,7 @@ public class Niveau {
 		return clients;
 	}
 	/**
-	 * Permet d'obtenir le temps de la partie 
+	 * Permet d'obtenir le temps de la partie
 	 * @return le temps de la partie autoris�e et max
 	 */
 	public int getTempsPartie() {
@@ -228,7 +258,7 @@ public class Niveau {
 		this.tempsPartie += temps;
 	}
 	/**
-	 * Permet d'obtenir la difficult� du niveau 
+	 * Permet d'obtenir la difficult� du niveau
 	 * @return la difficult�
 	 */
 	public Difficulte getDifficulte() {
@@ -287,11 +317,11 @@ public class Niveau {
     	   catch (IOException e) {
     	      e.printStackTrace();
     	   }
-	      
+
 	      int nbPates = r3.nextInt((tmpP.size()));
 	      String pateTmp = tmpP.get(nbPates);
 	      String[] pateTmp1 = elementsIngredients(pateTmp);
-	      return new Pate(pateTmp1[0], Float.valueOf(pateTmp1[1]), Float.valueOf(pateTmp1[2]), "yes");
+	      return new Pate(pateTmp1[0], Float.valueOf(pateTmp1[1]), Float.valueOf(pateTmp1[2]));
 	}
 	/**
 	 * Permet de g�n�rer un client selon la difficult� choisir
@@ -336,7 +366,7 @@ public class Niveau {
 	    	  nomPrenom = "Karen " +  tmpN.get(nbN);
 	      }
 	      return new Client(nomPrenom,d);
-	      
+
 	}
 	/**
 	 * Permet de g�n�rer une base parmis celle d'un fichier
@@ -364,7 +394,7 @@ public class Niveau {
 	      int nbBases = r2.nextInt(tmpB.size());
 	      String baseTmp = tmpB.get(nbBases);
 	      String[] baseTmp1 = elementsIngredients(baseTmp);
-	      return new Ingredients(baseTmp1[0], Float.valueOf(baseTmp1[1]), Float.valueOf(baseTmp1[2]), "yes");
+	      return new Ingredients(baseTmp1[0], Float.valueOf(baseTmp1[1]), Float.valueOf(baseTmp1[2]));
 	}
 	/**
 	 * Permet de g�nerer une hash map d'ingr�dients, correspondant au contenu de la commande d'un client
@@ -410,13 +440,13 @@ public class Niveau {
 			}
 			catchTmp = ingTmp;
 			ingTmp1 = elementsIngredients(ingTmp);
-			ing = new Ingredients(ingTmp1[0], Float.valueOf(ingTmp1[1]), Float.valueOf(ingTmp1[2]), "yes");
+			ing = new Ingredients(ingTmp1[0], Float.valueOf(ingTmp1[1]), Float.valueOf(ingTmp1[2]));
 			ingredientsList.put(ing, nbIng);
 		}
 	   return ingredientsList;
 	}
 	/**
-	 * Permet de g�n�rer toutes les commandes en les r�partissant al�atoirement dans une liste 
+	 * Permet de g�n�rer toutes les commandes en les r�partissant al�atoirement dans une liste
 	 * @return si la tout s'est fait comme il faut
 	 */
 	public boolean genererCommande() {
@@ -439,21 +469,21 @@ public class Niveau {
               //generation client
               //!---- A surveiller ---- !
               Client c = generationClient((Difficulte)mapentry.getKey());
-            		  
+
               //Generation Pates
               Pate pate = generationPate();
-    	      
-              //Generation Base 
+
+              //Generation Base
               Ingredients base = generationBase();
-      	      
-              //Gestion reste ingr�dients 
+
+              //Gestion reste ingr�dients
               HashMap<Ingredients, Integer> listeIng = generationListeIngredients(c.getnbTypeIngredients(), this.nbIngredients, base);
-              
+
               Commande commande = new Commande(c, listeIng, pate);
               this.commandes[place] = commande;
               //!--Attente code client --!//
               this.setTempsPartiePetitaPetit((int) (commande.getTempsPreparation()*c.getMargeTemps()));
-              this.margeTemps+=(int) (commande.getTempsPreparation()*c.getMargeTemps()) - commande.getTempsPreparation(); 
+              this.margeTemps+=(int) (commande.getTempsPreparation()*c.getMargeTemps()) - commande.getTempsPreparation();
               this.settresoreriePetitaPetit(commande.getAchatCommande());
           }
         }
@@ -461,7 +491,7 @@ public class Niveau {
 		return true;
 	}
 	/**Calcul le score de cuisson � partir de la fonction cuire() de Commande
-	 * 
+	 *
 	 * @param score
 	 */
 	public void setScoreCuisson(float score) {
@@ -489,37 +519,41 @@ public class Niveau {
 	}
 	
 	
-	
-	
+
 	/**
 	 * Permet d'obtenir le score total !
 	 */
 	public void setScore() {
 		//!---selon le temps de cuisson, le temps et le respect des ingr�dients----!
-		int scoreTresor;
-		this.scorePizzaIng = this.scorePizzaIng/this.commandes.length;
-		this.scoreCuisson = this.scoreCuisson/this.commandes.length;
-		if(this.scoreATresorerie[0] <  getTresorerietmp() && getTresorerietmp() < this.scoreATresorerie[1]) {
-			scoreTresor = 2;
-		} else if (this.scoreATresorerie[1] <  getTresorerietmp() && getTresorerietmp() < this.scoreATresorerie[2]) {
-			scoreTresor = 3;
-		} else if(getTresorerietmp() > 0){
-			scoreTresor = 1;
-		} else {
-			scoreTresor = 3;
-		}
-		int scoreTemps;
-		if(this.scoreAuTemps[0] <  getTempstmp() && getTempstmp() < this.scoreAuTemps[1]) {
-			scoreTemps = 2;
-		} else if (this.scoreAuTemps[1] <  getTempstmp() && getTempstmp() < this.scoreAuTemps[2]) {
-			scoreTemps = 3;
-		} else if(getTempstmp() > 0){
-			scoreTemps = 1;
-		} else {
-			scoreTemps = 3;
-		}
-		int score = (int)((scoreTemps == 0 || scoreTresor ==0 || scoreCuisson == 0 || scorePizzaIng ==0)?0:(scoreTemps+scoreTresor+scoreCuisson+scorePizzaIng)/3);
-		this.score = score;
+        this.setScoreALaTresorerie();
+        this.setScoreAuTemps();
+        int scoreTresor = 0;
+        this.scorePizzaIng = this.scorePizzaIng/this.commandes.length;
+        this.scoreCuisson = this.scoreCuisson/this.commandes.length;
+        if(this.scoreATresorerie[0] <  getTresorerietmp() && getTresorerietmp() < this.scoreATresorerie[1]) {
+            scoreTresor = 2;
+        } else if (this.scoreATresorerie[1] <  getTresorerietmp() && getTresorerietmp() < this.scoreATresorerie[2]) {
+            scoreTresor = 3;
+        } else if(getTresorerietmp() > 0){
+            scoreTresor = 1;
+        } else {
+            scoreTresor = 3;
+        }
+        int scoreTemps = 0;
+        if(this.scoreAuTemps[0] <  getTempstmp() && getTempstmp() < this.scoreAuTemps[1]) {
+            scoreTemps = 2;
+        } else if (this.scoreAuTemps[1] <  getTempstmp() && getTempstmp() < this.scoreAuTemps[2]) {
+            scoreTemps = 3;
+        } else if(getTempstmp() > 0){
+            scoreTemps = 1;
+        } else {
+            scoreTemps = 3;
+        }
+        System.out.println(scoreTemps);
+		System.out.println(scoreTresor);
+		System.out.println(scoreCuisson);
+		System.out.println(scorePizzaIng);
+        this.score = Math.round((scoreTemps+scoreTresor+scoreCuisson+scorePizzaIng)/4);
 	}
 	/**
 	 * Permet d'obtenir le montant de tr�sorerie encore disponible
@@ -558,11 +592,10 @@ public class Niveau {
 	public boolean retraitArgentIng(Ingredients ing, int nb) {
 		this.tresorerietmp-=ing.getPrixAchat()*nb;
 		if(this.tresorerietmp <= 0 ) {
-			this.defaite("Tresorerie vide");
 			return false;
 		}
 		return true;
-		
+
 	}
 	/**
 	 * Permet de retirer de l'argent � l'achat de la pate
@@ -572,11 +605,10 @@ public class Niveau {
 	public boolean retraitArgentIng(Pate ing) {
 		this.tresorerietmp-=ing.getPrixAchat();
 		if(this.tresorerietmp <= 0 ) {
-			this.defaite("Tresorerie vide");
 			return false;
 		}
 		return true;
-		
+
 	}
 	/**
 	 * Permet de vendre la pizza et de recolter l'argent de la commande initiale
@@ -584,59 +616,9 @@ public class Niveau {
 	 * @param pizza
 	 */
 	public void ventePizza(Commande commande, Commande pizza) {
-		this.setScorePizzaIng(pizza.getLesIngredients(), commande);
 		int pourboire = (this.scorePizzaIng == 3 || this.scoreCuisson == 3)?(int)commande.getUnClient().getPourboire():0;
 		this.tresorerietmp+=(commande.getVenteCommande() < pizza.getVenteCommande())?commande.getVenteCommande() + pourboire :pizza.getVenteCommande() + pourboire;
 		this.setScorePizzaIng(pizza.getLesIngredients(), commande);
-	}
-	//!--A gerer avec l'interface graphique ---!!!
-	/**
-	 * Permet de g�rer les d�faites et d'afficher leurs raisons
-	 * @param raison
-	 */
-	public void defaite(String raison) {
-		System.out.println("Perdu : " + raison);
-	}
-	public void partie() {
-		/*ArrayList<String> tmp = new ArrayList<String>();
-		try {
-	  	      //lire le fichier
-	  	      FileReader file = new FileReader(getClass().getResource("./textes/niveaux.txt").getFile());
-	  	      BufferedReader buffer = new BufferedReader(file);
-	  	      tmp.add(buffer.readLine());
-	  	      // parcourir le fichier
-	  	      while(tmp.get(tmp.size()-1) != null) {
-	  	    	tmp.add(buffer.readLine());
-	  	      }
-	  	      buffer.close();
-	  	   }
-	  	   catch (IOException e) {
-	  	      e.printStackTrace();
-	  	   }
-		int tmpNb = 0;
-		String[] donneesNiv = new String[8];
-		while(elementsNiveau(tmp.get(tmpNb))[0] != nomNiveau && tmp.size() != tmpNb) {
-			if(elementsNiveau(tmp.get(tmpNb))[0] == nomNiveau) {
-				donneesNiv = elementsNiveau(tmp.get(tmpNb));
-			}
-			tmpNb++;
-		}
-		if(tmp.size() == tmpNb) {
-			throw new InternalError("Fichier ne contenant pas ce niveau !");
-		}
-		Difficulte dur;
-		switch(donneesNiv[1]) {
-			case "Karen":
-				dur = Difficulte.Karen;
-				break;
-			case "Normal":
-				dur = Difficulte.Normal;
-				break;
-			default:
-				dur = Difficulte.Facile;
-		}
-		Niveau niveauEnCours = new Niveau(donneesNiv[0],dur,Integer.parseInt(donneesNiv[2]),Integer.parseInt(donneesNiv[3]),Integer.parseInt(donneesNiv[4]),Float.parseFloat(donneesNiv[5]),Integer.parseInt(donneesNiv[6]),Integer.parseInt(donneesNiv[7]));*/
-		
 	}
 
 }

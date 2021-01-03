@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 
@@ -118,19 +119,25 @@ public class MenuControleurPersonnalisationRegleJeu implements Initializable{
     Spinner<Integer> prjPrixAchatCreme;
 
     @FXML
-    Spinner<Double> prjPrixVenteCreme;
+    Spinner<Integer> prjPrixVenteCreme;
 
     @FXML
     Spinner<Integer> prjPrixAchatSauceTomate;
 
     @FXML
-    Spinner<Double> prjPrixVenteSauceTomate;
+    Spinner<Integer> prjPrixVenteSauceTomate;
     
     @FXML
     Spinner<Integer> prjPrixAchatPate;
 
     @FXML
     Spinner<Integer> prjPrixVentePate;
+    
+    @FXML
+    Label lbl_erreurMinMax;
+    
+    @FXML
+    Label lbl_validation;
 
 
  
@@ -157,9 +164,9 @@ public class MenuControleurPersonnalisationRegleJeu implements Initializable{
         prjPrixVenteFrommages.getValueFactory().setValue(3);
         prjPrixVenteTomates.getValueFactory().setValue(2);
         prjPrixAchatCreme.getValueFactory().setValue(2);
-        prjPrixVenteCreme.getValueFactory().setValue(2.5);
+        prjPrixVenteCreme.getValueFactory().setValue(3);
         prjPrixAchatSauceTomate.getValueFactory().setValue(1);
-        prjPrixVenteSauceTomate.getValueFactory().setValue(1.5);
+        prjPrixVenteSauceTomate.getValueFactory().setValue(3);
         
         prjPourboireFacile.getValueFactory().setValue(10);
         prjPourboireNormal.getValueFactory().setValue(10);
@@ -207,93 +214,102 @@ public class MenuControleurPersonnalisationRegleJeu implements Initializable{
      */
     @FXML
     public void valider(ActionEvent event) {
-    	try {
-    		//bases
-		   String bases = "tomateBase/"+prjPrixAchatSauceTomate.getValue()+"/"+prjPrixVenteSauceTomate.getValue()+"\n" +
-				   			"crèmeBase/"+prjPrixAchatCreme.getValue()+"/"+prjPrixVenteCreme.getValue();
+    	if(prjMinIngredientFacile.getValue() > prjMaxIngredientFacile.getValue() || prjMinIngredientNormal.getValue() > prjMaxIngredientNormal.getValue() || prjMinIngredientKaren.getValue() > prjMaxIngredientKaren.getValue()) {
+    		lbl_erreurMinMax.setVisible(true);
+    	}
+    	else {
+    		lbl_erreurMinMax.setVisible(false);
+    	    lbl_validation.setVisible(true);
+    		try {
+        		//bases
+    		   String bases = "tomateBase/"+prjPrixAchatSauceTomate.getValue()+"/"+prjPrixVenteSauceTomate.getValue()+"\n" +
+    				   			"crèmeBase/"+prjPrixAchatCreme.getValue()+"/"+prjPrixVenteCreme.getValue();
 
-		   File fileBases = new File("src/textes/bases.txt");
+    		   File fileBases = new File("src/textes/bases.txt");
 
-		   // créer le fichier s'il n'existe pas
-		   if (!fileBases.exists()) {
-			   fileBases.createNewFile();
-		   }
+    		   // créer le fichier s'il n'existe pas
+    		   if (!fileBases.exists()) {
+    			   fileBases.createNewFile();
+    		   }
 
-		   FileWriter fwBases = new FileWriter(fileBases.getAbsoluteFile());
-		   BufferedWriter bwBases = new BufferedWriter(fwBases);
-		   bwBases.write(bases);
-		   bwBases.close();
-		   
-		   System.out.println("Modification terminée bases !");
+    		   FileWriter fwBases = new FileWriter(fileBases.getAbsoluteFile());
+    		   BufferedWriter bwBases = new BufferedWriter(fwBases);
+    		   bwBases.write(bases);
+    		   bwBases.close();
+    		   
+    		   System.out.println("Modification terminée bases !");
 
 
-		   //ingrédients
-		   String ingredients = "oignon/"+prjPrixAchatOignons.getValue()+"/"+prjPrixVenteOignons.getValue()+"\n" +
-		   			"champignon/"+prjPrixAchatChampignons.getValue()+"/"+prjPrixVenteChampignons.getValue()+"\n" +
-		   			"oeuf/"+prjPrixAchatOeufs.getValue()+"/"+prjPrixVenteOeufs.getValue()+"\n" +
-		   			"Chorizo/"+prjPrixAchatChorizo.getValue()+"/"+prjPrixVenteChorizo.getValue()+"\n" +
-		   			"Poulet/"+prjPrixAchatPoulet.getValue()+"/"+prjPrixVentePoulet.getValue()+"\n" +
-		   			"Bacon/"+prjPrixAchatBacon.getValue()+"/"+prjPrixVenteBacon.getValue()+"\n" +
-		   			"fromage/"+prjPrixAchatFrommages.getValue()+"/"+prjPrixVenteFrommages.getValue()+"\n" +
-		   			"tomate/"+prjPrixAchatTomates.getValue()+"/"+prjPrixVenteTomates.getValue();
+    		   //ingrédients
+    		   String ingredients = "oignon/"+prjPrixAchatOignons.getValue()+"/"+prjPrixVenteOignons.getValue()+"\n" +
+    		   			"champignon/"+prjPrixAchatChampignons.getValue()+"/"+prjPrixVenteChampignons.getValue()+"\n" +
+    		   			"oeuf/"+prjPrixAchatOeufs.getValue()+"/"+prjPrixVenteOeufs.getValue()+"\n" +
+    		   			"Chorizo/"+prjPrixAchatChorizo.getValue()+"/"+prjPrixVenteChorizo.getValue()+"\n" +
+    		   			"Poulet/"+prjPrixAchatPoulet.getValue()+"/"+prjPrixVentePoulet.getValue()+"\n" +
+    		   			"Bacon/"+prjPrixAchatBacon.getValue()+"/"+prjPrixVenteBacon.getValue()+"\n" +
+    		   			"fromage/"+prjPrixAchatFrommages.getValue()+"/"+prjPrixVenteFrommages.getValue()+"\n" +
+    		   			"tomate/"+prjPrixAchatTomates.getValue()+"/"+prjPrixVenteTomates.getValue();
 
-			File fileIngredients = new File("src/textes/ingredients.txt");
-			
-			// créer le fichier s'il n'existe pas
-			if (!fileIngredients.exists()) {
-				fileIngredients.createNewFile();
-			}
-			
-			FileWriter fwIngredient = new FileWriter(fileIngredients.getAbsoluteFile());
-			BufferedWriter bwIngredient = new BufferedWriter(fwIngredient);
-			bwIngredient.write(ingredients);
-			bwIngredient.close();
+    			File fileIngredients = new File("src/textes/ingredients.txt");
+    			
+    			// créer le fichier s'il n'existe pas
+    			if (!fileIngredients.exists()) {
+    				fileIngredients.createNewFile();
+    			}
+    			
+    			FileWriter fwIngredient = new FileWriter(fileIngredients.getAbsoluteFile());
+    			BufferedWriter bwIngredient = new BufferedWriter(fwIngredient);
+    			bwIngredient.write(ingredients);
+    			bwIngredient.close();
 
-		   System.out.println("Modification terminée ingrédient!");
-		   
-		   //pâte
-		   String pate = "Pate/"+prjPrixAchatPate.getValue()+"/"+prjPrixVentePate.getValue();
+    		   System.out.println("Modification terminée ingrédient!");
+    		   
+    		   //pâte
+    		   String pate = "Pate/"+prjPrixAchatPate.getValue()+"/"+prjPrixVentePate.getValue();
 
-		   File filePate = new File("src/textes/pates.txt");
-			
-			// créer le fichier s'il n'existe pas
-			if (!filePate.exists()) {
-				filePate.createNewFile();
-			}
-			
-			FileWriter fwPate = new FileWriter(filePate.getAbsoluteFile());
-			BufferedWriter bwPate = new BufferedWriter(fwPate);
-			bwPate.write(pate);
-			bwPate.close();
+    		   File filePate = new File("src/textes/pates.txt");
+    			
+    			// créer le fichier s'il n'existe pas
+    			if (!filePate.exists()) {
+    				filePate.createNewFile();
+    			}
+    			
+    			FileWriter fwPate = new FileWriter(filePate.getAbsoluteFile());
+    			BufferedWriter bwPate = new BufferedWriter(fwPate);
+    			bwPate.write(pate);
+    			bwPate.close();
 
-		   System.out.println("Modification terminée pâte !");
-		   
-		   //clients
-		   String client = "Facile/"+prjMargeFacile.getValue()+"/"+prjPourboireFacile.getValue()+"/"+prjMinIngredientFacile.getValue()+"/"+prjMaxIngredientFacile.getValue()+"\n" +
-				   			"Normal/"+prjMargeNormal.getValue()+"/"+prjPourboireNormal.getValue()+"/"+prjMinIngredientNormal.getValue()+"/"+prjMaxIngredientNormal.getValue()+"\n" +
-				   			"Karen/"+prjMargeKaren.getValue()+"/"+prjPourboireKaren.getValue()+"/"+prjMinIngredientKaren.getValue()+"/"+prjMaxIngredientKaren.getValue();
+    		   System.out.println("Modification terminée pâte !");
+    		   
+    		   //clients
+    		   String client = "Facile/"+prjMargeFacile.getValue()+"/"+prjPourboireFacile.getValue()+"/"+prjMinIngredientFacile.getValue()+"/"+prjMaxIngredientFacile.getValue()+"\n" +
+    				   			"Normal/"+prjMargeNormal.getValue()+"/"+prjPourboireNormal.getValue()+"/"+prjMinIngredientNormal.getValue()+"/"+prjMaxIngredientNormal.getValue()+"\n" +
+    				   			"Karen/"+prjMargeKaren.getValue()+"/"+prjPourboireKaren.getValue()+"/"+prjMinIngredientKaren.getValue()+"/"+prjMaxIngredientKaren.getValue();
 
-			File fileClient = new File("src/textes/clients.txt");
-			
-			// créer le fichier s'il n'existe pas
-			if (!fileClient.exists()) {
-				fileClient.createNewFile();
-			}
-			
-			FileWriter fwClients = new FileWriter(fileClient.getAbsoluteFile());
-			BufferedWriter bwClients = new BufferedWriter(fwClients);
-			bwClients.write(client);
-			bwClients.close();
+    			File fileClient = new File("src/textes/clients.txt");
+    			
+    			// créer le fichier s'il n'existe pas
+    			if (!fileClient.exists()) {
+    				fileClient.createNewFile();
+    			}
+    			
+    			FileWriter fwClients = new FileWriter(fileClient.getAbsoluteFile());
+    			BufferedWriter bwClients = new BufferedWriter(fwClients);
+    			bwClients.write(client);
+    			bwClients.close();
 
-		   System.out.println("Modification terminée clients !");
-		   
-		  } catch (IOException e) {
-		   e.printStackTrace();
-		  }
+    		   System.out.println("Modification terminée clients !");
+    		   
+    		  } catch (IOException e) {
+    		   e.printStackTrace();
+    		  }
+    	}
     }
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		lbl_erreurMinMax.setVisible(false);
+	    lbl_validation.setVisible(false);
     	//Récupération des lignes ingrédients
 		try {
 			BufferedReader ing = new BufferedReader(new FileReader("src/textes/ingredients.txt"));
@@ -401,12 +417,12 @@ public class MenuControleurPersonnalisationRegleJeu implements Initializable{
 			String lineBaseTomate = bases.readLine();
 			String[] tabBaseTomate= lineBaseTomate.split("/");
 			prjPrixAchatSauceTomate.getValueFactory().setValue(Integer.parseInt(tabBaseTomate[1]));
-			prjPrixVenteSauceTomate.getValueFactory().setValue(Double.parseDouble(tabBaseTomate[2]));
+			prjPrixVenteSauceTomate.getValueFactory().setValue(Integer.parseInt(tabBaseTomate[2]));
 			
 			String lineBaseCreme = bases.readLine();
 			String[] tabBaseCreme= lineBaseCreme.split("/");
 			prjPrixAchatCreme.getValueFactory().setValue(Integer.parseInt(tabBaseCreme[1]));
-			prjPrixVenteCreme.getValueFactory().setValue(Double.parseDouble(tabBaseTomate[2]));
+			prjPrixVenteCreme.getValueFactory().setValue(Integer.parseInt(tabBaseTomate[2]));
 	
 			bases.close();
 		} catch (IOException e) {

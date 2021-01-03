@@ -18,7 +18,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         try {
             stage = primaryStage;
-            //CrÃ©ation Ã©cran Menu
+            //Création écran Menu
             root = FXMLLoader.load(getClass().getResource("../fxml/Menu.fxml"));
             primaryStage.setTitle("PizzaFinibus : Menu");
             primaryStage.setScene(new Scene(root));
@@ -26,6 +26,12 @@ public class Main extends Application {
         } catch(Exception e) {
             e.printStackTrace();
         }
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                NiveauAPCControleur.arret = true;
+            }
+        });
     }
     public static void main(String[] args) {
         launch(args);
@@ -36,4 +42,5 @@ public class Main extends Application {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
 }

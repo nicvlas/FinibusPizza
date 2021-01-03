@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurEcranVictoire">
    <children>
       <Label fx:id="lbl_nomniveau" layoutX="538.0" layoutY="53.0" text="Nom du niveau">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Button fx:id="btn_recommencer" layoutX="400.0" layoutY="392.0" mnemonicParsing="false" text="Recommencer">
+      <Button fx:id="btn_recommencer" layoutX="400.0" layoutY="392.0" mnemonicParsing="false" onAction="#recommencer" text="Recommencer">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="btn_fermer" layoutX="797.0" layoutY="392.0" mnemonicParsing="false" text="Fermer">
+      <Button fx:id="btn_fermer" layoutX="777.0" layoutY="392.0" mnemonicParsing="false" onAction="#fermer" text="Fermer">
          <font>
             <Font size="15.0" />
          </font>
@@ -28,20 +30,52 @@
             <Font size="29.0" />
          </font>
       </Label>
-      <ImageView fx:id="img_etoile1" fitHeight="113.0" fitWidth="126.0" layoutX="584.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/etoile.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="img_etoile3" fitHeight="113.0" fitWidth="126.0" layoutX="709.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../img/etoile.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="img_etoile2" fitHeight="113.0" fitWidth="126.0" layoutX="458.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../img/etoile.png" />
-         </image>
-      </ImageView>
+      <Button fx:id="btn_suivant_edit" layoutX="606.0" layoutY="392.0" mnemonicParsing="false" onAction="#suivant_edit" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Pane fx:id="pane1etoile" layoutX="584.0" layoutY="196.0" prefHeight="113.0" prefWidth="113.0" visible="false">
+         <children>
+            <ImageView fx:id="img_etoile1" fitHeight="113.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/etoile.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane3etoiles" layoutX="420.0" layoutY="231.0" prefHeight="130.0" prefWidth="443.0" visible="false">
+         <children>
+            <ImageView fx:id="img_etoile31" fitHeight="113.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/etoile.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_etoile33" fitHeight="113.0" fitWidth="126.0" layoutX="330.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/etoile.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_etoile32" fitHeight="113.0" fitWidth="126.0" layoutX="165.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/etoile.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane2etoiles" layoutX="429.0" layoutY="186.0" prefHeight="130.0" prefWidth="311.0" visible="false">
+         <children>
+            <ImageView fx:id="img_etoile21" fitHeight="113.0" fitWidth="126.0" layoutX="-8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/etoile.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img_etoile22" fitHeight="113.0" fitWidth="126.0" layoutX="198.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/etoile.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

@@ -68,6 +68,16 @@ public class MenuModificationNiveau implements Initializable {
 	@FXML
 	 Button mnRetourMenu;
 	
+	@FXML
+	Label lbl_minMaxErreur;
+	
+	@FXML
+	Label lbl_nbClientErreur;
+	
+	@FXML
+	Label lbl_modifReussite;
+	
+	
 	private static File file;
 	private static ArrayList<String[]> listNiveau;
 	private static ArrayList<String[]> listNiveauPers;
@@ -82,37 +92,50 @@ public class MenuModificationNiveau implements Initializable {
 	
     public void modifier(ActionEvent event) {
     	updateValues();
-    	//Contenu du fichier texte
-    	String contenuFichier = "";
-    	Float margeTresorerie = margeTresor/10f;
-    	// Si c'est une modification de niveau classique ou personnalisé -> remplacer les éléments
-    	if(this.mnSelectNomNiveau.getSelectionModel().getSelectedIndex() != 0) {
-    		file = new File(getClass().getResource("../textes/niveaux.txt").getFile());
-    		for(String[] t : listNiveau) {
-    			if(t[0].equals(nomDuNiveau))
-    				contenuFichier += ""+nomDuNiveau+"/"+difficulte+"/"+nb1TypeClient+"/"+nb2TypeClient+"/"+nb3TypeClient+"/"+margeTresorerie+"/"+minIngredient+"/"+maxIngredient+"\n";
-    			else
-    				contenuFichier += ""+t[0]+"/"+t[1]+"/"+t[2]+"/"+t[3]+"/"+t[4]+"/"+t[5]+"/"+t[6]+"/"+t[7]+"\n";
-    		}
+    	if(minIngredient > maxIngredient) {
+    		lbl_minMaxErreur.setVisible(true);
     	}
     	else {
-    		file = new File(getClass().getResource("../textes/niveauxPers.txt").getFile());
-    		for(String[] t : listNiveauPers) {
-    			if(t[0].equals(nomDuNiveau)) 
-    				contenuFichier += ""+nomDuNiveau+"/"+difficulte+"/"+nb1TypeClient+"/"+nb2TypeClient+"/"+nb3TypeClient+"/"+margeTresorerie+"/"+minIngredient+"/"+maxIngredient+"\n";
-    			else
-    				contenuFichier += ""+t[0]+"/"+t[1]+"/"+t[2]+"/"+t[3]+"/"+t[4]+"/"+t[5]+"/"+t[6]+"/"+t[7]+"\n";
+    		lbl_minMaxErreur.setVisible(false);
+    		if(nb1TypeClient==0 && nb2TypeClient==0 && nb3TypeClient==0) {
+    			lbl_nbClientErreur.setVisible(true);
+    		}
+    		else {
+    			lbl_nbClientErreur.setVisible(false);
+    			lbl_modifReussite.setVisible(true);
+    			//Contenu du fichier texte
+            	String contenuFichier = "";
+            	Float margeTresorerie = margeTresor/10f;
+            	// Si c'est une modification de niveau classique ou personnalisé -> remplacer les éléments
+            	if(this.mnSelectNomNiveau.getSelectionModel().getSelectedIndex() != 0) {
+            		file = new File(getClass().getResource("../textes/niveaux.txt").getFile());
+            		for(String[] t : listNiveau) {
+            			if(t[0].equals(nomDuNiveau))
+            				contenuFichier += ""+nomDuNiveau+"/"+difficulte+"/"+nb1TypeClient+"/"+nb2TypeClient+"/"+nb3TypeClient+"/"+margeTresorerie+"/"+minIngredient+"/"+maxIngredient+"\n";
+            			else
+            				contenuFichier += ""+t[0]+"/"+t[1]+"/"+t[2]+"/"+t[3]+"/"+t[4]+"/"+t[5]+"/"+t[6]+"/"+t[7]+"\n";
+            		}
+            	}
+            	else {
+            		file = new File(getClass().getResource("../textes/niveauxPers.txt").getFile());
+            		for(String[] t : listNiveauPers) {
+            			if(t[0].equals(nomDuNiveau)) 
+            				contenuFichier += ""+nomDuNiveau+"/"+difficulte+"/"+nb1TypeClient+"/"+nb2TypeClient+"/"+nb3TypeClient+"/"+margeTresorerie+"/"+minIngredient+"/"+maxIngredient+"\n";
+            			else
+            				contenuFichier += ""+t[0]+"/"+t[1]+"/"+t[2]+"/"+t[3]+"/"+t[4]+"/"+t[5]+"/"+t[6]+"/"+t[7]+"\n";
+            		}
+            	}
+            	try {
+            		FileWriter fileWriter = new FileWriter(file, false);
+            		fileWriter.write(contenuFichier);
+            		fileWriter.close();
+            	}
+            	catch (IOException e) {
+        			// TODO: handle exception
+            		e.printStackTrace();
+        		}
     		}
     	}
-    	try {
-    		FileWriter fileWriter = new FileWriter(file, false);
-    		fileWriter.write(contenuFichier);
-    		fileWriter.close();
-    	}
-    	catch (IOException e) {
-			// TODO: handle exception
-    		e.printStackTrace();
-		}
     }
     /*
      * Retour à la fenêtre du menu
@@ -167,6 +190,9 @@ public class MenuModificationNiveau implements Initializable {
 		mnSelectDifficulte.getItems().add("Facile");
 		mnSelectDifficulte.getItems().add("Normal");
 		mnSelectDifficulte.getItems().add("Karen");
+		lbl_minMaxErreur.setVisible(false);
+		lbl_nbClientErreur.setVisible(false);
+		lbl_modifReussite.setVisible(false);
 	}
 	/*
 	 * Mettre à jour les données du niveau modifié
@@ -196,7 +222,7 @@ public class MenuModificationNiveau implements Initializable {
 			mnSelectNomNiveau.getItems().add(listNiveau.get(i)[0]);
 		}
 		for(int i = 0; i<listNiveauPers.size(); i++) {
-			mnSelectNomNiveauPers.getItems().add(listNiveau.get(i)[0]);
+			mnSelectNomNiveauPers.getItems().add(listNiveauPers.get(i)[0]);
 		}
 		mnModifier.setDisable(true);
 		mnSupprimer.setDisable(true);
@@ -255,6 +281,7 @@ public class MenuModificationNiveau implements Initializable {
 	 * Place les éléments modifiables selon le choix du niveau classique
 	 */
 	public void ListNivChoix(ActionEvent event) {
+		lbl_modifReussite.setVisible(false);
 		if(this.mnSelectNomNiveau.getSelectionModel().getSelectedIndex() == 0) {
 			mnModifier.setDisable(true);
 			mnSupprimer.setDisable(true);
@@ -287,9 +314,9 @@ public class MenuModificationNiveau implements Initializable {
 					margeTresor = Math.round((Float.parseFloat(t[5])*10));
 					minIngredient = Integer.parseInt(t[6]);
 					maxIngredient = Integer.parseInt(t[7]);
-					this.mnNbFacile.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,10,nb1TypeClient));
-					this.mnNbNormal.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,10,nb2TypeClient));
-					this.mnNbKaren.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,10,nb3TypeClient));
+					this.mnNbFacile.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10,nb1TypeClient));
+					this.mnNbNormal.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10,nb2TypeClient));
+					this.mnNbKaren.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10,nb3TypeClient));
 					this.mnMargeTresorerie.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, margeTresor));
 					this.mnMinIngredient.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,10,minIngredient));
 					this.mnMaxIngredient.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,10,maxIngredient));
@@ -303,6 +330,7 @@ public class MenuModificationNiveau implements Initializable {
 	 */
 	public void ListNivChoixPers(ActionEvent event)
 	{
+		lbl_modifReussite.setVisible(false);
 		if(this.mnSelectNomNiveauPers.getSelectionModel().getSelectedIndex() == 0) {
 			mnModifier.setDisable(true);
 			mnSupprimer.setDisable(true);
@@ -335,9 +363,9 @@ public class MenuModificationNiveau implements Initializable {
 					margeTresor = Math.round((Float.parseFloat(t[5])*10));
 					minIngredient = Integer.parseInt(t[6]);
 					maxIngredient = Integer.parseInt(t[7]);
-					this.mnNbFacile.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,10,nb1TypeClient));
-					this.mnNbNormal.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,10,nb2TypeClient));
-					this.mnNbKaren.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,10,nb3TypeClient));
+					this.mnNbFacile.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10,nb1TypeClient));
+					this.mnNbNormal.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10,nb2TypeClient));
+					this.mnNbKaren.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10,nb3TypeClient));
 					this.mnMargeTresorerie.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, margeTresor));
 					this.mnMinIngredient.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,10,minIngredient));
 					this.mnMaxIngredient.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,10,maxIngredient));

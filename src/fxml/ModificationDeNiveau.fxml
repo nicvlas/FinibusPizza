@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../img/fond.jpg" />
+            <Image url="@../img/parametres.jpg" />
          </image>
       </ImageView>
       <AnchorPane layoutX="85.0" layoutY="159.0" prefHeight="403.0" prefWidth="545.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="158.0" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="650.0" AnchorPane.topAnchor="159.0">
@@ -128,7 +128,7 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <Label layoutX="446.0" layoutY="80.0" prefHeight="70.0" prefWidth="388.0" text="Modification de niveau" textFill="WHITE" AnchorPane.bottomAnchor="570.0" AnchorPane.leftAnchor="446.0" AnchorPane.rightAnchor="446.0" AnchorPane.topAnchor="80.0">
+      <Label layoutX="446.0" layoutY="80.0" prefHeight="70.0" prefWidth="388.0" text="Modification de niveau" textFill="#bfbfbf" AnchorPane.bottomAnchor="570.0" AnchorPane.leftAnchor="446.0" AnchorPane.rightAnchor="446.0" AnchorPane.topAnchor="80.0">
          <font>
             <Font size="36.0" />
          </font>
@@ -143,5 +143,20 @@
             <Font size="24.0" />
          </font>
       </Button>
+      <Label fx:id="lbl_minMaxErreur" alignment="CENTER" layoutX="85.0" layoutY="578.0" prefHeight="17.0" prefWidth="1069.0" text="Le nombre d'ingrédients minimum doit être inférieur au nombre d'ingrédients maximum" textFill="RED" visible="false">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_nbClientErreur" alignment="CENTER" layoutX="85.0" layoutY="578.0" prefHeight="17.0" prefWidth="1069.0" text="Il doit avoir au moins un client dans le niveau" textFill="RED" visible="false">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_modifReussite" alignment="CENTER" layoutX="96.0" layoutY="578.0" prefHeight="17.0" prefWidth="1069.0" text="Modification réussite" textFill="#00ff1a" visible="false">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

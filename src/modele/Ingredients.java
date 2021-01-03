@@ -5,7 +5,6 @@ public class Ingredients {
 	private String nom;
 	private float prixAchat;
 	private float prixVente;
-	private String cheminDaccesImage;
 	private int stock;
 	private int tempsDePoseIngredient;
 	
@@ -20,10 +19,6 @@ public class Ingredients {
 
 	public double getPrixVente() {
 		return prixVente;
-	}
-	
-	public String getCheminDaccesImage() {
-		return cheminDaccesImage;
 	}
 	
 	public int getTempsDePoseIngredient() {
@@ -54,20 +49,18 @@ public class Ingredients {
 	 * @param nom : nom de l'ingr�dient
 	 * @param prixAchat : prix d'achat
 	 * @param prixVente : prix de vente
-	 * @param cheminDaccesImage : chemin d'acc�s pour l'image
 	 */
-	public Ingredients(String nom, float prixAchat, float prixVente, String cheminDaccesImage) {
+	public Ingredients(String nom, float prixAchat, float prixVente) {
 		this.nom = nom;
 		this.prixAchat = prixAchat;
 		this.prixVente = prixVente;
-		this.cheminDaccesImage = cheminDaccesImage;
 		this.stock = 6; //� v�rifier
 		this.tempsDePoseIngredient = 3;
 	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Ingredients fromage = new Ingredients("Fromage", 1.88f, 2.30f, "lol");
+		Ingredients fromage = new Ingredients("Fromage", 1.88f, 2.30f);
 		System.out.println(fromage.toString());	
 				
 	}
